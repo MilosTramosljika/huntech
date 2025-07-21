@@ -1,0 +1,44 @@
+<h2>Status vašeg zahtjeva za registraciju</h2>
+
+<!-- Prikaz statusa -->
+<p>Trenutni status: <strong>Na čekanju</strong></p>
+<p>Administrator će pregledati vaš zahtjev i obavijestiti vas putem emaila.</p>
+
+<hr>
+
+<h3>Izmijeni podatke u zahtjevu</h3>
+
+<form action="/izmijeni-registraciju" method="post" enctype="multipart/form-data">
+  <label for="korisnickoIme">Korisničko ime:</label><br>
+  <input type="text" id="korisnickoIme" name="korisnickoIme" value="milena_hunt" required><br><br>
+
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" value="milena@example.com" required><br><br>
+
+  <label for="ime">Ime:</label><br>
+  <input type="text" id="ime" name="ime" value="Milena"><br><br>
+
+  <label for="prezime">Prezime:</label><br>
+  <input type="text" id="prezime" name="prezime" value="Stojanović"><br><br>
+
+  <label for="telefon">Telefon:</label><br>
+  <input type="tel" id="telefon" name="telefon" value="+387 65 456 789"><br><br>
+
+  <label for="bio">Kratke informacije o sebi:</label><br>
+  <textarea id="bio" name="bio" rows="4" cols="40">
+Lovkinja iz Hercegovine, aktivna u lokalnim udruženjima.
+  </textarea><br><br>
+
+  <!-- Prilog (opciono ažuriranje) -->
+  <label for="dokumenti">Promijeni prilog (ako je potrebno):</label><br>
+  <input type="file" id="dokumenti" name="dokumenti" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"><br><br>
+
+  <!-- Opcioni podaci -->
+  <label for="lovackiPsi">Lovački psi (opciono):</label><br>
+  <textarea id="lovackiPsi" name="lovackiPsi" rows="2" cols="40">Ajk – ptičar</textarea><br><br>
+
+  <label for="arsenal">Arsenal oružja (opciono):</label><br>
+  <input type="text" id="arsenal" name="arsenal" value="Karabin .308"><br><br>
+
+  <input type="submit" value="Sačuvaj izmjene">
+</form>

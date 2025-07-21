@@ -1,0 +1,25 @@
+<h2>Detalji poziva za učlanjenje</h2>
+ <link rel="stylesheet" href="C:\_repos\HUNTECH\forme\style.css">
+<form action="/obradi-poziv-uclanjenje" method="post">
+  <label for="idPoziva">ID poziva:</label><br>
+  <input type="text" id="idPoziva" name="idPoziva" value="INV024" readonly><br><br>
+
+  <label for="udruzenje">Lovačko udruženje:</label><br>
+  <input type="text" id="udruzenje" name="udruzenje" value="LD 'Zelengora'" readonly><br><br>
+
+  <label for="posiljalac">Poziv poslao:</label><br>
+  <input type="text" id="posiljalac" name="posiljalac" value="admin_ld_zelengora" readonly><br><br>
+
+  <label for="datumPoziva">Datum poziva:</label><br>
+  <input type="date" id="datumPoziva" name="datumPoziva" value="2025-07-12" readonly><br><br>
+
+  <label for="opis">Opis:</label><br>
+  <textarea id="opis" name="opis" rows="4" cols="40" readonly>
+Pozvani ste da se pridružite udruženju LD "Zelengora" kao aktivni član na osnovu vaših dosadašnjih rezultata i preporuka članova.
+  </textarea><br><br>
+
+  <!-- Akcije -->
+  <input type="submit" name="akcija" value="Prihvati">
+  <input type="submit" name="akcija" value="Odbij">
+  <input type="submit" name="akcija" value="Povratak">
+</form>

@@ -1,0 +1,27 @@
+<h2>Detalji zahtjeva</h2>
+
+<form action="/admin-komentar" method="post">
+  <!-- Prikaz osnovnih podataka -->
+  <label for="idZahtjeva">ID zahtjeva:</label><br>
+  <input type="text" id="idZahtjeva" name="idZahtjeva" value="001" readonly><br><br>
+
+  <label for="korisnik">Korisnik:</label><br>
+  <input type="text" id="korisnik" name="korisnik" value="lazar99" readonly><br><br>
+
+  <label for="tip">Tip zahtjeva:</label><br>
+  <input type="text" id="tip" name="tip" value="Promjena lozinke" readonly><br><br>
+
+  <label for="datum">Datum podnošenja:</label><br>
+  <input type="text" id="datum" name="datum" value="2025-07-13" readonly><br><br>
+
+  <label for="opis">Opis zahtjeva:</label><br>
+  <textarea id="opis" name="opis" rows="4" cols="40" readonly>
+  Korisnik traži promjenu lozinke zbog sumnje u kompromitaciju naloga.
+  </textarea><br><br>
+
+  <!-- Administratorova napomena -->
+  <label for="adminKomentar">Napomena administratora:</label><br>
+  <textarea id="adminKomentar" name="adminKomentar" rows="4" cols="40" placeholder="Dodaj napomenu..."></textarea><br><br>
+
+  <input type="submit" value="Sačuvaj napomenu">
+</form>

@@ -1,0 +1,28 @@
+<h2>Uredi zapis</h2>
+
+<form action="/sacuvaj-izmjene" method="post" enctype="multipart/form-data" style="background:#fff; padding:15px; border:1px solid #ccc; border-radius:6px;">
+
+  <!-- ID zapisa (skriven) -->
+  <input type="hidden" name="zapisId" value="001">
+
+  <label for="datum">📅 Datum:</label><br>
+  <input type="date" id="datum" name="datum" value="2025-07-18" required><br><br>
+
+  <label for="lokacija">📍 Lokacija:</label><br>
+  <input type="text" id="lokacija" name="lokacija" value="Jaružani kod stare česme" required><br><br>
+
+  <label for="divljac">🦌 Vrsta divljači:</label><br>
+  <input type="text" id="divljac" name="divljac" value="Srndać" required><br><br>
+
+  <label for="oruzje">🔫 Korišteno oružje:</label><br>
+  <input type="text" id="oruzje" name="oruzje" value="Karabin .308" required><br><br>
+
+  <label for="zabiljeska">📝 Beleška:</label><br>
+  <textarea id="zabiljeska" name="zabiljeska" rows="4" cols="50">Primećen u pokretu, odstrijel u šipražju.</textarea><br><br>
+
+  <label for="prilog">📎 Promeni/priloži dokument:</label><br>
+  <input type="file" id="prilog" name="prilog" accept=".jpg,.jpeg,.png,.pdf,.docx"><br><br>
+
+  <input type="submit" value="💾 Sačuvaj izmjene">
+  <button type="button" onclick="window.location.href='/dnevnik'">🚪 Odustani</button>
+</form>

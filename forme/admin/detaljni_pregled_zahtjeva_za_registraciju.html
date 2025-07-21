@@ -1,0 +1,29 @@
+<h2>Detalji zahtjeva za registraciju</h2>
+
+<form action="/admin-registracija-obrada" method="post">
+  <label for="idZahtjeva">ID zahtjeva:</label><br>
+  <input type="text" id="idZahtjeva" name="idZahtjeva" value="REG017" readonly><br><br>
+
+  <label for="ime">Ime:</label><br>
+  <input type="text" id="ime" name="ime" value="Milena" readonly><br><br>
+
+  <label for="prezime">Prezime:</label><br>
+  <input type="text" id="prezime" name="prezime" value="Stojanović" readonly><br><br>
+
+  <label for="korisnickoIme">Korisničko ime:</label><br>
+  <input type="text" id="korisnickoIme" name="korisnickoIme" value="milena_hunt" readonly><br><br>
+
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" value="milena@example.com" readonly><br><br>
+
+  <label for="datum">Datum podnošenja:</label><br>
+  <input type="date" id="datum" name="datum" value="2025-07-12" readonly><br><br>
+
+  <label for="bio">Osnovne informacije (Bio):</label><br>
+  <textarea id="bio" name="bio" rows="4" cols="40" readonly>
+Lovkinja iz Hercegovine, član lokalne sekcije i aktivna u očuvanju planinskih populacija.
+  </textarea><br><br>
+
+  <input type="submit" name="akcija" value="Odobri">
+  <input type="submit" name="akcija" value="Odbij">
+</form>

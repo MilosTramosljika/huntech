@@ -1,0 +1,93 @@
+/* mobilno.css */
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 10px;
+  background-color: #fdfdfd;
+}
+
+/* Glavni kontejner */
+form, .objava-kartica, .komentar-sekcija {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+/* Polja */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+/* Dugmad */
+input[type="submit"],
+button {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #3477eb;
+  color: white;
+  cursor: pointer;
+  margin-top: 8px;
+  width: 100%;
+}
+
+input[type="submit"]:hover,
+button:hover {
+  background-color: #285ecb;
+}
+
+/* Ikonice i brojači */
+.interakcije {
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+  margin-top: 15px;
+}
+.interakcije button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.brojac {
+  font-size: 14px;
+  color: #555;
+  margin-left: 4px;
+}
+
+/* Komentar box */
+.komentar-box {
+  display: flex;
+  gap: 10px;
+}
+.komentar-box textarea {
+  flex: 1;
+  resize: none;
+}
+
+/* Prilog panel */
+.prilog-panel {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+}

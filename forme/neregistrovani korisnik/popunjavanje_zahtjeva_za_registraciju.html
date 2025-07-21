@@ -1,0 +1,63 @@
+<h2>Zahtjev za registraciju</h2>
+
+<form action="/podnesi-registraciju" method="post" enctype="multipart/form-data">
+  <!-- Pristupni podaci -->
+  <label for="korisnickoIme">Korisničko ime:</label><br>
+  <input type="text" id="korisnickoIme" name="korisnickoIme" required><br><br>
+
+  <label for="lozinka">Lozinka:</label><br>
+  <input type="password" id="lozinka" name="lozinka" required><br><br>
+
+  <label for="potvrdaLozinke">Potvrdi lozinku:</label><br>
+  <input type="password" id="potvrdaLozinke" name="potvrdaLozinke" required><br><br>
+
+  <!-- Lični podaci -->
+  <label for="ime">Ime:</label><br>
+  <input type="text" id="ime" name="ime" required><br><br>
+
+  <label for="prezime">Prezime:</label><br>
+  <input type="text" id="prezime" name="prezime" required><br><br>
+
+  <label for="datumRodjenja">Datum rođenja:</label><br>
+  <input type="date" id="datumRodjenja" name="datumRodjenja" required><br><br>
+
+  <label for="pol">Pol:</label><br>
+  <select id="pol" name="pol">
+    <option>Muški</option>
+    <option>Ženski</option>
+    <option>Drugo</option>
+  </select><br><br>
+
+  <!-- Kontakt -->
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" required><br><br>
+
+  <label for="telefon">Telefon:</label><br>
+  <input type="tel" id="telefon" name="telefon"><br><br>
+
+  <!-- Profilni podaci -->
+  <label for="status">Status korisnika:</label><br>
+  <select id="status" name="status">
+    <option>Početnik</option>
+    <option>Aktivan lovac</option>
+    <option>Veteran</option>
+    <option>Neaktivan</option>
+  </select><br><br>
+
+  <label for="bio">Kratke informacije o sebi:</label><br>
+  <textarea id="bio" name="bio" rows="4" cols="40" placeholder="Napišite nešto o svom lovačkom iskustvu..." required></textarea><br><br>
+
+  <!-- Lovacki psi (opciono) -->
+  <label for="lovackiPsi">Lovački psi (ime i rasa – opciono):</label><br>
+  <textarea id="lovackiPsi" name="lovackiPsi" rows="3" cols="40" placeholder="Ajk – ptičar, Bela – gonič"></textarea><br><br>
+
+  <!-- Arsenal oružja (opciono) -->
+  <label for="arsenal">Arsenal oružja (razdvoj oružja zarezima – opciono):</label><br>
+  <input type="text" id="arsenal" name="arsenal" placeholder="Karabin .308, Puska 30-06"><br><br>
+
+  <!-- Prilog dokumentacije -->
+  <label for="dokumenti">Priloži dokumentaciju (PDF, slika, potvrda...):</label><br>
+  <input type="file" id="dokumenti" name="dokumenti" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" required><br><br>
+
+  <input type="submit" value="Pošalji zahtjev">
+</form>

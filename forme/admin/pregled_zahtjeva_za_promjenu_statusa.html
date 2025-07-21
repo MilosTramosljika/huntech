@@ -1,0 +1,40 @@
+<h2>Zahtjevi za promjenu statusa</h2>
+
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ID zahtjeva</th>
+      <th>Korisnik</th>
+      <th>Trenutni status</th>
+      <th>Željeni status</th>
+      <th>Datum</th>
+      <th>Razlog</th>
+      <th>Akcije</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>STAT044</td>
+      <td>dejan_bos</td>
+      <td>Standardni</td>
+      <td>Administrator</td>
+      <td>2025-07-11</td>
+      <td>Aktivno učešće u moderaciji i prijavama</td>
+      <td>
+        <form action="/odobri-status" method="post" style="display:inline;">
+          <input type="hidden" name="idZahtjeva" value="STAT044">
+          <input type="submit" value="Odobri">
+        </form>
+        <form action="/odbij-status" method="post" style="display:inline;">
+          <input type="hidden" name="idZahtjeva" value="STAT044">
+          <input type="submit" value="Odbij">
+        </form>
+        <form action="/detalji-statusa" method="get" style="display:inline;">
+          <input type="hidden" name="idZahtjeva" value="STAT044">
+          <input type="submit" value="Detalji">
+        </form>
+      </td>
+    </tr>
+    <!-- Dodaj više redova dinamički -->
+  </tbody>
+</table>

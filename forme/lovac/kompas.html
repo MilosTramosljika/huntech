@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="sr">
+ <link rel="stylesheet" href="C:\_repos\HUNTECH\forme\style.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kompas</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    .kompas-okvir {
+      margin: 0 auto;
+      width: 200px;
+      height: 200px;
+      border: 6px solid #333;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+    }
+    .igla {
+      width: 4px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: bottom center;
+      transform: translate(-50%, -100%) rotate(0deg);
+    }
+    .labela {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Kompas</h2>
+  <div class="kompas-okvir">
+    <div id="igla" class="igla"></div>
+  </div>
+  <div id="labela" class="labela">Ugao: 0°</div>
+
+  <script>
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener("deviceorientation", function(event) {
+        let azimuth = event.alpha;
+        if (typeof azimuth === "number") {
+          document.getElementById("igla").style.transform =
+            `translate(-50%, -100%) rotate(${azimuth}deg)`;
+          document.getElementById("labela").textContent = `Ugao: ${Math.round(azimuth)}°`;
+        }
+      }, true);
+    } else {
+      document.getElementById("labela").textContent = "Gyroskop nije podržan na ovom uređaju.";
+    }
+  </script>
+
+</body>
+</html>

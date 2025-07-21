@@ -1,0 +1,36 @@
+<h2>Prijave korisnika</h2>
+
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ID prijave</th>
+      <th>Prijavljen korisnik</th>
+      <th>Prijavio</th>
+      <th>Razlog</th>
+      <th>Datum</th>
+      <th>Status</th>
+      <th>Akcije</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PR001</td>
+      <td>marko_hunt</td>
+      <td>lazar99</td>
+      <td>Neprimjeren govor u komentaru</td>
+      <td>2025-07-10</td>
+      <td>Na čekanju</td>
+      <td>
+        <form action="/prijava-detalji" method="get" style="display:inline;">
+          <input type="hidden" name="idPrijave" value="PR001">
+          <input type="submit" value="Detalji">
+        </form>
+        <form action="/oznaci-kao-obradjeno" method="post" style="display:inline;">
+          <input type="hidden" name="idPrijave" value="PR001">
+          <input type="submit" value="Obrađeno">
+        </form>
+      </td>
+    </tr>
+    <!-- Dodaj više prijava dinamički kroz backend -->
+  </tbody>
+</table>
