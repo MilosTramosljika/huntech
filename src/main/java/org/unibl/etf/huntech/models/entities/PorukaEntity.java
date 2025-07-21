@@ -1,0 +1,31 @@
+package org.unibl.etf.huntech.models.entities;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.time.Instant;
+
+@Data
+@Entity
+@Table(name = "poruka")
+public class PorukaEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdPoruke", nullable = false)
+    private Integer id;
+
+    @Column(name = "Sadrzaj", nullable = false, length = 500)
+    private String sadrzaj;
+
+    @Column(name = "DatumSlanja", nullable = false)
+    private Instant datumSlanja;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "IdKorisnika", nullable = false)
+    private KorisnikEntity idKorisnika;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "IdKonverzacije", nullable = false)
+    private KonverzacijaEntity idKonverzacije;
+
+}

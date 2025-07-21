@@ -1,0 +1,39 @@
+package org.unibl.etf.huntech.models.entities;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+@Data
+@Entity
+@Table(name = "grupa")
+public class GrupaEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdGrupe", nullable = false)
+    private Integer id;
+
+    @Column(name = "NazivGrupe", nullable = false, length = 100)
+    private String nazivGrupe;
+
+    @Column(name = "Opis", nullable = false, length = 500)
+    private String opis;
+
+    @Column(name = "Slika", nullable = false)
+    private byte[] slika;
+
+    @OneToMany(mappedBy = "idGrupe")
+    private Set<AktivnostDivljaciEntity> aktivnostDivljacis = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "idGrupe")
+    private Set<KorisnikHasGrupaEntity> korisnikHasGrupas = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "idGrupe")
+    private Set<LokacijaEntity> lokacijas = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "idGrupe")
+    private Set<ObjavaEntity> objavas = new LinkedHashSet<>();
+
+}
