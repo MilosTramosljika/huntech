@@ -1,0 +1,8 @@
+KorisnikHasKonverzacijaEntity
+KorisnikHasPrijavaEntity
+KorisnikHasUlogaEntity
+LokacijaEntity
+ObavjestenjaEntity
+ObjavaEntity
+ObjavaNaLovackiDnevnikEntity
+PodkomentarEntity
