@@ -71,7 +71,7 @@ git push origin naziv_lokalne_grane
 # 2. Proces merge-anja izmjene iz sporednih grana na glavnu granu main/master(na udaljenom repoziorijmu). Imamo dvije opcije:                     
 
 
-## 🔹 1. Merge lokalno tj. merge sa sporedne lokalne grane na main lokalnu granu i onda push na udaljenu main granu:
+## 🔹 1 (OPCIJA). Merge lokalno tj. merge sa sporedne lokalne grane na main lokalnu granu i onda push na udaljenu main granu:
 
 ### 🔸 1. Prvo trebamo provjerovati da li smo commit sve izmjene na sporednoj lokalnoj grani i lokalnoj main grani
 
@@ -120,7 +120,7 @@ git merge specificna_lokalna_grana
 git checkout main
 git push origin main
 ```
-## 🔹 2. Koristi Pull Request (na GitHubu)
+## 🔹 2 (OPCIJA). Koristi Pull Request (na GitHubu)
 
 ### 🔸 1. Push-aj svoju lokalnu_specificnu_granu(ne main) na GitHub (ako već nisi):
 
