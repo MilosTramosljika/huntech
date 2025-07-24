@@ -190,3 +190,23 @@ git commit -a -m "Razrijesen konflikt"
 ```bash
 git push origin main
 ```
+
+
+# 4. Najjednostavniji (barem meni) postupak dodavanja novog fajla/foldera u svoju lokalnu granu.
+
+### 🔸 1. Prebaci se na granu u kojoj želiš da se fajl/folder pojavi:
+```bash
+git checkout ime_grane
+```
+### 🔸2. Uradi copy/paste fajla/foldera u projektni direktorijum. Bukvalno kopiras neki fajl ili folder i nalijepis ga u lokalni repozitorijum ali pod uslovom da is se prethodno pozicionirao na granu na koju hoces da taj fajl/folder pripada.
+
+### 🔸 3. Commit-uj izmjene:
+```bash
+git add -A
+git commit -m "Izmjena..."
+```
+### 🔸 4. Push-aj izmjene na udaljenu granu (uslov: da si prethodno povezao lokalnu sa udaljenom -> prethodno objasnjen proces):
+
+```bash
+git push origin ime_grane
+```
