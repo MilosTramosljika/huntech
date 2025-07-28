@@ -2,6 +2,8 @@ package org.unibl.etf.huntech.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.unibl.etf.huntech.base.BaseEntity;
+import org.unibl.etf.huntech.models.enums.TipObjave;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
@@ -10,7 +12,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "objava")
-public class ObjavaEntity {
+public class ObjavaEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdObjave", nullable = false)
@@ -24,9 +26,10 @@ public class ObjavaEntity {
     @JoinColumn(name = "IdKorisnika", nullable = false)
     private KorisnikEntity idKorisnika;
 
-    @Lob
+    //@Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "TipObjave", nullable = false)
-    private String tipObjave;
+    private TipObjave tipObjave;
 
     @Column(name = "DatumObjavljivanja", nullable = false)
     private LocalDate datumObjavljivanja;

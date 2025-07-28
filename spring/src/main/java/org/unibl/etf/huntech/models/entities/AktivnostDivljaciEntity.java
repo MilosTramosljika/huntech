@@ -2,11 +2,13 @@ package org.unibl.etf.huntech.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.unibl.etf.huntech.base.BaseEntity;
+import org.unibl.etf.huntech.models.enums.TipAktivnosti;
 
 @Data
 @Entity
 @Table(name = "aktivnost_divljaci")
-public class AktivnostDivljaciEntity {
+public class AktivnostDivljaciEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdAktivnostiDivljaci", nullable = false)
@@ -16,9 +18,10 @@ public class AktivnostDivljaciEntity {
     @JoinColumn(name = "IdGrupe", nullable = false)
     private GrupaEntity idGrupe;
 
-    @Lob
+    //@Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "Tip", nullable = false)
-    private String tip;
+    private TipAktivnosti tip;
 
     @Column(name = "Putanja", nullable = false, length = 400)
     private String putanja;

@@ -2,13 +2,17 @@ package org.unibl.etf.huntech.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.unibl.etf.huntech.base.BaseEntity;
 
 import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "k_has_zzps")
-public class KHasZzpEntity {
+@Table(
+        name = "k_has_zzps",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"IdKorisnika", "IdZahtjevaZaPromjenuStatusa"})
+)
+public class KHasZzpEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdKHasZZPS", nullable = false)

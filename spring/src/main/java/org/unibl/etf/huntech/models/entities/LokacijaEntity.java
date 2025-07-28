@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.unibl.etf.huntech.base.BaseEntity;
 
 @Data
 @Entity
 @Table(name = "lokacija")
-public class LokacijaEntity {
+public class LokacijaEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLokacije", nullable = false)

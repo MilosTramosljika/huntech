@@ -2,6 +2,7 @@ package org.unibl.etf.huntech.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.unibl.etf.huntech.base.BaseEntity;
 
 import java.time.Instant;
 import java.util.LinkedHashSet;
@@ -10,7 +11,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "objava_na_lovacki_dnevnik")
-public class ObjavaNaLovackiDnevnikEntity {
+public class ObjavaNaLovackiDnevnikEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdObjaveNaLD", nullable = false)

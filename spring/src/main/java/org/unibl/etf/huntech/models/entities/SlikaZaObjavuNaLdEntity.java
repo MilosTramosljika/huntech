@@ -2,13 +2,14 @@ package org.unibl.etf.huntech.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.unibl.etf.huntech.base.BaseEntity;
 
 import java.time.Instant;
 
 @Data
 @Entity
 @Table(name = "slika_za_objavu_na_ld")
-public class SlikaZaObjavuNaLdEntity {
+public class SlikaZaObjavuNaLdEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdSlikeZaObjavuNaLD", nullable = false)

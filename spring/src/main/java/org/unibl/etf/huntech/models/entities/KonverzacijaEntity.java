@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.unibl.etf.huntech.base.BaseEntity;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -12,7 +14,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "konverzacija")
-public class KonverzacijaEntity {
+public class KonverzacijaEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdKonverzacije", nullable = false)

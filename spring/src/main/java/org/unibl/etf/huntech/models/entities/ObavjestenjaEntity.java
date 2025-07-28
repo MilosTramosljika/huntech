@@ -2,11 +2,12 @@ package org.unibl.etf.huntech.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.unibl.etf.huntech.base.BaseEntity;
 
 @Data
 @Entity
 @Table(name = "obavjestenja")
-public class ObavjestenjaEntity {
+public class ObavjestenjaEntity implements BaseEntity<Integer> {
     @Id
     @Column(name = "IdObavjestenja", nullable = false)
     private Integer id;

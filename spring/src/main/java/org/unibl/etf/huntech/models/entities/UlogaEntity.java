@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.unibl.etf.huntech.base.BaseEntity;
+import org.unibl.etf.huntech.models.enums.NazivUloge;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -11,15 +13,16 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "uloga")
-public class UlogaEntity {
+public class UlogaEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdUloge", nullable = false)
     private Integer id;
 
-    @Lob
+    //@Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "NazivUloge", nullable = false)
-    private String nazivUloge;
+    private NazivUloge nazivUloge;
 
     @OneToMany(mappedBy = "idUloge")
     private Set<KorisnikHasUlogaEntity> korisnikHasUlogas = new LinkedHashSet<>();

@@ -2,11 +2,15 @@ package org.unibl.etf.huntech.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.unibl.etf.huntech.base.BaseEntity;
 
 @Data
 @Entity
-@Table(name = "k_has_zar")
-public class KHasZarEntity {
+@Table(
+        name = "k_has_zar",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"IdKorisnika", "IdZahtjeva"})
+)
+public class KHasZarEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdKHZAR", nullable = false)

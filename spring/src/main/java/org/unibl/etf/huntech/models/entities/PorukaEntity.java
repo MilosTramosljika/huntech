@@ -1,14 +1,16 @@
 package org.unibl.etf.huntech.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.unibl.etf.huntech.base.BaseEntity;
 
 import java.time.Instant;
 
 @Data
 @Entity
 @Table(name = "poruka")
-public class PorukaEntity {
+public class PorukaEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdPoruke", nullable = false)
@@ -20,12 +22,14 @@ public class PorukaEntity {
     @Column(name = "DatumSlanja", nullable = false)
     private Instant datumSlanja;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "IdKorisnika", nullable = false)
+    @JsonIgnore
     private KorisnikEntity idKorisnika;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "IdKonverzacije", nullable = false)
+    @JsonIgnore
     private KonverzacijaEntity idKonverzacije;
 
 }
