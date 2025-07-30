@@ -1,5 +1,6 @@
 package org.unibl.etf.huntech.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.unibl.etf.huntech.base.BaseEntity;
@@ -34,6 +35,7 @@ public class PrijavaEntity implements BaseEntity<Integer> {
     @Column(name = "TipPrijave")
     private TipPrijave tipPrijave;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "idPrijave")
     private Set<KorisnikHasPrijavaEntity> korisnikHasPrijavas = new LinkedHashSet<>();
 

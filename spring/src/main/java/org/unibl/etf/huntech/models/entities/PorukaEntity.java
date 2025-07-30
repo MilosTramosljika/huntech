@@ -22,14 +22,12 @@ public class PorukaEntity implements BaseEntity<Integer> {
     @Column(name = "DatumSlanja", nullable = false)
     private Instant datumSlanja;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "IdKorisnika", nullable = false)
-    @JsonIgnore
     private KorisnikEntity idKorisnika;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "IdKonverzacije", nullable = false)
-    @JsonIgnore
     private KonverzacijaEntity idKonverzacije;
 
 }

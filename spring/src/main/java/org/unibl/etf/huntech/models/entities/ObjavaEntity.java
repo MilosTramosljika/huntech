@@ -1,6 +1,7 @@
 package org.unibl.etf.huntech.models.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.unibl.etf.huntech.base.BaseEntity;
 import org.unibl.etf.huntech.models.enums.TipObjave;

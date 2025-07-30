@@ -1,10 +1,12 @@
 package org.unibl.etf.huntech.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.huntech.base.CrudController;
 import org.unibl.etf.huntech.models.KHasZzp;
 import org.unibl.etf.huntech.models.Komentar;
+import org.unibl.etf.huntech.models.entities.KomentarEntity;
 import org.unibl.etf.huntech.models.requests.KHasZzpRequest;
 import org.unibl.etf.huntech.models.requests.KomentarRequest;
 import org.unibl.etf.huntech.services.KomentarService;
@@ -14,7 +16,9 @@ import org.unibl.etf.huntech.services.KomentarService;
 @RequestMapping("/komentars")
 public class KomentarController extends CrudController<Integer, KomentarRequest, Komentar> {
 
-    public KomentarController(KomentarService service) {
+
+    public KomentarController(KomentarService service, KomentarService service1) {
         super(service, Komentar.class);
     }
+
 }

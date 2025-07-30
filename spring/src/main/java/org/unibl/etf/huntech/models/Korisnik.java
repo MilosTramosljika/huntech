@@ -29,4 +29,5 @@ public class Korisnik {
     private Set<PorukaEntity> porukas = new LinkedHashSet<>();
     private Set<PrijavaEntity> prijavas = new LinkedHashSet<>();
     private Set<ZahtjevZaPromjenuStatusaEntity> zahtjevZaPromjenuStatusas = new LinkedHashSet<>();
+    
 }

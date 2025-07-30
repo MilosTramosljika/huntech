@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class KorisnikHasUlogaEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "KORISNIK_HAS_ULOGAcol", nullable = false)
+    @Column(name = "IdKHU", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -29,7 +29,5 @@ public class KorisnikHasUlogaEntity implements BaseEntity<Integer> {
     @Column(name = "DatumDobijanjaUloge", nullable = false)
     private LocalDate datumDobijanjaUloge;
 
-    @Column(name = "IdKHU", length = 45)
-    private String idKHU;
 
 }
