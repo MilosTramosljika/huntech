@@ -1,5 +1,6 @@
 package org.unibl.etf.huntech.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class UlogaEntity implements BaseEntity<Integer> {
     private NazivUloge nazivUloge;
 
     @OneToMany(mappedBy = "idUloge")
+    @JsonIgnore
     private Set<KorisnikHasUlogaEntity> korisnikHasUlogas = new LinkedHashSet<>();
 
 }

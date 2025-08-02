@@ -35,8 +35,9 @@ public class PrijavaEntity implements BaseEntity<Integer> {
     @Column(name = "TipPrijave")
     private TipPrijave tipPrijave;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idPrijave")
+    @JsonIgnore
     private Set<KorisnikHasPrijavaEntity> korisnikHasPrijavas = new LinkedHashSet<>();
 
 }

@@ -60,7 +60,7 @@ public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable> i
 
     @Override
     public <T, U> T update(ID id, U object, Class<T> resultDtoClass) {
-        if(repository.existsById(id))
+        if(!repository.existsById(id))
             throw new NotFoundException();
 
         E entity = modelMapper.map(object, entityClass);

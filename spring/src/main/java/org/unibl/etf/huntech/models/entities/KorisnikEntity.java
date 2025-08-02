@@ -38,56 +38,69 @@ public class KorisnikEntity implements BaseEntity<Integer> {
     @Column(name = "Lozinka", nullable = false, length = 45)
     private String lozinka;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idKorisnika")
+    @JsonIgnore
     private Set<KHasZarEntity> kHasZars = new LinkedHashSet<>();
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idKorisnika")
+    @JsonIgnore
     private Set<KHasZzpEntity> kHasZzps = new LinkedHashSet<>();
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idKorisnika")
+    @JsonIgnore
     private Set<KomentarEntity> komentars = new LinkedHashSet<>();
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idKorisnika")
+    @JsonIgnore
     private Set<KorisnikHasGrupaEntity> korisnikHasGrupas = new LinkedHashSet<>();
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idKorisnika")
+    @JsonIgnore
     private Set<KorisnikHasKonverzacijaEntity> korisnikHasKonverzacijas = new LinkedHashSet<>();
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idKorisnika")
+    @JsonIgnore
     private Set<KorisnikHasPrijavaEntity> korisnikHasPrijavas = new LinkedHashSet<>();
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idKorisnika")
+    @JsonIgnore
     private Set<KorisnikHasUlogaEntity> korisnikHasUlogas = new LinkedHashSet<>();
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idKorisnika")
+    @JsonIgnore
     private Set<ObavjestenjaEntity> obavjestenjas = new LinkedHashSet<>();
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idKorisnika")
+    @JsonIgnore
     private Set<ObjavaEntity> objavas = new LinkedHashSet<>();
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idKorisnika")
+    @JsonIgnore
     private Set<ObjavaNaLovackiDnevnikEntity> objavaNaLovackiDnevniks = new LinkedHashSet<>();
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idKorisnika")
+    @JsonIgnore
     private Set<PorukaEntity> porukas = new LinkedHashSet<>();
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "idKorisnikaKojiPrijavljuje")
+    @JsonIgnore
     private Set<PrijavaEntity> prijavas = new LinkedHashSet<>();
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "korisnikIdkorisnika")
+    @JsonIgnore
     private Set<ZahtjevZaPromjenuStatusaEntity> zahtjevZaPromjenuStatusas = new LinkedHashSet<>();
 
 

@@ -1,5 +1,6 @@
 package org.unibl.etf.huntech.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.unibl.etf.huntech.base.BaseEntity;
@@ -28,6 +29,7 @@ public class KomentarEntity implements BaseEntity<Integer> {
     private KorisnikEntity idKorisnika;
 
     @OneToMany(mappedBy = "idKomentara")
+    @JsonIgnore
     private Set<PodkomentarEntity> podkomentars = new LinkedHashSet<>();
 
 }

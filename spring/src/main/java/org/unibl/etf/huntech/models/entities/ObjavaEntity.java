@@ -1,5 +1,6 @@
 package org.unibl.etf.huntech.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -42,9 +43,11 @@ public class ObjavaEntity implements BaseEntity<Integer> {
     private Integer dislajk;
 
     @OneToMany(mappedBy = "idObjave")
+    @JsonIgnore
     private Set<KomentarEntity> komentars = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "idObjave")
+    @JsonIgnore
     private Set<SlikaZaObjavuEntity> slikaZaObjavus = new LinkedHashSet<>();
 
 }

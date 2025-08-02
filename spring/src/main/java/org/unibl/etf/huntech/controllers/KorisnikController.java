@@ -27,6 +27,11 @@ public class KorisnikController extends CrudController<Integer, KorisnikRequest,
     }
 
 
+    @PostMapping("/create")
+    public Korisnik createKorisnik(@RequestBody Korisnik korisnik) {
+        return service.insert(korisnik, Korisnik.class);
+    }
+
     @PostMapping("/{id}/upload-profilna")
     public ResponseEntity<String> uploadProfilnaSlika(@PathVariable Integer id,
                                                       @RequestParam("slika") MultipartFile slika) {

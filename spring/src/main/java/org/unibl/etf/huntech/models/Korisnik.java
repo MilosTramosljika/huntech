@@ -16,6 +16,8 @@ public class Korisnik {
     private String username;
     private String mail;
     private String lozinka;
+    private String profilnaSlikaPutanja;
+    /*
     private Set<KHasZarEntity> kHasZars = new LinkedHashSet<>();
     private Set<KHasZzpEntity> kHasZzps = new LinkedHashSet<>();
     private Set<KomentarEntity> komentars = new LinkedHashSet<>();
@@ -29,5 +31,5 @@ public class Korisnik {
     private Set<PorukaEntity> porukas = new LinkedHashSet<>();
     private Set<PrijavaEntity> prijavas = new LinkedHashSet<>();
     private Set<ZahtjevZaPromjenuStatusaEntity> zahtjevZaPromjenuStatusas = new LinkedHashSet<>();
-    
+    */
 }

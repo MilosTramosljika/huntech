@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.unibl.etf.huntech.base.CrudJpaService;
 import org.unibl.etf.huntech.exceptions.ConflictException;
+import org.unibl.etf.huntech.models.Korisnik;
 import org.unibl.etf.huntech.models.entities.KorisnikEntity;
 import org.unibl.etf.huntech.repositories.KorisnikEntityRepository;
 import org.unibl.etf.huntech.services.KorisnikService;
@@ -25,13 +26,14 @@ import java.util.UUID;
 public class KorisnikServiceImpl extends CrudJpaService<KorisnikEntity, Integer> implements KorisnikService {
 
     private final KorisnikEntityRepository repository;
+    private final ModelMapper modelMapper;
 
-
-    public KorisnikServiceImpl(KorisnikEntityRepository repository, ModelMapper modelMapper) {
+    public KorisnikServiceImpl(KorisnikEntityRepository repository, ModelMapper modelMapper, ModelMapper modelMapper1) {
         super(repository, modelMapper, KorisnikEntity.class);
         this.repository = repository;
+        this.modelMapper = modelMapper1;
     }
-
+    /*
     @Override
     public <T, U> T insert(U object, Class<T> resultDtoClass) {
 
@@ -40,6 +42,7 @@ public class KorisnikServiceImpl extends CrudJpaService<KorisnikEntity, Integer>
 
         return super.insert(object, resultDtoClass);
     }
+    */
 
     @Override
     public <T, U> T update(Integer integer, U object, Class<T> resultDtoClass) {
@@ -94,5 +97,22 @@ public class KorisnikServiceImpl extends CrudJpaService<KorisnikEntity, Integer>
         return resource;
     }
 
+
+
+    @Override
+    public <T, U> T insert(U object, Class<T> resultDtoClass) {
+        Korisnik dto = modelMapper.map(object, Korisnik.class);
+        KorisnikEntity entity = new KorisnikEntity();
+
+        entity.setIme(dto.getIme());
+        entity.setPrezime(dto.getPrezime());
+        entity.setUsername(dto.getUsername());
+        entity.setMail(dto.getMail());
+        entity.setLozinka(dto.getLozinka());
+        entity.setProfilnaSlikaPutanja(dto.getProfilnaSlikaPutanja());
+        entity.setId(null); // auto-generisani ID
+        entity = repository.saveAndFlush(entity);
+        return modelMapper.map(entity, resultDtoClass);
+    }
 
 }
