@@ -1,0 +1,70 @@
+<h2>Lovački dnevnik</h2>
+<link rel="stylesheet" href="C:\Users\Lazar Cendic\Desktop\HUNTECH\huntech\forme\style.css">
+<!-- Dodaj novi zapis -->
+<div style="margin-bottom:20px; background:#eef; padding:10px; border-radius:6px;">
+  <form action="/novi-zapis" method="post" enctype="multipart/form-data">
+    <label for="datum">Datum:</label><br>
+    <input type="date" id="datum" name="datum" required><br><br>
+
+    <label for="lokacija">Lokacija:</label><br>
+    <input type="text" id="lokacija" name="lokacija" placeholder="Mjestanjska šuma - kod hranilice" required><br><br>
+
+    <label for="divljac">Vrsta divljači:</label><br>
+    <input type="text" id="divljac" name="divljac" placeholder="Srndać, lisica, zec..." required><br><br>
+
+    <label for="oruzje">Korišteno oružje:</label><br>
+    <input type="text" id="oruzje" name="oruzje" placeholder="Karabin .308, sačmarica 12mm..." required><br><br>
+
+    <label for="zabiljeska">Opis / beleška:</label><br>
+    <textarea id="zabiljeska" name="zabiljeska" rows="4" cols="50" placeholder="U 5:45 primjećena divljač, odstrijel izvršen kod borove čistine..."></textarea><br><br>
+
+    <label for="prilog">Prilog (slika, sken, GPS...):</label><br>
+    <input type="file" id="prilog" name="prilog" accept=".jpg,.jpeg,.png,.pdf,.docx"><br><br>
+
+    <input type="submit" value="Dodaj zapis">
+  </form>
+</div>
+<!--pretraga zapisa -->
+<h3>Pretraži zapise</h3>
+
+<form action="/pretrazi-zapise" method="get" style="margin-bottom: 20px; background:#f3f3f3; padding:12px; border-radius:6px;">
+  <label for="datum">Datum:</label><br>
+  <input type="date" id="datum" name="datum"><br><br>
+
+  <label for="lokacija">Lokacija:</label><br>
+  <input type="text" id="lokacija" name="lokacija" placeholder="npr. Jaružani, kod česme"><br><br>
+
+  <label for="divljac">Vrsta divljači:</label><br>
+  <select id="divljac" name="divljac">
+    <option value="">-- Odaberi --</option>
+    <option value="srndac">Srndać</option>
+    <option value="lisica">Lisica</option>
+    <option value="zec">Zec</option>
+    <option value="divlja_sv">Divlja svinja</option>
+    <option value="ostalo">Ostalo</option>
+  </select><br><br>
+
+  <input type="submit" value="Prikaži rezultate">
+</form>
+<!-- Prikaz starih zapisa (dinamički generisano iz baze) -->
+<div style="background:#fff; border:1px solid #ccc; padding:10px; border-radius:6px;">
+  <h3>Zapisi iz prethodnih dana</h3>
+
+  <div style="margin-bottom:10px; border-bottom:1px dashed #bbb; padding-bottom:10px;">
+    <strong>📅 2025-07-18</strong> — <em>Jaružani kod stare česme</em><br>
+    Divljač: Srndać<br>
+    Oružje: Karabin .308<br>
+    Napomena: Primećen u pokretu, odstrijel u šipražju<br>
+    <button onclick="window.location='/uredi-zapis/001'">✏️ Uredi zapis</button>
+  </div>
+
+  <div style="margin-bottom:10px; border-bottom:1px dashed #bbb; padding-bottom:10px;">
+    <strong>📅 2025-07-12</strong> — <em>Prilaz Lovna staza</em><br>
+    Divljač: Lisica<br>
+    Oružje: Puska 30-06<br>
+    Napomena: Jedna odrasla jedinka<br>
+    <button onclick="window.location='/uredi-zapis/002'">✏️ Uredi zapis</button>
+  </div>
+
+  <!-- Više zapisa iz baze... -->
+</div>

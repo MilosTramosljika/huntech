@@ -1,0 +1,92 @@
+<h2>🔧 Upravljanje grupom: Sekcija Jaružani</h2>
+<link rel="stylesheet" href="C:\Users\Lazar Cendic\Desktop\HUNTECH\huntech\forme\style.css">
+<!-- Kreiranje događaja -->
+<section style="border:1px solid #ccc; padding:10px; margin-bottom:20px; border-radius:6px;">
+  <h3>🗓️ Novi događaj</h3>
+  <form action="/nova-objava" method="post">
+    <input type="text" name="naslov" placeholder="Naslov događaja/objave" required><br><br>
+    <textarea name="sadrzaj" rows="4" cols="50" placeholder="Opis aktivnosti, vrijeme, mjesto..." required></textarea><br><br>
+    <input type="date" name="datum" required>
+    <input type="submit" value="📢 Objavi">
+  </form>
+</section>
+<!-- Kreiranje objava -->
+<section style="border:1px solid #ccc; padding:10px; margin-bottom:20px; border-radius:6px;">
+  <h3>🗓️ Nova objava</h3>
+  <form action="/nova-objava" method="post">
+    <input type="text" name="naslov" placeholder="Naslov događaja/objave" required><br><br>
+    <textarea name="sadrzaj" rows="4" cols="50" placeholder="Opis aktivnosti, vrijeme, mjesto..." required></textarea><br><br>
+    <input type="date" name="datum" required>
+    <input type="submit" value="📢 Objavi">
+  </form>
+</section>
+<!-- Kreiranje specijalne objava -->
+<section style="border:1px solid #ccc; padding:10px; margin-bottom:20px; border-radius:6px;">
+  <h3>🗓️ Nova specijalna objava</h3>
+  <form action="/nova-objava" method="post">
+    <input type="text" name="naslov" placeholder="Naslov događaja/objave" required><br><br>
+    <textarea name="sadrzaj" rows="4" cols="50" placeholder="Opis aktivnosti, vrijeme, mjesto..." required></textarea><br><br>
+    <input type="date" name="datum" required>
+    <input type="submit" value="📢 Objavi">
+  </form>
+</section>
+
+<!-- Zahtjevi za učlanjenje -->
+<section style="border:1px solid #ccc; padding:10px; margin-bottom:20px; border-radius:6px;">
+  <h3>📥 Zahtjevi za učlanjenje</h3>
+  <ul>
+    <li>
+      <strong>vuk_balkan</strong> — poslao zahtjev 20.07.2025.<br>
+      <button>✅ Prihvati</button>
+      <button>❌ Odbij</button>
+    </li>
+    <li>
+      <strong>ivan_hunt</strong> — poslao zahtjev 21.07.2025.<br>
+      <button>✅ Prihvati</button>
+      <button>❌ Odbij</button>
+    </li>
+  </ul>
+</section>
+
+<!-- Slanje poziva za učlanjenje -->
+<section style="border:1px solid #ccc; padding:10px; margin-bottom:20px; border-radius:6px;">
+  <h3>📤 Pozovi člana</h3>
+  <form action="/posalji-poziv" method="post">
+    <input type="email" name="emailPozvanog" placeholder="Unesi email korisnika" required>
+    <textarea name="poruka" rows="2" placeholder="Dodaj poruku (opcionalno)"></textarea><br>
+    <input type="submit" value="📨 Pošalji poziv">
+  </form>
+</section>
+<section style="border:1px solid #ccc; padding:10px; border-radius:6px; margin-bottom:20px;">
+  <h3>🗺️ Moje lovačke mape</h3>
+
+  <!-- Prikaz postojećih mapa -->
+  <ul>
+    <li>
+      <strong>Jaružani - Greben</strong><br>
+      Kreirano: 10.07.2025<br>
+      Zona: Planinski greben, POI: 4 tačke<br>
+      <button onclick="window.location.href='/uredi-mapu/001'">✏️ Uredi</button>
+      <button onclick="obrisiMapu(001)">🗑️ Obriši</button>
+    </li>
+
+    <li>
+      <strong>Potok - Donji teren</strong><br>
+      Kreirano: 15.07.2025<br>
+      Zona: Šumarak, POI: 2 tačke<br>
+      <button onclick="window.location.href='/uredi-mapu/002'">✏️ Uredi</button>
+      <button onclick="obrisiMapu(002)">🗑️ Obriši</button>
+    </li>
+    <!-- Dodaju se dinamički -->
+  </ul>
+
+  <!-- Dugme za kreiranje nove mape -->
+  <button onclick="window.location.href='/nova-mapa'" style="margin-top:15px;">➕ Kreiraj novu mapu</button>
+</section>
+<!-- Lovne zone (priprema za mapu) -->
+<section style="border:1px solid #ccc; padding:10px; margin-bottom:20px; border-radius:6px;">
+  <h3>🗺️ Lovne zone i POI</h3>
+  <p>Zona: <em>Jaružani – planinski greben</em></p>
+  <button onclick="window.location.href='/zona-uredi/001'">⚙️ Uredi zonu</button>
+  <button onclick="window.location.href='/dodaj-tacku-interesa'">📍 Dodaj POI</button>
+</section>

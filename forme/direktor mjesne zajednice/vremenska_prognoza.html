@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sr">
+ <link rel="stylesheet" href="C:\Users\Lazar Cendic\Desktop\HUNTECH\huntech\forme\style.css">
+<head>
+  <meta charset="UTF-8">
+  <title>Vremenska prognoza</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    #rezultat {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Pregled vremenske prognoze</h2>
+
+  <form id="forma">
+    <label for="grad">Unesi grad:</label><br>
+    <input type="text" id="grad" name="grad" required><br><br>
+    <input type="submit" value="Prikaži prognozu">
+  </form>
+
+  <div id="rezultat"></div>
+
+  <script>
+    document.getElementById('forma').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const grad = document.getElementById('grad').value.trim();
+      const apiKey = b5d7716953aaf1df6bceb5b6e436c809; // zameni svojim ključem
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${grad}&units=metric&lang=sr&appid=${apiKey}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (data.cod === 200) {
+            const prikaz = `
+              <h3>${data.name}, ${data.sys.country}</h3>
+              <p><strong>Temperatura:</strong> ${data.main.temp}°C</p>
+              <p><strong>Vlažnost:</strong> ${data.main.humidity}%</p>
+              <p><strong>Vjetar:</strong> ${data.wind.speed} m/s</p>
+              <p><strong>Opis:</strong> ${data.weather[0].description}</p>
+            `;
+            document.getElementById('rezultat').innerHTML = prikaz;
+            document.getElementById('rezultat').style.display = 'block';
+          } else {
+            document.getElementById('rezultat').innerHTML = `<p>Greška: ${data.message}</p>`;
+            document.getElementById('rezultat').style.display = 'block';
+          }
+        })
+        .catch(err => {
+          document.getElementById('rezultat').innerHTML = `<p>Došlo je do greške pri dohvaćanju podataka.</p>`;
+          document.getElementById('rezultat').style.display = 'block';
+        });
+    });
+  </script>
+
+</body>
+</html>

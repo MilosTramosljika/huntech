@@ -1,93 +1,119 @@
-/* mobilno.css */
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 10px;
+    background-color: #1e2b1b; /* tamnošumska zelena */
+    color: #e2e2e2;
+  }
 
-body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 10px;
-  background-color: #fdfdfd;
-}
+  /* Glavni kontejner */
+  form,
+  .objava-kartica,
+  .komentar-sekcija {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    border: 1px solid #4a5f43;
+    border-radius: 8px;
+    background-color: #2f402b; /* maslinasta pozadina */
+    margin-bottom: 20px;
+    color: #f5f5f5;
+  }
 
-/* Glavni kontejner */
-form, .objava-kartica, .komentar-sekcija {
-  max-width: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #fff;
-  margin-bottom: 20px;
-}
+  /* Polja */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #556b45;
+    border-radius: 4px;
+    background-color: #3b4d36;
+    color: #eaeaea;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
 
-/* Polja */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="date"],
-input[type="tel"],
-select,
-textarea {
-  width: 100%;
-  padding: 8px;
-  margin-top: 6px;
-  margin-bottom: 12px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 16px;
-}
+  /* Dugmad */
+  input[type="submit"],
+  button {
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #5a7f3b; /* lovačka zelena */
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+  }
 
-/* Dugmad */
-input[type="submit"],
-button {
-  padding: 10px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  background-color: #3477eb;
-  color: white;
-  cursor: pointer;
-  margin-top: 8px;
-  width: 100%;
-}
+  input[type="submit"]:hover,
+  button:hover {
+    background-color: #7e9f5d; /* svetlija maskirna zelenkasta */
+  }
 
-input[type="submit"]:hover,
-button:hover {
-  background-color: #285ecb;
-}
+  /* Ikonice i brojači */
+  .interakcije {
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    margin-top: 15px;
+    background-color: #32432c;
+    padding: 8px;
+    border-radius: 6px;
+  }
+  .interakcije button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #d0d0d0;
+  }
 
-/* Ikonice i brojači */
-.interakcije {
-  display: flex;
-  justify-content: space-around;
-  font-size: 20px;
-  margin-top: 15px;
-}
-.interakcije button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.brojac {
-  font-size: 14px;
-  color: #555;
-  margin-left: 4px;
-}
+  .brojac {
+    font-size: 14px;
+    color: #a8bfa8;
+    margin-left: 4px;
+  }
 
-/* Komentar box */
-.komentar-box {
-  display: flex;
-  gap: 10px;
-}
-.komentar-box textarea {
-  flex: 1;
-  resize: none;
-}
+  /* Komentar box */
+  .komentar-box {
+    display: flex;
+    gap: 10px;
+  }
 
-/* Prilog panel */
-.prilog-panel {
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 6px;
-  margin-top: 10px;
-}
+  .komentar-box textarea {
+    flex: 1;
+    resize: none;
+    background-color: #3b4d36;
+    color: #efefef;
+    border: 1px solid #5f7354;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  /* Prilog panel */
+  .prilog-panel {
+    background-color: #40593a;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+    color: #e2e2e2;
+  }
+
+  /* Linkovi */
+  a {
+    color: #96c27c;
+    text-decoration: underline;
+  }
+
+  /* Zaglavlja */
+  h2, h3 {
+    color: #cde6bc;
+  }
