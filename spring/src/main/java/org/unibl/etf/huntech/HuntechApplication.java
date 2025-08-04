@@ -1,20 +1,18 @@
 package org.unibl.etf.huntech;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.info.Info;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 
-@OpenAPIDefinition(
-        info = @Info(
-                title = "Huntech API",
-                version = "1.0.0",
-                description = "Opis aplikacije"
-        )
-)
+//@OpenAPIDefinition(
+//        info = @Info(
+//                title = "Huntech API",
+//                version = "1.0.0",
+//                description = "Opis aplikacije"
+//        )
+//)
 
 @SpringBootApplication
 public class HuntechApplication {
