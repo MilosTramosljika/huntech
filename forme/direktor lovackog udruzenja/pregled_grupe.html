@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="sr">
+ <link rel="stylesheet" href="C:\Users\Lazar Cendic\Desktop\HUNTECH\huntech\forme\style.css">
+<head>
+  <meta charset="UTF-8">
+  <title>Grupa: Sekcija Jaružani</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .panel-direktori {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      border: 1px solid #444;
+      background-color: #f5f5f5;
+      padding: 10px;
+      display: none;
+    }
+    .objava { border: 1px solid #aaa; padding: 10px; margin-bottom: 15px; }
+    .akcije button { margin-right: 10px; }
+    .potvrda { border: 1px dashed #666; background-color: #eef; padding: 10px; margin-bottom: 15px; }
+  </style>
+</head>
+<body>
+
+  <h2>Sekcija Jaružani</h2>
+
+  <!-- Informacije o grupi -->
+  <p>
+    Lokacija: Hercegovina <br>
+    Aktivna od: 2020 <br>
+    Broj članova: 27 <br>
+    Fokus: planinsko stanište, divljač i ekološke aktivnosti
+  </p>
+
+  <!-- Ekspandabilni panel direktora -->
+  <button onclick="document.getElementById('direktori').style.display='block'">Direktori ⬇️</button>
+  <div id="direktori" class="panel-direktori">
+    <strong>Direktor lovačkog udruženja:</strong><br>
+    Petar Đukić<br><br>
+    <strong>Direktori mjesnih zajednica:</strong><br>
+    - Marko Jovanović<br>
+    - Ivana Milinković<br>
+    <button onclick="document.getElementById('direktori').style.display='none'">Zatvori</button>
+  </div>
+
+  <!-- Spisak članova -->
+  <h3>Članovi grupe:</h3>
+  <ul>
+    <li>lazar99</li>
+    <li>vuk_balkan</li>
+    <li>milena_hunt</li>
+    <!-- Dodaj ostale dinamički -->
+  </ul>
+
+  <hr>
+
+  <!-- Objave -->
+  <h3>Objave:</h3>
+
+  <!-- Standardna objava -->
+  <div class="objava">
+    <h4>Izvještaj odstrjela za septembar</h4>
+    <p>U prilogu je PDF dokument: <a href="#">Izvještaj Odstrela</a></p>
+    <div class="akcije">
+      👍 <span>14</span> 
+      👎 <span>0</span> 
+      💬 <span>4</span>
+      <button>Like</button>
+      <button>Dislike</button>
+      <button>Komentar</button>
+    </div>
+  </div>
+
+  <!-- Objava potvrde dolaska -->
+  <div class="potvrda">
+    <h4>Potvrda dolaska 8.10.2023</h4>
+    <p>Planirano okupljanje kod Jekića cera u 6:00. Potvrdite do petka.</p>
+    <button>✅ Dolazim</button>
+    <button>❌ Ne dolazim</button>
+    <p>Potvrđeno: 2 člana</p>
+  </div>
+
+  <!-- Druga objava -->
+  <div class="objava">
+    <h4>Postavljanje hranilica</h4>
+    <p>Danas smo postavili 4 hranilice soli u šumi.</p>
+    <div class="akcije">
+      👍 <span>9</span> 
+      👎 <span>1</span> 
+      💬 <span>3</span>
+      <button>Like</button>
+      <button>Dislike</button>
+      <button>Komentar</button>
+    </div>
+  </div>
+
+  <!-- Dodaj još objava dinamički -->
+
+</body>
+</html>

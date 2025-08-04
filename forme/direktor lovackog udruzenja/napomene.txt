@@ -1,0 +1,11 @@
+nedostaje:
+pocetna
+sve vezano za caskanje
+mapa i sve sto ukljucuje:zona lova pinovi i ostalo
+
+napomene:
+dodati dugme ili sta vec preko cega korisnik mijenja status naloga
+doadti report dugmice dje se dogovorimo
+
+nejasno:
+sta je grupa za specijalnu objavu

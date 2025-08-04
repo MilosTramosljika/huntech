@@ -1,0 +1,28 @@
+<div class="objava">
+  <link rel="stylesheet" href="C:\Users\Lazar Cendic\Desktop\HUNTECH\huntech\forme\style.css">
+
+  <h4>Postavljanje hranilica</h4>
+  <p>Danas smo postavili 4 hranilice soli u šumi.</p>
+
+  <!-- Ikonice sa brojačem -->
+  <div class="akcije">
+    👍 <span>9</span>
+    👎 <span>1</span>
+    💬 <span>3</span>
+
+    <!-- Dugmad za akcije -->
+    <button onclick="document.getElementById('komentarBox').style.display='block'">💬 Komentar</button>
+    <button>👍 Like</button>
+    <button>👎 Dislike</button>
+  </div>
+
+  <!-- Sakriven tekst box za komentar -->
+  <div id="komentarBox" style="display:none; margin-top:10px;">
+    <form action="/dodaj-komentar" method="post">
+      <input type="hidden" name="objavaId" value="OBJ021">
+      <textarea name="tekstKomentara" rows="3" cols="50" placeholder="Upiši komentar..." required></textarea><br>
+      <input type="submit" value="Pošalji komentar">
+      <button type="button" onclick="document.getElementById('komentarBox').style.display='none'">Otkaži</button>
+    </form>
+  </div>
+</div>
