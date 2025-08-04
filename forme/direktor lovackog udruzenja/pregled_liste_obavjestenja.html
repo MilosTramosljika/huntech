@@ -1,0 +1,62 @@
+<h2>Notifikacije</h2>
+ <link rel="stylesheet" href="C:\Users\Lazar Cendic\Desktop\HUNTECH\huntech\forme\style.css">
+<!-- Dugmad za prebacivanje između sekcija -->
+<button onclick="prikaziSekciju('pozivi')">Pozivi za učlanjivanje</button>
+<button onclick="prikaziSekciju('obavjestenja')">Obavještenja</button>
+
+<!-- Sekcija: Pozivi za učlanjivanje -->
+<div id="pozivi" style="display:block; margin-top:20px;">
+  <h3>Pozivi za učlanjivanje</h3>
+
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>ID poziva</th>
+        <th>Udruženje</th>
+        <th>Datum poziva</th>
+        <th>Akcije</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>INV024</td>
+        <td>LD "Zelengora"</td>
+        <td>2025-07-12</td>
+        <td>
+          <form action="/prihvati-uclanjenje" method="post" style="display:inline;">
+            <input type="hidden" name="idPoziva" value="INV024">
+            <input type="submit" value="Prihvati">
+          </form>
+          <form action="/odbij-uclanjenje" method="post" style="display:inline;">
+            <input type="hidden" name="idPoziva" value="INV024">
+            <input type="submit" value="Odbij">
+          </form>
+          <form action="/detalji-uclanjenja" method="get" style="display:inline;">
+            <input type="hidden" name="idPoziva" value="INV024">
+            <input type="submit" value="Detalji">
+          </form>
+        </td>
+      </tr>
+      <!-- Više poziva dinamički -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Sekcija: Obavještenja -->
+<div id="obavjestenja" style="display:none; margin-top:20px;">
+  <h3>Obavještenja</h3>
+  <ul>
+    <li><a href="/notifikacija/MSG041">Korisnik jovan_hunt želi da vam pošalje poruku</a></li>
+    <li><a href="/notifikacija/SYS103">Sistem: Vaš zahtjev za registraciju je odobren</a></li>
+    <li><a href="/notifikacija/SYS104">Administrator vam je dodijelio status “Veteran”</a></li>
+    <!-- Dodaj više obavještenja -->
+  </ul>
+</div>
+
+<!-- JavaScript za prebacivanje -->
+<script>
+function prikaziSekciju(sekcija) {
+  document.getElementById('pozivi').style.display = sekcija === 'pozivi' ? 'block' : 'none';
+  document.getElementById('obavjestenja').style.display = sekcija === 'obavjestenja' ? 'block' : 'none';
+}
+</script>

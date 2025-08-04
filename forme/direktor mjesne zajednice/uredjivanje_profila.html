@@ -1,0 +1,70 @@
+<h2>Uredi profil</h2>
+ <link rel="stylesheet" href="C:\Users\Lazar Cendic\Desktop\HUNTECH\huntech\forme\style.css">
+<form action="/uredi-profil" method="post" enctype="multipart/form-data">
+  <!-- Pristupni podaci -->
+  <label for="korisnickoIme">Korisničko ime:</label><br>
+  <input type="text" id="korisnickoIme" name="korisnickoIme" value="lazar99" required><br><br>
+
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" value="lazar99@email.com" required><br><br>
+
+  <label for="lozinka">Nova lozinka (opciono):</label><br>
+  <input type="password" id="lozinka" name="lozinka"><br><br>
+
+  <!-- Lični podaci -->
+  <label for="ime">Ime:</label><br>
+  <input type="text" id="ime" name="ime" value="Lazar"><br><br>
+
+  <label for="prezime">Prezime:</label><br>
+  <input type="text" id="prezime" name="prezime" value="Petrović"><br><br>
+
+  <label for="datumRodjenja">Datum rođenja:</label><br>
+  <input type="date" id="datumRodjenja" name="datumRodjenja" value="1999-08-15"><br><br>
+
+  <label for="pol">Pol:</label><br>
+  <select id="pol" name="pol">
+    <option selected>Muški</option>
+    <option>Ženski</option>
+    <option>Drugo</option>
+  </select><br><br>
+
+  <label for="telefon">Telefon:</label><br>
+  <input type="tel" id="telefon" name="telefon" value="+387 65 123 456"><br><br>
+
+  <!-- Status i biografija -->
+  <label for="status">Status korisnika:</label><br>
+  <select id="status" name="status">
+    <option selected>Aktivan lovac</option>
+    <option>Početnik</option>
+    <option>Veteran</option>
+    <option>Neaktivan</option>
+  </select><br><br>
+
+  <label for="bio">Kratka biografija:</label><br>
+  <textarea id="bio" name="bio" rows="4" cols="40">Strastveni lovac sa 10 godina iskustva...</textarea><br><br>
+
+  <!-- Profilna slika -->
+  <label for="profilnaSlika">Promijeni profilnu sliku:</label><br>
+  <input type="file" id="profilnaSlika" name="profilnaSlika" accept=".jpg,.jpeg,.png"><br><br>
+
+  <!-- Lovacka udruženja -->
+  <label for="udruzenja">Lovacka udruženja (razdvojena zarezom):</label><br>
+  <input type="text" id="udruzenja" name="udruzenja" value="LD 'Zelengora', LD 'Romanija'"><br><br>
+
+  <!-- Lovački psi -->
+  <label for="lovackiPsi">Lovački psi (ime – rasa, razdvojeno zarezom):</label><br>
+  <textarea id="lovackiPsi" name="lovackiPsi" rows="2" cols="40">Ajk – ptičar, Bela – gonič</textarea><br><br>
+
+  <!-- Arsenal oružja -->
+  <label for="arsenal">Arsenal oružja (razdvojeno zarezom):</label><br>
+  <input type="text" id="arsenal" name="arsenal" value="Karabin .308, Puska 30-06"><br><br>
+
+  <!-- Trofeji -->
+  <label for="trofeji">Trofeji (format: Životinja – datum – oružje; po jedan po liniji):</label><br>
+  <textarea id="trofeji" name="trofeji" rows="4" cols="60">
+Srndać – 2024-05-03 – Karabin .308
+Vuk – 2023-11-18 – Puska 30-06
+  </textarea><br><br>
+
+  <input type="submit" value="Sačuvaj izmjene">
+</form>

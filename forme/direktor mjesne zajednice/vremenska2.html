@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="sr">
+ <link rel="stylesheet" href="C:\Users\Lazar Cendic\Desktop\HUNTECH\huntech\forme\style.css">
+<head>
+  <meta charset="UTF-8">
+  <title>Prognoza za 5 dana</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    #forma input {
+      padding: 6px;
+    }
+    .dan-kartica {
+      display: inline-block;
+      width: 180px;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+    }
+    .dan-kartica img {
+      width: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Prognoza za narednih 5 dana</h2>
+
+  <form id="forma">
+    <input type="text" id="grad" placeholder="Unesi grad..." required>
+    <input type="submit" value="Prikaži">
+  </form>
+
+  <div id="kartice"></div>
+
+  <script>
+    document.getElementById("forma").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const grad = document.getElementById("grad").value.trim();
+      const apiKey = "517363afb3d0b9294d3c76a5f6295f7f"; // zameni svojim API ključem
+      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${grad}&units=metric&lang=sr&appid=${apiKey}`;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if (data.cod !== "200") {
+            document.getElementById("kartice").innerHTML = `<p>Greška: ${data.message}</p>`;
+            return;
+          }
+
+          const dani = {};
+          data.list.forEach(item => {
+            const datum = item.dt_txt.split(" ")[0];
+            if (!dani[datum]) {
+              dani[datum] = item;
+            }
+          });
+
+          let prikaz = "";
+          Object.keys(dani).slice(0, 5).forEach(datum => {
+            const podaci = dani[datum];
+            prikaz += `
+              <div class="dan-kartica">
+                <strong>${datum}</strong><br>
+                <img src="https://openweathermap.org/img/wn/${podaci.weather[0].icon}@2x.png">
+                <p>${podaci.weather[0].description}</p>
+                <p>🌡️ ${podaci.main.temp}°C</p>
+                <p>💧 ${podaci.main.humidity}%</p>
+                <p>🌬️ ${podaci.wind.speed} m/s</p>
+              </div>
+            `;
+          });
+
+          document.getElementById("kartice").innerHTML = prikaz;
+        })
+        .catch(err => {
+          document.getElementById("kartice").innerHTML = "<p>Došlo je do greške u komunikaciji.</p>";
+        });
+    });
+  </script>
+
+</body>
+</html>

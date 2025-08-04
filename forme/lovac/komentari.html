@@ -1,13 +1,15 @@
 <h2>Komentari</h2>
- <link rel="stylesheet" href="C:\_repos\HUNTECH\forme\style.css">
+
+<link rel="stylesheet" href="C:\Users\Lazar Cendic\Desktop\HUNTECH\huntech\forme\style.css">
+
 <!-- Lista komentara -->
 <div style="margin-bottom: 30px;">
-  <div style="border-bottom: 1px solid #ccc; padding: 10px;">
+  <div style=" padding: 10px;">
     <strong><img src="avatar1.jpg" width="32" height="32" style="vertical-align:middle; border-radius:50%;"> milena_hunt</strong><br>
     <small>Objavljeno: 2025-08-21 09:15</small>
     <p>Slažem se s izvještajem — sve je precizno obrađeno.</p>
   </div>
-  <div style="border-bottom: 1px solid #ccc; padding: 10px;">
+  <div style="border-bottom: 1px solid #4a5f43; padding: 10px;">
     <strong><img src="avatar2.jpg" width="32" height="32" style="vertical-align:middle; border-radius:50%;"> vuk_balkan</strong><br>
     <small>Objavljeno: 2025-08-21 10:02</small>
     <p>Možda dodati fotografije trofeja kao prilog uz izvještaj?</p>
@@ -20,7 +22,7 @@
 <!-- Dodavanje nove objave -->
 <h2>Objavi nešto</h2>
 
-<form action="/nova-objava" method="post" enctype="multipart/form-data" style="background-color:#f9f9f9; padding:15px; border-radius:8px;">
+<form action="/nova-objava" method="post" enctype="multipart/form-data">
   <label for="naslov">Naslov objave:</label><br>
   <input type="text" id="naslov" name="naslov" style="width:100%; padding:8px;" placeholder="Npr. Lov u zoru kod Plivskog jezera" required><br><br>
 
@@ -30,5 +32,5 @@
   <label for="prilog">Dodaj sliku ili dokument (opciono):</label><br>
   <input type="file" id="prilog" name="prilog" accept=".jpg,.jpeg,.png,.pdf,.docx"><br><br>
 
-  <input type="submit" value="Objavi" style="padding:10px 20px; background-color:#3477eb; color:white; border:none; border-radius:4px;">
+  <input type="submit" value="Objavi" style="padding:10px 20px; border:none; border-radius:4px;">
 </form>

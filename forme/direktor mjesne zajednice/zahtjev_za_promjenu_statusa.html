@@ -1,0 +1,23 @@
+<h2>Zahtjev za promjenu statusa</h2>
+ <link rel="stylesheet" href="C:\Users\Lazar Cendic\Desktop\HUNTECH\huntech\forme\style.css">
+<form action="/posalji-status-zahtjev" method="post" enctype="multipart/form-data">
+  <!-- Odabir novog statusa -->
+  <label for="noviStatus">Novi status:</label><br>
+  <select id="noviStatus" name="noviStatus">
+    <option selected>Lovac</option>
+    <option>Direktor mjesne zajednice</option>
+    <option>Direktor lovačkog udruženja</option>
+  </select><br><br>
+
+  <!-- Obrazloženje -->
+  <label for="obrazlozenje">Obrazloženje zahtjeva:</label><br>
+  <textarea id="obrazlozenje" name="obrazlozenje" rows="4" cols="50" placeholder="Objasnite zašto tražite promjenu statusa..." required></textarea><br><br>
+
+  <!-- Dokumentacija -->
+  <label for="dokumentacija">Priloži dokumentaciju (PDF, slike, potvrde...):</label><br>
+  <input type="file" id="dokumentacija" name="dokumentacija" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"><br><br>
+
+  <!-- Dugmad za akciju -->
+  <input type="submit" name="akcija" value="Pošalji zahtjev">
+  <input type="submit" name="akcija" value="Otkaži">
+</form>
