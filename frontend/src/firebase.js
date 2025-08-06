@@ -1,9 +1,9 @@
 // firebase.js
 
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database"; // OVO JE VAŽNO!
+import { getDatabase } from "firebase/database"; 
 import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth"; // <--- DODAJ OVO!
+import { getAuth } from "firebase/auth"; 
 
 // Tvoj Firebase config
 const firebaseConfig = {

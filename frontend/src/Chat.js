@@ -1,132 +1,243 @@
-// Chat.js (samo par sitnih komentara/napomena)
 import React, { useEffect, useState } from "react";
-import { database } from "./firebase.js"; // Sada uzima 'database' iz naše 'firebase.js'
-import { ref, push, onChildAdded } from "firebase/database";
+import {
+  ref,
+  push,
+  onValue,
+  query,
+  orderByChild,
+  equalTo,
+} from "firebase/database";
+import { database, auth } from "./firebase.js"; // VAŽNO: Uvezi 'auth' instancu
 import "./Chat.css";
+// getAuth više nije potreban ovde, jer ga uvozimo iz firebase.js
 
-const Chat = ({ username }) => {
-  // 'username' je sada displayName/email/UID prijavljenog korisnika
+const Chat = () => {
+  // Stanje za prijavljenog korisnika
+  const [currentUser, setCurrentUser] = useState(null);
+
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
-  const [uniqueUsers, setUniqueUsers] = useState([]);
+  const [availableUsers, setAvailableUsers] = useState([]);
 
-  // Učitavanje poruka i kontakata
+  // Izvedene vrednosti, ažuriraće se kada se `currentUser` promeni
+  const currentUserId = currentUser?.uid;
+  const currentUserNameForDisplay =
+    currentUser?.displayName || currentUser?.email;
+
+  // --- NOVI useEffect za slušanje stanja autentifikacije ---
   useEffect(() => {
-    const messagesRef = ref(database, "messages/");
-    const unsubscribe = onChildAdded(messagesRef, (data) => {
-      const msg = data.val();
-      // Filtriramo poruke koje su poslane ili primljene od TRENUTNO prijavljenog korisnika
-      if (msg.sender === username || msg.recipient === username) {
-        setMessages((prev) => [...prev, msg]);
-
-        // Pronalazi drugog korisnika u konverzaciji
-        const otherUser = msg.sender === username ? msg.recipient : msg.sender;
-        setUniqueUsers((prev) =>
-          prev.includes(otherUser) ? prev : [...prev, otherUser]
-        );
-      }
+    // onAuthStateChanged vraća funkciju za odjavu sa listenera
+    const unsubscribeAuth = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user); // Postavi prijavljenog korisnika u stanje
     });
 
-    // Cleanup funkcija za Realtime Database listener
-    return () => {
-      // Nema direktne "off" funkcije za onChildAdded kao za onSnapshot,
-      // ali za production aplikacije, razmislio bi o tome kako prekinuti slušanje
-      // kad komponenta nije vidljiva (npr. ako se prebaci na drugu stranicu).
-      // Za ovu demonstraciju je ok.
-    };
-  }, [username]); // Ovisnost o 'username'
+    // Clean-up funkcija za odjavu sa listenera kada se komponenta unmount-uje
+    return () => unsubscribeAuth();
+  }, []); // Prazan niz zavisnosti znači da se ovaj efekt pokreće samo jednom pri montiranju
 
-  // Filtrirane poruke s odabranim korisnikom
+  // Dohvaćanje korisnika (ovaj useEffect se sada oslanja na `currentUser`)
+  useEffect(() => {
+    if (!currentUserId) {
+      setAvailableUsers([]); // Očisti listu ako nema prijavljenog korisnika
+      return;
+    }
+
+    const usersRef = ref(database, "users/");
+    const unsubscribeUsers = onValue(usersRef, (snapshot) => {
+      const usersData = snapshot.val();
+      const loadedUsers = [];
+
+      if (usersData) {
+        for (let uid in usersData) {
+          if (uid !== currentUserId) {
+            loadedUsers.push({
+              uid: uid,
+              display: usersData[uid].displayName || usersData[uid].email,
+            });
+          }
+        }
+      }
+      setAvailableUsers(loadedUsers);
+    });
+
+    return () => unsubscribeUsers();
+  }, [currentUserId]); // Sada zavisi od currentUserId
+
+  // Dohvaćanje poruka (i ovaj useEffect se sada oslanja na `currentUser`)
+  useEffect(() => {
+    if (!currentUserId) {
+      setMessages([]); // Očisti poruke ako nema prijavljenog korisnika
+      return;
+    }
+
+    const messagesRef = ref(database, "messages/");
+    let allMessagesMap = new Map();
+
+    const querySent = query(
+      messagesRef,
+      orderByChild("sender"),
+      equalTo(currentUserId)
+    );
+    const unsubscribeSent = onValue(querySent, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        allMessagesMap.set(childSnapshot.key, childSnapshot.val());
+      });
+      setMessages(
+        Array.from(allMessagesMap.values()).sort(
+          (a, b) => a.timestamp - b.timestamp
+        )
+      );
+    });
+
+    const queryReceived = query(
+      messagesRef,
+      orderByChild("recipient"),
+      equalTo(currentUserId)
+    );
+    const unsubscribeReceived = onValue(queryReceived, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        allMessagesMap.set(childSnapshot.key, childSnapshot.val());
+      });
+      setMessages(
+        Array.from(allMessagesMap.values()).sort(
+          (a, b) => a.timestamp - b.timestamp
+        )
+      );
+    });
+
+    return () => {
+      unsubscribeSent();
+      unsubscribeReceived();
+    };
+  }, [currentUserId]); // Sada zavisi od currentUserId
+
+  // Filtriranje poruka (ostaje isto)
   const filteredMessages = selectedUser
     ? messages.filter(
         (msg) =>
-          (msg.sender === username && msg.recipient === selectedUser) ||
-          (msg.sender === selectedUser && msg.recipient === username)
+          (msg.sender === currentUserId &&
+            msg.recipient === selectedUser.uid) ||
+          (msg.sender === selectedUser.uid && msg.recipient === currentUserId)
       )
     : [];
 
   // Slanje poruke
   const sendMessage = () => {
-    if (!selectedUser || !input.trim()) return;
+    // Dodatna provera da korisnik mora biti prijavljen pre slanja
+
+    console.log("sendMessage funkcija je pozvana!"); // DODAJ OVO!
+
+    if (!currentUser) {
+      console.error("Greška: Nema prijavljenog korisnika za slanje poruke.");
+      // Opcionalno, preusmeri korisnika na login stranicu ili prikaži poruku
+      return;
+    }
+
+    if (!selectedUser || !input.trim()) {
+      console.log("Pre-send check failed: selectedUser or input is missing.");
+      console.log("Selected User:", selectedUser);
+      console.log("Input:", input);
+      return;
+    }
+
+    console.log("Attempting to send message...");
+    console.log("Current User (auth.currentUser):", currentUser); // Ovo bi sada trebalo da je objekat korisnika
+    console.log("Current User ID (currentUserId):", currentUserId); // Ovo bi sada trebalo da je UID korisnika
+    console.log("Selected Recipient:", selectedUser);
 
     const messagesRef = ref(database, "messages/");
     const newMessage = {
-      sender: username, // 'sender' je sada prijavljeni korisnik
-      recipient: selectedUser,
+      sender: currentUserId,
+      senderDisplay: currentUserNameForDisplay,
+      recipient: selectedUser.uid,
+      recipientDisplay: selectedUser.display,
       text: input,
       timestamp: Date.now(),
     };
 
+    // DODAJ OVE DVE LINIJE
+    console.log(
+      "  Sadržaj newMessage objekta:",
+      JSON.stringify(newMessage, null, 2)
+    );
+    console.log("  Vrednost newMessage.sender:", newMessage.sender);
+
     push(messagesRef, newMessage)
-      .then(() => setInput(""))
+      .then(() => {
+        setInput("");
+        console.log("Message sent successfully!");
+      })
       .catch((err) => console.error("Greška pri slanju poruke:", err));
   };
-  const [newContactInput, setNewContactInput] = useState("");
 
-  const addNewContact = () => {
-    if (
-      newContactInput.trim() &&
-      !uniqueUsers.includes(newContactInput.trim()) &&
-      newContactInput.trim() !== username
-    ) {
-      setUniqueUsers((prev) => [...prev, newContactInput.trim()]);
-      setSelectedUser(newContactInput.trim()); // Automatski odaberi dodani kontakt
-      setNewContactInput("");
-    } else if (newContactInput.trim() === username) {
-      alert("Ne možete dodati sebe kao kontakt.");
-    }
-  };
-
+  // Render logike
   return (
     <div className="chat-layout">
-      {/* Ostatak koda za UI ostaje isti */}
+      {/* ... ostatak tvog render koda ostaje isti ... */}
       <div className="sidebar">
         <h3>Kontakti</h3>
-        <div className="add-contact-section">
-          <input
-            type="email" // ili text, ovisno što koristite kao username
-            placeholder="Dodaj kontakt (email/ime)"
-            value={newContactInput}
-            onChange={(e) => setNewContactInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && addNewContact()}
-          />
-          <button onClick={addNewContact}>Dodaj</button>
-        </div>
-        {uniqueUsers.map((user) => (
-          <div
-            key={user}
-            className={`contact ${user === selectedUser ? "active" : ""}`}
-            onClick={() => setSelectedUser(user)}
-          >
-            {user}
-          </div>
-        ))}
+        {/* Prikazati loading state ili poruku ako currentUser još nije učitan */}
+        {!currentUser && <p>Učitavanje korisnika...</p>}
+        {currentUser && availableUsers.length === 0 && (
+          <p>Nema dostupnih kontakata. Registrirajte više korisnika!</p>
+        )}
+        {currentUser &&
+          availableUsers.map((user) => (
+            <div
+              key={user.uid}
+              className={`contact ${
+                selectedUser && user.uid === selectedUser.uid ? "active" : ""
+              }`}
+              onClick={() => setSelectedUser(user)}
+            >
+              {user.display}
+            </div>
+          ))}
       </div>
 
       <div className="chat-content">
-        <div className="chat-header">💬 Chat sa {selectedUser || "..."}</div>
+        <div className="chat-header">
+          {/* Prikazati poruku ako nema currentUser */}
+          {!currentUser
+            ? "Prijavite se za chat"
+            : `💬 Chat sa ${selectedUser ? selectedUser.display : "..."}`}
+        </div>
 
         <div className="chat-messages">
-          {filteredMessages.map((msg, i) => (
-            <div
-              key={i}
-              className={`chat-message ${
-                msg.sender === username ? "sent" : "received"
-              }`}
-            >
-              <div className="chat-meta">
-                {msg.sender} ➡ {msg.recipient}
+          {!currentUser && (
+            <p className="no-chat-selected">
+              Molimo prijavite se da biste videli poruke.
+            </p>
+          )}
+          {currentUser && filteredMessages.length === 0 && !selectedUser && (
+            <p className="no-chat-selected">
+              Odaberite kontakt za početak razgovora.
+            </p>
+          )}
+          {currentUser && filteredMessages.length === 0 && selectedUser && (
+            <p className="no-chat-selected">Pošaljite prvu poruku!</p>
+          )}
+          {currentUser &&
+            filteredMessages.map((msg, i) => (
+              <div
+                key={i}
+                className={`chat-message ${
+                  msg.sender === currentUserId ? "sent" : "received"
+                }`}
+              >
+                <div className="chat-meta">
+                  {msg.senderDisplay} ➡ {msg.recipientDisplay}
+                </div>
+                <div className="chat-text">{msg.text}</div>
+                <div className="chat-time">
+                  {new Date(msg.timestamp).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </div>
               </div>
-              <div className="chat-text">{msg.text}</div>
-              <div className="chat-time">
-                {new Date(msg.timestamp).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
 
         <div className="chat-inputs">
@@ -136,11 +247,11 @@ const Chat = ({ username }) => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            disabled={!selectedUser}
+            disabled={!selectedUser || !currentUser} // Onemogući input ako nije prijavljen ili odabran korisnik
           />
           <button
             onClick={sendMessage}
-            disabled={!selectedUser || !input.trim()}
+            disabled={!selectedUser || !input.trim() || !currentUser} // Onemogući gumb ako nema odabranog korisnika, teksta ili prijavljenog korisnika
           >
             📤
           </button>

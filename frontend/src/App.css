@@ -45,9 +45,96 @@ body {
   color: white;
 }
 
+/* App.css - moderni login/register ekran */
 .app-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100vh;
+  background-color: #2a2a3d;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.auth-form {
+  background-color: #3b3b52;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.auth-form input {
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #2a2a3d;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.auth-button {
+  background-color: #4f81c7;
+  color: white;
+  border: none;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: #6b9df1;
+}
+
+.google-button {
+  background-color: #db4437;
+}
+
+.google-button:hover {
+  background-color: #e6695c;
+}
+
+.logout-button {
+  background-color: #ff4d4d;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  margin-left: auto;
+  font-size: 0.9rem;
+}
+
+.logout-button:hover {
+  background-color: #ff6b6b;
+}
+
+.auth-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3b3b52;
+  padding: 1rem 2rem;
+  color: white;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #444;
+}
+
+.error-message {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  text-align: center;
 }
