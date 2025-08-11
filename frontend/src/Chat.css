@@ -1,0 +1,125 @@
+/* Chat.css */
+
+.chat-layout {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #232333;
+  padding: 1rem;
+  border-right: 1px solid #333;
+  color: white;
+}
+
+.sidebar h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.contact {
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  background-color: #3a3a4d;
+  transition: 0.2s;
+}
+
+.contact:hover,
+.contact.active {
+  background-color: #4f81c7;
+}
+
+.chat-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #2a2a3d;
+  color: white;
+}
+
+.chat-header {
+  background-color: #3b3b52;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #444;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.chat-message {
+  max-width: 70%;
+  padding: 0.6rem 0.9rem;
+  border-radius: 10px;
+  position: relative;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.chat-message.sent {
+  align-self: flex-end;
+  background-color: #4f81c7;
+}
+
+.chat-message.received {
+  align-self: flex-start;
+  background-color: #5c5c7a;
+}
+
+.chat-meta {
+  font-size: 0.7rem;
+  margin-bottom: 0.3rem;
+  opacity: 0.7;
+}
+
+.chat-inputs {
+  display: flex;
+  gap: 0.4rem;
+  padding: 1rem;
+  background-color: #2a2a3d;
+  border-top: 1px solid #444;
+}
+
+.chat-inputs input {
+  flex: 1;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background-color: #3b3b52;
+  color: white;
+}
+
+.chat-inputs button {
+  background-color: #4f81c7;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.chat-inputs button:hover {
+  background-color: #6b9df1;
+}
+
+.chat-time {
+  font-size: 0.65rem;
+  color: #ccc;
+  margin-top: 0.2rem;
+  text-align: right;
+}

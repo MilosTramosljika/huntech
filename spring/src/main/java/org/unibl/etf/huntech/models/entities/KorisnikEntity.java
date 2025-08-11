@@ -3,6 +3,7 @@ package org.unibl.etf.huntech.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.Getter;
@@ -103,9 +104,8 @@ public class KorisnikEntity implements BaseEntity<Integer> {
     @JsonIgnore
     private Set<ZahtjevZaPromjenuStatusaEntity> zahtjevZaPromjenuStatusas = new LinkedHashSet<>();
 
-
-    @Size(max = 255)
-    @Column(name = "profilna_slika_putanja")
-    private String profilnaSlikaPutanja;
+    @Size(max = 500)
+    @Column(name = "Slika", nullable = false, length = 500)
+    private String slika;
 
 }

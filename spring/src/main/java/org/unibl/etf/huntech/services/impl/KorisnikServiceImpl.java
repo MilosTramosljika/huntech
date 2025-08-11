@@ -70,7 +70,7 @@ public class KorisnikServiceImpl extends CrudJpaService<KorisnikEntity, Integer>
 
         // Relativna putanja koju čuvaš u bazi
         String relativnaPutanja = "/uploads/profilne/" + nazivFajla;
-        korisnik.setProfilnaSlikaPutanja(relativnaPutanja);
+        korisnik.setSlika(relativnaPutanja);
 
         repository.save(korisnik);
 
@@ -109,7 +109,7 @@ public class KorisnikServiceImpl extends CrudJpaService<KorisnikEntity, Integer>
         entity.setUsername(dto.getUsername());
         entity.setMail(dto.getMail());
         entity.setLozinka(dto.getLozinka());
-        entity.setProfilnaSlikaPutanja(dto.getProfilnaSlikaPutanja());
+        entity.setSlika(dto.getSlika());
         entity.setId(null); // auto-generisani ID
         entity = repository.saveAndFlush(entity);
         return modelMapper.map(entity, resultDtoClass);
