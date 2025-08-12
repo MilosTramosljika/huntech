@@ -1,0 +1,47 @@
+.container {
+  background-color: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  max-width: 600px;
+  margin: auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+.form {
+  margin-bottom: 1rem;
+}
+
+.button {
+  background-color: var(--primary);
+  color: var(--text-light);
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--primary-dark);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .button {
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+  }
+}
