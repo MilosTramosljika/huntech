@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.unibl.etf.huntech.base.CrudJpaService;
 import org.unibl.etf.huntech.exceptions.ConflictException;
+import org.unibl.etf.huntech.exceptions.NotFoundException;
 import org.unibl.etf.huntech.models.Korisnik;
+import org.unibl.etf.huntech.models.SingleKorisnik;
 import org.unibl.etf.huntech.models.entities.KorisnikEntity;
 import org.unibl.etf.huntech.repositories.KorisnikEntityRepository;
 import org.unibl.etf.huntech.services.KorisnikService;
@@ -113,6 +115,11 @@ public class KorisnikServiceImpl extends CrudJpaService<KorisnikEntity, Integer>
         entity.setId(null); // auto-generisani ID
         entity = repository.saveAndFlush(entity);
         return modelMapper.map(entity, resultDtoClass);
+    }
+
+    @Override
+    public SingleKorisnik findKorisnikById(Integer id) throws NotFoundException {
+        return  modelMapper.map(repository.findById(id).orElseThrow(NotFoundException::new), SingleKorisnik.class);
     }
 
 }

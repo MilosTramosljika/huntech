@@ -7,11 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.unibl.etf.huntech.base.CrudController;
+import org.unibl.etf.huntech.exceptions.NotFoundException;
 import org.unibl.etf.huntech.models.Korisnik;
+import org.unibl.etf.huntech.models.SingleKorisnik;
 import org.unibl.etf.huntech.models.requests.KorisnikRequest;
 import org.unibl.etf.huntech.services.KorisnikService;
 
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
@@ -60,6 +64,25 @@ public class KorisnikController extends CrudController<Integer, KorisnikRequest,
         }
     }
 
+    @GetMapping("/singleKorisnik/{id}")
+    public SingleKorisnik findKorisnikById(@PathVariable Integer id) throws NotFoundException {
+        return service.findKorisnikById(id);
+    }
+
+    @GetMapping(value = "/uploads/{slika}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] getSlika(@PathVariable String slika) throws IOException {
+        Path putanja = Paths.get("C:\\Users\\Milos\\Desktop\\Huntech\\spring\\uploads\\profilne", slika);
+
+        System.out.println("Tražena slika na putanji: " + putanja.toString());
+        if (!Files.exists(putanja)) {
+            System.out.println("Slika ne postoji!");
+            throw new IOException("Fajl ne postoji");
+        }
+
+        return Files.readAllBytes(putanja);
+    }
+
+
     /*
     @PostMapping("/{id}/upload-profilna")
     public ResponseEntity<String> uploadProfilnaSlika(@PathVariable Integer id,
@@ -91,7 +114,13 @@ public class KorisnikController extends CrudController<Integer, KorisnikRequest,
     }
     */
 
+
+
+
 }
 
 
 //swagger uzima endpointe i pravi dokumentaciju na osnovu njih
+
+
+

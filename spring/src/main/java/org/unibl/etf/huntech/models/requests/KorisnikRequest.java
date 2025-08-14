@@ -14,6 +14,7 @@ public class KorisnikRequest {
     private String username;
     private String mail;
     private String lozinka;
+    private String slika;
 //    private Set<KHasZarEntity> kHasZars = new LinkedHashSet<>();
 //    private Set<KHasZzpEntity> kHasZzps = new LinkedHashSet<>();
 //    private Set<KomentarEntity> komentars = new LinkedHashSet<>();
