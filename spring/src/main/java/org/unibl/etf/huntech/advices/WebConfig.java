@@ -12,19 +12,35 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * Neka bude za sad tu
  */
 
-@Configuration
-public class WebConfig {
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                // OVO JE MJESTO gdje postoji metoda addMapping(String)
-                registry.addMapping("/**")
-                        .allowedOrigins("*") // ili specificirani frontend npr. "http://localhost:3000"
-                        .allowedMethods("GET", "POST", "PUT", "DELETE");
-            }
-        };
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:3000")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }
+
+
+//@Configuration
+//public class WebConfig {
+//
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                // OVO JE MJESTO gdje postoji metoda addMapping(String)
+//                registry.addMapping("/**")
+//                        .allowedOrigins("*") // ili specificirani frontend npr. "http://localhost:3000"
+//                        .allowedMethods("GET", "POST", "PUT", "DELETE");
+//            }
+//        };
+//    }
+//}

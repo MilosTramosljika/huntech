@@ -2,6 +2,7 @@ package org.unibl.etf.huntech.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.unibl.etf.huntech.base.BaseEntity;
 
@@ -24,8 +25,9 @@ public class GrupaEntity implements BaseEntity<Integer> {
     @Column(name = "Opis", nullable = false, length = 500)
     private String opis;
 
+    @Size(max = 500)
     @Column(name = "Slika", nullable = false)
-    private byte[] slika;
+    private String slika;
 
     @OneToMany(mappedBy = "idGrupe")
     private Set<AktivnostDivljaciEntity> aktivnostDivljacis = new LinkedHashSet<>();

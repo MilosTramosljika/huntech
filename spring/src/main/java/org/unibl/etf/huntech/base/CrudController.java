@@ -47,6 +47,8 @@ public abstract class CrudController<ID extends Serializable, REQ, RESP> {
 
     @PutMapping("/{id}")
     public RESP update(@PathVariable ID id, @RequestBody REQ object) throws NotFoundException {
+        System.out.println("Pozvan update za ID: " + id);
+        System.out.println("Payload: " + object);
         return crudService.update(id, object, respClass);
     }
 

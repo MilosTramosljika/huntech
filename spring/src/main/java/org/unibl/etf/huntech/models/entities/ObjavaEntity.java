@@ -2,7 +2,7 @@ package org.unibl.etf.huntech.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+//import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.unibl.etf.huntech.base.BaseEntity;
 import org.unibl.etf.huntech.models.enums.TipObjave;
