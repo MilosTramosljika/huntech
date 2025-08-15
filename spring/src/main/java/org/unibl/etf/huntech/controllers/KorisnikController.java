@@ -71,7 +71,8 @@ public class KorisnikController extends CrudController<Integer, KorisnikRequest,
 
     @GetMapping(value = "/uploads/{slika}", produces = MediaType.IMAGE_JPEG_VALUE)
     public byte[] getSlika(@PathVariable String slika) throws IOException {
-        Path putanja = Paths.get("C:\\Users\\Milos\\Desktop\\Huntech\\spring\\uploads\\profilne", slika);
+        Path putanja = Paths.get("uploads", "profilne", slika);
+        //Path putanja = Paths.get("C:\\Users\\Milos\\Desktop\\Huntech\\spring\\uploads\\profilne", slika);
 
         System.out.println("Tražena slika na putanji: " + putanja.toString());
         if (!Files.exists(putanja)) {
