@@ -1,0 +1,33 @@
+.wrapper {
+  max-width: 800px;
+  margin: auto;
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2e3d2f;
+}
+
+.title {
+  color: #6d4c41;
+  margin-bottom: 20px;
+}
+
+.linkButton {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #2e7d32;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.linkButton:hover {
+  background-color: #1b5e20;
+}
+
+.iframe {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}

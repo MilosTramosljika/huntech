@@ -1,0 +1,88 @@
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 30px;
+  background-color: #f4f8f4;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.08);
+  font-family: 'Segoe UI', sans-serif;
+  color: #2e3d2f;
+}
+
+.heading {
+  text-align: center;
+  color: #2e7d32;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 200px;
+}
+
+button {
+  background-color: #388e3c;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2e7d32;
+}
+
+.error {
+  color: #c62828;
+  background-color: #ffebee;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.card {
+  width: 160px;
+  background-color: #e8f5e9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.card img {
+  width: 60px;
+  height: 60px;
+}
+
+@media (max-width: 600px) {
+  .form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .card {
+    width: 100%;
+  }
+}

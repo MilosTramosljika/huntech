@@ -1,0 +1,30 @@
+ .navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #2e3b2b; /* tamno maslinasta */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 0;
+  border-top: 2px solid #a67c52; /* braon linija */
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #e6ddc6; /* bež boja za ikone i tekst */
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navItem:hover {
+  color: #d4a373; /* toplija narandžasto-oker boja */
+}
+
+.active {
+  color: #d4a373; /* aktivna ruta naglašena */
+}

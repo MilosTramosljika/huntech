@@ -1,0 +1,97 @@
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2e3d2f;
+}
+
+.heading {
+  color: #2e7d32;
+  margin-bottom: 20px;
+}
+
+.panel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 100;
+}
+
+.list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.divider {
+  margin: 30px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.objava,
+.potvrda {
+  border: 1px solid #aaa;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.potvrda {
+  border: 1px dashed #666;
+  background-color: #eef;
+}
+
+.akcije {
+  margin-top: 10px;
+}
+
+.akcije button {
+  margin-right: 10px;
+  background-color: #388e3c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.akcije button:hover {
+  background-color: #2e7d32;
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: #6d4c41;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #5d4037;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  .panel {
+    width: 90%;
+    right: 5%;
+  }
+
+  .objava,
+  .potvrda {
+    padding: 12px;
+  }
+}
