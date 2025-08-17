@@ -30,10 +30,11 @@ public class KorisnikServiceImpl extends CrudJpaService<KorisnikEntity, Integer>
     private final KorisnikEntityRepository repository;
     private final ModelMapper modelMapper;
 
-    public KorisnikServiceImpl(KorisnikEntityRepository repository, ModelMapper modelMapper, ModelMapper modelMapper1) {
+
+    public KorisnikServiceImpl(KorisnikEntityRepository repository, ModelMapper modelMapper) {
         super(repository, modelMapper, KorisnikEntity.class);
         this.repository = repository;
-        this.modelMapper = modelMapper1;
+        this.modelMapper = modelMapper;
     }
     /*
     @Override
@@ -120,6 +121,20 @@ public class KorisnikServiceImpl extends CrudJpaService<KorisnikEntity, Integer>
     @Override
     public SingleKorisnik findKorisnikById(Integer id) throws NotFoundException {
         return  modelMapper.map(repository.findById(id).orElseThrow(NotFoundException::new), SingleKorisnik.class);
+    }
+
+    @Override
+    public SingleKorisnik findKorisnikByUsername(String username) throws NotFoundException {
+        return repository.findByUsername(username)
+                .map(entity -> modelMapper.map(entity, SingleKorisnik.class))
+                .orElseThrow(() -> new NotFoundException("Korisnik sa username " + username + " nije pronađen"));
+    }
+
+    @Override
+    public SingleKorisnik findKorisnikByMail(String email) throws NotFoundException {
+        return repository.findByMail(email)
+                .map(entity -> modelMapper.map(entity, SingleKorisnik.class))
+                .orElseThrow(() -> new NotFoundException("Korisnik sa email " + email + " nije pronađen"));
     }
 
 }

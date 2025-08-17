@@ -69,6 +69,16 @@ public class KorisnikController extends CrudController<Integer, KorisnikRequest,
         return service.findKorisnikById(id);
     }
 
+    @GetMapping("/singleKorisnik/{username}")
+    public SingleKorisnik findKorisnikByUsername(@PathVariable String username) throws NotFoundException {
+        return service.findKorisnikByUsername(username);
+    }
+
+    @GetMapping("/singleKorisnik/{email}")
+    public SingleKorisnik findKorisnikByMmail(@PathVariable String email) throws NotFoundException {
+        return service.findKorisnikByMail(email);
+    }
+
     @GetMapping(value = "/uploads/{slika}", produces = MediaType.IMAGE_JPEG_VALUE)
     public byte[] getSlika(@PathVariable String slika) throws IOException {
         Path putanja = Paths.get("C:\\Users\\Milos\\Desktop\\Huntech\\spring\\uploads\\profilne", slika);
