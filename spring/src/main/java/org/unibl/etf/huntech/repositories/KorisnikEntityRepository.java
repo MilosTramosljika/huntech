@@ -13,7 +13,4 @@ public interface KorisnikEntityRepository extends JpaRepository<KorisnikEntity, 
 
     Optional<KorisnikEntity> findByUsername(String korisnickoIme);
     Optional<KorisnikEntity> findByMail(String email);
-
-
-
 }
