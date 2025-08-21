@@ -12,9 +12,7 @@ import java.time.LocalDate;
 public class KorisnikHasUloga {
 
     private Integer id;
-    private KorisnikEntity idKorisnika;
-    private UlogaEntity idUloge;
+    private Integer idKorisnika;
+    private Integer idUloge;
     private LocalDate datumDobijanjaUloge;
-    private String idKHU;
-
 }

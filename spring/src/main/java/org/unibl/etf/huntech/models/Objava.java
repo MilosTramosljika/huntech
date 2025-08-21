@@ -16,14 +16,15 @@ import java.util.Set;
 public class Objava {
 
     private Integer id;
-    private GrupaEntity idGrupe;
-    private KorisnikEntity idKorisnika;
+    private Integer idGrupe;
+    private Integer idKorisnika;
     private String tipObjave;
     private LocalDate datumObjavljivanja;
     private Integer lajk;
     private Integer dislajk;
-    private Set<KomentarEntity> komentars = new LinkedHashSet<>();
-    private Set<SlikaZaObjavuEntity> slikaZaObjavus = new LinkedHashSet<>();
+    private String sadrzaj;
+//    private Set<KomentarEntity> komentars = new LinkedHashSet<>();
+//    private Set<SlikaZaObjavuEntity> slikaZaObjavus = new LinkedHashSet<>();
 
 
 }

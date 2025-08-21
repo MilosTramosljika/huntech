@@ -1,0 +1,31 @@
+.container {
+  text-align: center;
+  padding-top: 50px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2e3d2f;
+}
+
+.compass {
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  border: 6px solid #333;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.needle {
+  width: 4px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+}
+
+.label {
+  margin-top: 20px;
+  font-size: 18px;
+}

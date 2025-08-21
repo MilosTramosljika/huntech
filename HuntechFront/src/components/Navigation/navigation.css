@@ -1,0 +1,115 @@
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #222;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  z-index: 1000;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  width: 30px;   /* manja širina */
+  height: 35px;  /* manja visina */
+  position: relative;
+  top: -6px;     /* pomjera dugme gore po Y-osi */
+}
+
+.search-input {
+  flex: 1; /* zauzima što više prostora u headeru */
+  margin: 0 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+}
+
+.icon-with-badge {
+  position: relative;
+  margin-left: 10px;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 50%;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: -220px;
+  width: 220px;
+  height: calc(100% - 60px);
+  background-color: #333;
+  color: white;
+  transition: left 0.3s ease;
+  padding-top: 20px;
+  z-index: 999;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.sidebar li:hover {
+  background-color: #444;
+}
+
+/* Main content */
+.main-content {
+  padding-top: 0px; /* prostor za header */
+  padding-bottom: 50px; /* prostor za footer */
+}
+
+/* Footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #222;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+}
+
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+}

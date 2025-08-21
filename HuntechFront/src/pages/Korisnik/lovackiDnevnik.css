@@ -1,0 +1,124 @@
+/* LovackiDnevnik.css */
+
+body {
+  background-color: #1f2b16; /* tamna pozadina */
+  color: white; /* bijela slova */
+  font-family: 'Arial', sans-serif;
+}
+
+h2 {
+  color: #a8d08d;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ant-collapse {
+  background-color: transparent; /* uklanja default bijelu pozadinu */
+}
+
+.ant-collapse-item {
+  background-color: #344d27; /* svijetlozeleni panel */
+  margin-bottom: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ant-collapse-header {
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.ant-collapse-content-box {
+  background-color: #4a6c35; /* još svjetliji zeleni ton */
+  padding: 15px;
+  border-top: 1px solid #2c3e1f;
+}
+
+.ant-collapse .ant-collapse-item-disabled .ant-collapse-header,
+.ant-collapse .ant-collapse-item-disabled .ant-collapse-content {
+  opacity: 0.7;
+}
+
+p {
+  margin: 5px 0;
+  color: #ffffff;
+}
+
+div {
+  color: white;
+}
+
+/* Dugme za dodavanje novog zapisa */
+.add-entry-button-container {
+  position: fixed;
+  bottom: 80px; /* pomereno više od dna da ne ide preko footera */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.add-entry-button {
+  background-color: #4caf50; /* zelena boja */
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-entry-button:hover {
+  background-color: #45a049; /* tamnija nijansa zelene */
+}
+
+.ant-table-thead > tr > th {
+  background: #fafafa;
+  font-weight: bold;
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: #e6f7ff; /* plavi hover efekt */
+}
+
+/* lovackiDnevnik.css */
+
+.ant-table {
+  color: black !important;
+}
+
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  color: black !important;
+}
+
+/* lovackiDnevnik.css */
+
+/* Header zelena pozadina + bijeli tekst */
+.ant-table-thead > tr > th {
+  background-color: #2e7d32 !important; /* tamnozelena */
+  color: white !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Ćelije u tabeli - crni tekst */
+.ant-table-tbody > tr > td {
+  color: black !important;
+}
+
+/* Naizmjenične boje redova */
+.ant-table-tbody > tr:nth-child(odd) > td {
+  background-color: #e8f5e9; /* svijetlozelena */
+}
+.ant-table-tbody > tr:nth-child(even) > td {
+  background-color: #c8e6c9; /* malo tamnija svijetlozelena */
+}
+
+/* Hover efekat */
+.ant-table-tbody > tr:hover > td {
+  background-color: #a5d6a7 !important; /* hover zelena */
+  cursor: pointer;
+}
+

@@ -83,6 +83,15 @@ public class KorisnikController extends CrudController<Integer, KorisnikRequest,
         return Files.readAllBytes(putanja);
     }
 
+    @GetMapping("/username/{username}")
+    public SingleKorisnik findKorisnikByUsername(@PathVariable String username) throws NotFoundException {
+        return service.findKorisnikByUsername(username);
+    }
+
+    @GetMapping("/email/{email}")
+    public SingleKorisnik findKorisnikByMmail(@PathVariable String email) throws NotFoundException {
+        return service.findKorisnikByMail(email);
+    }
 
     /*
     @PostMapping("/{id}/upload-profilna")

@@ -1,0 +1,141 @@
+/* Dugme u headeru */
+.menu-btn {
+  position: relative;
+  z-index: 1200;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  width: 42px;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.menu-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: -260px;
+  width: 240px;
+  height: calc(100% - 60px);
+  background: rgba(40, 40, 40, 0.85);
+  backdrop-filter: blur(10px);
+  color: white;
+  transition: left 0.35s ease, opacity 0.35s ease;
+  z-index: 1100;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.4);
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 15px 10px;
+  opacity: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  left: 0;
+  opacity: 1;
+}
+
+/* Sidebar naslov */
+.sidebar-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 8px;
+}
+
+/* Linkovi */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1; /* zauzima sav prostor iznad user panela */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  color: #f0f0f0;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.25s, transform 0.2s;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
+  color: #fff;
+}
+
+/* User panel na dnu */
+.sidebar-user {
+  margin-top: auto; /* gura panel na dno */
+  margin-bottom: 20px; /* ⬅️ podignuto od dna */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Logout dugme */
+.logout-btn {
+  margin-top: 5px;
+  padding: 6px 12px;
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 60px);
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1050;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

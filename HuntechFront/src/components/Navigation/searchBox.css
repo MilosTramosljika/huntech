@@ -1,0 +1,52 @@
+.search-wrapper {
+    position: relative;
+    flex: 1; /* zauzima što više prostora u headeru */
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: max-content;
+  min-width: 200px;
+  background: rgb(53, 51, 51);
+  color: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-results li {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center; /* da tekst i slika budu u istoj liniji */
+}
+
+.search-results li:hover {
+  background-color: #444;
+  color: #fff;
+}
+
+/* Boja kada mišem pređeš preko reda */
+.search-results li:hover {
+  background-color: #444; /* tamnija nijansa */
+  color: #fff;
+}
+
+/* Boja kada je red selektovan */
+.search-results li.selected {
+  background-color: #2196F3; /* plava */
+  color: white;
+}
+
+.search-results li img {
+  width: 30px;    /* veličina slike */
+  height: 30px;
+  border-radius: 50%; /* okrugla slika */
+  margin-right: 10px;  /* razmak između slike i teksta */
+}

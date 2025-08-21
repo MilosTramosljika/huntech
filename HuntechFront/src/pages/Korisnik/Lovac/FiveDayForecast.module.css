@@ -1,0 +1,122 @@
+.container {
+  width: 100%;
+  margin: 0;
+  padding: 15px;
+  background-color: #04440a;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.heading {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #fbfcff;
+}
+
+.searchButton {
+  padding: 6px 12px;        /* manji padding */
+  font-size: 0.9rem;        /* manji tekst */
+  height: 36px;             /* iste visine kao input */
+  align-self: center;       /* vertikalno poravnanje */
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s background-color;
+}
+
+.searchButton:hover {
+  background-color: #2563eb;
+}
+
+.form input {
+  height: 36px;   /* iste visine kao button */
+}
+
+
+.subheading {
+  text-align: center;
+  font-size: 1.3rem;
+  margin: 10px 0 20px 0;
+  color: #ffffff;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.form input {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  width: 200px;
+  outline: none;
+  transition: 0.2s border-color;
+}
+
+.form input:focus {
+  border-color: #cbd5e1;
+}
+
+.form button {
+  padding: 8px 16px;
+  font-size: 1rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s background-color;
+}
+
+.form button:hover {
+  background-color: #2563eb;
+}
+
+.error {
+  text-align: center;
+  color: #dc2626;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.card {
+  background-color: #7fe4a0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 140px;
+  text-align: center;
+  transition: 0.2s transform, 0.2s box-shadow;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  width: 80px;
+  height: 80px;
+  margin: 10px 0;
+}
+
+.card p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: #010203;
+}
+

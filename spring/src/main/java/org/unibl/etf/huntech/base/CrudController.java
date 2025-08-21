@@ -26,7 +26,9 @@ public abstract class CrudController<ID extends Serializable, REQ, RESP> {
     }
 
     @GetMapping
-    List<RESP> findAll() { return crudService.findAll(respClass);}
+    List<RESP> findAll() {
+        return crudService.findAll(respClass);
+    }
 
     @GetMapping("/{id}")
     public RESP findById(@PathVariable ID id)throws NotFoundException {
@@ -45,10 +47,17 @@ public abstract class CrudController<ID extends Serializable, REQ, RESP> {
         return crudService.insert(object, respClass);
     }
 
+    @PostMapping("/batch")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<RESP> insertBatch(@RequestBody List<REQ> objects) throws NotFoundException {
+        return objects.stream()
+                .map(obj -> crudService.insert(obj, respClass))
+                .toList();
+    }
+
+
     @PutMapping("/{id}")
     public RESP update(@PathVariable ID id, @RequestBody REQ object) throws NotFoundException {
-        System.out.println("Pozvan update za ID: " + id);
-        System.out.println("Payload: " + object);
         return crudService.update(id, object, respClass);
     }
 

@@ -1,0 +1,103 @@
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 30px;
+  background-color: #f4f8f4;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.08);
+  font-family: 'Segoe UI', sans-serif;
+  color: #2e3d2f;
+}
+
+.heading {
+  text-align: center;
+  color: #2e7d32;
+  margin-bottom: 20px;
+}
+
+.subheading {
+  color: #33691e;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.newEntry,
+.searchForm {
+  background-color: #eef;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.searchForm {
+  background-color: #f3f3f3;
+}
+
+form label {
+  font-weight: bold;
+  display: block;
+  margin-top: 12px;
+  color: #2e7d32;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form button {
+  background-color: #388e3c;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #2e7d32;
+}
+
+.logList {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.logItem {
+  margin-bottom: 16px;
+  border-bottom: 1px dashed #bbb;
+  padding-bottom: 12px;
+}
+
+.logItem button {
+  margin-top: 8px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.logItem button:hover {
+  background-color: #388e3c;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  form button {
+    width: 100%;
+  }
+}

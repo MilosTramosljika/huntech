@@ -75,6 +75,7 @@ public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable> i
         if(!repository.existsById(id)){
             throw new NotFoundException();
         }
+        repository.deleteById(id);
     }
 
     public E findEntityById(ID id) {return repository.findById(id).orElseThrow(NotFoundException::new);}
