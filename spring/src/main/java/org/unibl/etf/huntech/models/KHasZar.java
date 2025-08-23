@@ -10,6 +10,6 @@ public class KHasZar {
 
 
     private Integer id;
-    private KorisnikEntity idKorisnika;
-    private ZahtjevZaRegistracijuEntity idZahtjeva;
+    private Integer idKorisnika;
+    private Integer idZahtjeva;
 }

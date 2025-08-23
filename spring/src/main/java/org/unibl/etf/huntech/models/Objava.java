@@ -7,6 +7,7 @@ import org.unibl.etf.huntech.models.entities.GrupaEntity;
 import org.unibl.etf.huntech.models.entities.KomentarEntity;
 import org.unibl.etf.huntech.models.entities.KorisnikEntity;
 import org.unibl.etf.huntech.models.entities.SlikaZaObjavuEntity;
+import org.unibl.etf.huntech.models.enums.TipObjave;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
@@ -18,7 +19,7 @@ public class Objava {
     private Integer id;
     private Integer idGrupe;
     private Integer idKorisnika;
-    private String tipObjave;
+    private TipObjave tipObjave;
     private LocalDate datumObjavljivanja;
     private Integer lajk;
     private Integer dislajk;

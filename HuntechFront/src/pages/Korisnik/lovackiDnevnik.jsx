@@ -76,9 +76,12 @@ const LovackiDnevnik = () => {
 
   if (!dnevnik.length)
     return (
-      <p style={{ textAlign: "center", marginTop: "20px" }}>
-        Nema zapisanih dana u dnevniku.
-      </p>
+      <div style={{ textAlign: "center", marginTop: "20px" }}>
+        <p>Nema zapisanih dana u dnevniku.</p>
+        <Link to="/dodavanjeObjaveNaLD">
+          <button className="add-entry-button">Dodaj novi zapis</button>
+        </Link>
+      </div>
     );
 
   return (
@@ -132,11 +135,14 @@ const LovackiDnevnik = () => {
                 )}
               </div>
 
-              {/* Dugme za brisanje */}
-              <div style={{ marginTop: "15px" }}>
-                <Button type="primary" danger onClick={() => handleDelete(dan.id)}>
+              {/* Dugmad za uređivanje i brisanje */}
+              <div className="entry-buttons">
+                <Link to={`/uredjivanjeObjaveNaLD/${dan.id}`}>
+                  <button className="edit-button">Uredi zapis</button>
+                </Link>
+                <button className="delete-button" onClick={() => handleDelete(dan.id)}>
                   Obriši zapis
-                </Button>
+                </button>
               </div>
             </div>
           ),

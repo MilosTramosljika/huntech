@@ -9,6 +9,6 @@ import org.unibl.etf.huntech.models.entities.KorisnikEntity;
 public class KorisnikHasKonverzacija {
 
     private Integer id;
-    private KorisnikEntity idKorisnika;
-    private KonverzacijaEntity idKonverzacije;
+    private Integer idKorisnika;
+    private Integer idKonverzacije;
 }

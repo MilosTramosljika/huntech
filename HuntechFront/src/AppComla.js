@@ -44,9 +44,9 @@ import "./App.css";
 import Korisnik from "./pages/Korisnik/korisnik";
 import UrediProfil from "./pages/Korisnik/uredjivanjeKorisnika";
 import LovackiDnevnik from "./pages/Korisnik/lovackiDnevnik.jsx";
-import UredjivanjeLovackogDnevnika from "./pages/Korisnik/uredjivanjeLovackogDnevnika.jsx"; // Importuj EditLogEntry komponentu
+//import UredjivanjeLovackogDnevnika from "./pages/Korisnik/uredjivanjeLovackogDnevnika.jsx"; // Importuj EditLogEntry komponentu
 import VremenskaPrognoza from "./pages/Korisnik/Lovac/FiveDayForecast.jsx"; // Importuj WeatherForecast komponentu
-import DodavanjeObjaveNaLD from "./pages/Korisnik/dodavanjeObjaveNaLD.jsx"; // Importuj AddPostToLD komponentu
+import ObjavaNaLD from "./pages/Korisnik/objavaNaLD.jsx"; // Importuj AddPostToLD komponentu
 
 import {
   BrowserRouter as Router,
@@ -82,15 +82,9 @@ function App() {
           <Route path="/singleKorisnik" element={<Korisnik />} />
           <Route path="/uredjivanjeKorisnika" element={<UrediProfil />} />
           <Route path="/lovackiDnevnik" element={<LovackiDnevnik />} />
-          <Route
-            path="/uredjivanjeLovackogDnevnika"
-            element={<UredjivanjeLovackogDnevnika />}
-          />
           <Route path="/vremenskaPrognoza" element={<VremenskaPrognoza />} />
-          <Route
-            path="/dodavanjeObjaveNaLD"
-            element={<DodavanjeObjaveNaLD />}
-          />
+          <Route path="/dodavanjeObjaveNaLD" element={<ObjavaNaLD />} />
+          <Route path="/uredjivanjeObjaveNaLD/:id" element={<ObjavaNaLD />} />
         </Routes>
       </Layout>
     </Router>

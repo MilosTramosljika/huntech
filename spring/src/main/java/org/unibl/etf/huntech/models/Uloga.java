@@ -13,6 +13,6 @@ public class Uloga {
 
     private Integer id;
     private String nazivUloge;
-    private Set<KorisnikHasUlogaEntity> korisnikHasUlogas = new LinkedHashSet<>();
+    //private Set<KorisnikHasUlogaEntity> korisnikHasUlogas = new LinkedHashSet<>();
 
 }

@@ -15,7 +15,7 @@ public class Poruka {
     private Integer id;
     private String sadrzaj;
     private Instant datumSlanja;
-    private KorisnikEntity idKorisnika;
-    private KonverzacijaEntity idKonverzacije;
+    private Integer idKorisnika;
+    private Integer idKonverzacije;
 
 }

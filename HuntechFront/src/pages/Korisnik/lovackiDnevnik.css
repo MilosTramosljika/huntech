@@ -52,25 +52,28 @@ div {
 /* Dugme za dodavanje novog zapisa */
 .add-entry-button-container {
   position: fixed;
-  bottom: 80px; /* pomereno više od dna da ne ide preko footera */
+  bottom: 60px; /* koliko iznad navigation bara */
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
 }
 
+
 .add-entry-button {
-  background-color: #4caf50; /* zelena boja */
-  border: none;
+  background-color: #2e7d32;
   color: white;
   padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
   font-size: 16px;
-  border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
 }
 
 .add-entry-button:hover {
-  background-color: #45a049; /* tamnija nijansa zelene */
+  background-color: #1b5e20;
 }
 
 .ant-table-thead > tr > th {
@@ -122,3 +125,36 @@ div {
   cursor: pointer;
 }
 
+.entry-buttons {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.edit-button {
+  background-color: #1890ff; /* plava (Ant Design default) */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.edit-button:hover {
+  background-color: #40a9ff;
+}
+
+.delete-button {
+  background-color: #ff4d4f; /* crvena */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #ff7875;
+}

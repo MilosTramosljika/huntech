@@ -11,6 +11,6 @@ public class Podkomentar {
 
     private Integer id;
     private String sadrzaj;
-    private KomentarEntity idKomentara;
+    private Integer idKomentara;
 
 }

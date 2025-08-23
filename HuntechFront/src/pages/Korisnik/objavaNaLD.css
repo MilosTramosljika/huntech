@@ -1,0 +1,101 @@
+/* Okvir za pojedinačni događaj */
+.dogadjaj-box {
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dogadjaj-box:hover {
+  border-color: #4caf50; /* zelena na hover */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+/* Label i input u formi */
+.label {
+  display: block;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus, .textarea:focus {
+  border-color: #4caf50;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76,175,80,0.2);
+}
+
+/* Dugme za uklanjanje događaja */
+.buttonRemove {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.buttonRemove:hover {
+  background-color: #d32f2f;
+}
+
+/* Dugme za dodavanje događaja */
+.buttonSecondary {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.buttonSecondary:hover {
+  background-color: #1976d2;
+}
+
+/* Glavno dugme (submit) */
+.buttonPrimary {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.buttonSecondary:hover {
+  background-color: #1976d2;
+}
+
+/* Sekcija sa akcijama */
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 20px;
+}
+
+.dogadjaj-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}

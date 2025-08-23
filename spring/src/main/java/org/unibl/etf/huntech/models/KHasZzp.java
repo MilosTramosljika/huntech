@@ -11,8 +11,8 @@ import java.time.LocalDate;
 public class KHasZzp {
 
     private Integer id;
-    private KorisnikEntity idKorisnika;
-    private ZahtjevZaPromjenuStatusaEntity idZahtjevaZaPromjenuStatusa;
+    private Integer idKorisnika;
+    private Integer idZahtjevaZaPromjenuStatusa;
     private LocalDate datumObrade;
 
 }

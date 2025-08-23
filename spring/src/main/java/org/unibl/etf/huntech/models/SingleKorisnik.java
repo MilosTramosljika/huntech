@@ -8,6 +8,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class SingleKorisnik extends Korisnik {
-    private List<Prijava> prijave;
-    private List<Obavjestenja> obavjestenja;
+//    private List<Prijava> prijave;
+//    private List<Obavjestenja> obavjestenja;
 }

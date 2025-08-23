@@ -9,7 +9,7 @@ import org.unibl.etf.huntech.models.entities.GrupaEntity;
 public class Lokacija {
 
     private Integer id;
-    private GrupaEntity idGrupe;
+    private Integer idGrupe;
     private Double geografskaSirina;
     private Double geografskaDuzina;
 }

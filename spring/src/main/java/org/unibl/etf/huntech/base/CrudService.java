@@ -18,4 +18,6 @@ public interface CrudService <ID extends Serializable> {
     <T,U> T update(ID id, U object, Class<T> resultDtoClass);
 
     void delete(ID id) throws NotFoundException;
+
+    boolean existsById(ID id);
 }

@@ -50,6 +50,11 @@ public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable> i
     }
 
     @Override
+    public boolean existsById(ID id) {
+        return repository.existsById(id);
+    }
+
+    @Override
     public <T, U> T insert(U object, Class<T> resultDtoClass) {
         E entity = modelMapper.map(object, entityClass);
         entity.setId(null);

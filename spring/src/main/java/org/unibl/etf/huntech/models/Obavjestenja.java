@@ -8,7 +8,7 @@ import org.unibl.etf.huntech.models.entities.KorisnikEntity;
 public class Obavjestenja {
 
     private Integer id;
-    private KorisnikEntity idKorisnika;
+    private Integer idKorisnika;
     private String tipObavjestenja;
     private String sadrzaj;
 }

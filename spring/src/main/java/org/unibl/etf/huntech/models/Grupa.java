@@ -18,8 +18,8 @@ public class Grupa {
     private String nazivGrupe;
     private String opis;
     private byte[] slika;
-    private Set<AktivnostDivljaciEntity> aktivnostDivljacis = new LinkedHashSet<>();
-    private Set<KorisnikHasGrupaEntity> korisnikHasGrupas = new LinkedHashSet<>();
-    private Set<LokacijaEntity> lokacijas = new LinkedHashSet<>();
-    private Set<ObjavaEntity> objavas = new LinkedHashSet<>();
+//    private Set<AktivnostDivljaciEntity> aktivnostDivljacis = new LinkedHashSet<>();
+//    private Set<KorisnikHasGrupaEntity> korisnikHasGrupas = new LinkedHashSet<>();
+//    private Set<LokacijaEntity> lokacijas = new LinkedHashSet<>();
+//    private Set<ObjavaEntity> objavas = new LinkedHashSet<>();
 }

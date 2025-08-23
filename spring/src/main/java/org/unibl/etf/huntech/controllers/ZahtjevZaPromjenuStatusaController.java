@@ -1,7 +1,6 @@
 package org.unibl.etf.huntech.controllers;
 
 
-import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.unibl.etf.huntech.base.CrudController;

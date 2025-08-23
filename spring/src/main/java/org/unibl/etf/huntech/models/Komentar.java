@@ -14,8 +14,8 @@ import java.util.Set;
 public class Komentar {
 
     private Integer id;
-    private ObjavaEntity idObjave;
+    private Integer idObjave;
     private String sadrzaj;
-    private KorisnikEntity idKorisnika;
-    private Set<PodkomentarEntity> podkomentars = new LinkedHashSet<>();
+    private Integer idKorisnika;
+    //private Set<PodkomentarEntity> podkomentars = new LinkedHashSet<>();
 }

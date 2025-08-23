@@ -13,10 +13,10 @@ import java.util.Set;
 public class Prijava {
 
     private Integer id;
-    private KorisnikEntity idKorisnikaKojiPrijavljuje;
+    private Integer idKorisnikaKojiPrijavljuje;
     private Instant datumPrijave;
     private String obrazlozenje;
     private String tipPrijave;
-    private Set<KorisnikHasPrijavaEntity> korisnikHasPrijavas = new LinkedHashSet<>();
+    //private Set<KorisnikHasPrijavaEntity> korisnikHasPrijavas = new LinkedHashSet<>();
 
 }
