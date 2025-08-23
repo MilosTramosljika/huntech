@@ -1,5 +1,7 @@
 package org.unibl.etf.huntech.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.unibl.etf.huntech.base.BaseEntity;
@@ -9,6 +11,7 @@ import java.time.Instant;
 @Data
 @Entity
 @Table(name = "slika_za_objavu_na_ld")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SlikaZaObjavuNaLdEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +24,7 @@ public class SlikaZaObjavuNaLdEntity implements BaseEntity<Integer> {
     @Column(name = "Slika", nullable = false, length = 500)
     private String slika;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "IdObjaveNaLD", nullable = false)
     private ObjavaNaLovackiDnevnikEntity idObjaveNaLD;

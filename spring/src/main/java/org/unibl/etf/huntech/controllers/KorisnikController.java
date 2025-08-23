@@ -18,7 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
- 
+
 @RestController
 @RequestMapping("/korisniks")
 public class KorisnikController extends CrudController<Integer, KorisnikRequest, Korisnik> {
@@ -69,19 +69,10 @@ public class KorisnikController extends CrudController<Integer, KorisnikRequest,
         return service.findKorisnikById(id);
     }
 
-    @GetMapping("/singleKorisnik/{username}")
-    public SingleKorisnik findKorisnikByUsername(@PathVariable String username) throws NotFoundException {
-        return service.findKorisnikByUsername(username);
-    }
-
-    @GetMapping("/singleKorisnik/{email}")
-    public SingleKorisnik findKorisnikByMmail(@PathVariable String email) throws NotFoundException {
-        return service.findKorisnikByMail(email);
-    }
-
     @GetMapping(value = "/uploads/{slika}", produces = MediaType.IMAGE_JPEG_VALUE)
     public byte[] getSlika(@PathVariable String slika) throws IOException {
-        Path putanja = Paths.get("C:\\Users\\Milos\\Desktop\\Huntech\\spring\\uploads\\profilne", slika);
+        Path putanja = Paths.get("uploads", "profilne", slika);
+        //Path putanja = Paths.get("C:\\Users\\Milos\\Desktop\\Huntech\\spring\\uploads\\profilne", slika);
 
         System.out.println("Tražena slika na putanji: " + putanja.toString());
         if (!Files.exists(putanja)) {
@@ -92,6 +83,15 @@ public class KorisnikController extends CrudController<Integer, KorisnikRequest,
         return Files.readAllBytes(putanja);
     }
 
+    @GetMapping("/username/{username}")
+    public SingleKorisnik findKorisnikByUsername(@PathVariable String username) throws NotFoundException {
+        return service.findKorisnikByUsername(username);
+    }
+
+    @GetMapping("/email/{email}")
+    public SingleKorisnik findKorisnikByMmail(@PathVariable String email) throws NotFoundException {
+        return service.findKorisnikByMail(email);
+    }
 
     /*
     @PostMapping("/{id}/upload-profilna")

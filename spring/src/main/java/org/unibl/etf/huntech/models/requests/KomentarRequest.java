@@ -5,7 +5,9 @@ import lombok.Data;
 @Data
 public class KomentarRequest {
 
+    private Integer id;
     private Integer idObjave;
-    private Integer idKorisnika;
     private String sadrzaj;
+    private Integer idKorisnika;
+
 }

@@ -9,11 +9,8 @@ import java.time.Instant;
 
 @Data
 public class SlikaZaObjavuNaLd {
-
     private Integer id;
     private Instant datum;
     private String slika;
-    private ObjavaNaLovackiDnevnikEntity idObjaveNaLD;
-
-
+    private Integer idObjaveNaLD;
 }

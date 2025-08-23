@@ -1,5 +1,6 @@
 package org.unibl.etf.huntech.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.unibl.etf.huntech.base.BaseEntity;
@@ -38,9 +39,7 @@ public class KorisnikHasGrupaEntity implements BaseEntity<Integer> {
     @Column(name = "DatumUclanjivanja")
     private LocalDate datumUclanjivanja;
 
-    //@Lob
-    @Enumerated
-    @Column(name = "TipZahtjeva", nullable = false)
-    private TipZahtjeva tipZahtjeva;
+    @Column(name = "PoslatPozivOdDirektora")
+    private Byte poslatPozivOdDirektora;
 
 }

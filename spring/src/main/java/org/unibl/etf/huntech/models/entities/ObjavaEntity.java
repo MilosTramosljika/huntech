@@ -1,8 +1,11 @@
 package org.unibl.etf.huntech.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 //import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.unibl.etf.huntech.base.BaseEntity;
 import org.unibl.etf.huntech.models.enums.TipObjave;
@@ -11,6 +14,7 @@ import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
 @Entity
 @Table(name = "objava")
@@ -49,5 +53,10 @@ public class ObjavaEntity implements BaseEntity<Integer> {
     @OneToMany(mappedBy = "idObjave")
     @JsonIgnore
     private Set<SlikaZaObjavuEntity> slikaZaObjavus = new LinkedHashSet<>();
+
+    @Size(max = 1000)
+    @NotNull
+    @Column(name = "Sadrzaj", nullable = false, length = 1000)
+    private String sadrzaj;
 
 }

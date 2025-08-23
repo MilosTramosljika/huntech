@@ -11,9 +11,9 @@ import java.time.LocalDate;
 public class KorisnikHasGrupa {
 
     private Integer id;
-    private KorisnikEntity idKorisnika;
-    private GrupaEntity idGrupe;
+    private Integer idKorisnika;
+    private Integer idGrupe;
     private String statusZaClanstvo;
     private LocalDate datumUclanjivanja;
-    private String tipZahtjeva;
+    private Byte poslatPozivOdDirektora;
 }

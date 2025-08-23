@@ -2,6 +2,7 @@ package org.unibl.etf.huntech.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.unibl.etf.huntech.models.entities.DogadjajEntity;
 import org.unibl.etf.huntech.models.entities.KorisnikEntity;
 import org.unibl.etf.huntech.models.entities.SlikaZaObjavuNaLdEntity;
 
@@ -15,6 +16,7 @@ public class ObjavaNaLovackiDnevnik {
     private Integer id;
     private Instant datum;
     private String sadrzaj;
-    private KorisnikEntity idKorisnika;
-    private Set<SlikaZaObjavuNaLdEntity> slikaZaObjavuNaLds = new LinkedHashSet<>();
+    private Integer idKorisnika;
+
+    //private Set<SlikaZaObjavuNaLdEntity> slikaZaObjavuNaLds = new LinkedHashSet<>();
 }

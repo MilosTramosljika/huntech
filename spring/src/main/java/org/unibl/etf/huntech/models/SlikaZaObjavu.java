@@ -9,6 +9,6 @@ import org.unibl.etf.huntech.models.entities.ObjavaEntity;
 public class SlikaZaObjavu {
 
     private Integer id;
-    private ObjavaEntity idObjave;
+    private Integer idObjave;
     private String slika;
 }

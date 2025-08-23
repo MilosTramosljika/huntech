@@ -30,11 +30,10 @@ public class KorisnikServiceImpl extends CrudJpaService<KorisnikEntity, Integer>
     private final KorisnikEntityRepository repository;
     private final ModelMapper modelMapper;
 
-
-    public KorisnikServiceImpl(KorisnikEntityRepository repository, ModelMapper modelMapper) {
+    public KorisnikServiceImpl(KorisnikEntityRepository repository, ModelMapper modelMapper, ModelMapper modelMapper1) {
         super(repository, modelMapper, KorisnikEntity.class);
         this.repository = repository;
-        this.modelMapper = modelMapper;
+        this.modelMapper = modelMapper1;
     }
     /*
     @Override

@@ -1,5 +1,6 @@
 package org.unibl.etf.huntech.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -15,6 +16,7 @@ public class SlikaZaObjavuEntity implements BaseEntity<Integer> {
     @Column(name = "IdSlikeZaObjavu", nullable = false)
     private Integer id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "IdObjave", nullable = false)
     private ObjavaEntity idObjave;
