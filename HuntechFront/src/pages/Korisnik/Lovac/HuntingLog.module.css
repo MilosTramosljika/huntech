@@ -1,0 +1,161 @@
+/* HuntingLog.module.css */
+
+/* ====== GLOBALNE STVARI (moraju ostati globalno!) ====== */
+:global(body) {
+  background-color: #1f2b16;
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
+
+:global(h2) {
+  color: #a8d08d;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+:global(.ant-collapse) {
+  background-color: transparent;
+}
+
+:global(.ant-collapse-item) {
+  background-color: #b0da9a;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+:global(.ant-collapse-header) {
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+:global(.ant-collapse-content-box) {
+  background-color: #4a6c35;
+  padding: 15px;
+  border-top: 1px solid #2c3e1f;
+}
+
+:global(.ant-collapse .ant-collapse-item-disabled .ant-collapse-header),
+:global(.ant-collapse .ant-collapse-item-disabled .ant-collapse-content) {
+  opacity: 0.7;
+}
+
+:global(p) {
+  margin: 5px 0;
+  color: #ffffff;
+}
+
+/* ====== TABELA (AntD mora globalno) ====== */
+:global(.ant-table) {
+  color: black !important;
+}
+
+:global(.ant-table-thead > tr > th) {
+  background-color: #2e7d32 !important;
+  color: white !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+:global(.ant-table-tbody > tr > td) {
+  color: black !important;
+}
+
+:global(.ant-table-tbody > tr:nth-child(odd) > td) {
+  background-color: #e8f5e9;
+}
+:global(.ant-table-tbody > tr:nth-child(even) > td) {
+  background-color: #c8e6c9;
+}
+
+:global(.ant-table-tbody > tr:hover > td) {
+  background-color: #a5d6a7 !important;
+  cursor: pointer;
+}
+
+/* ====== TVOJE KOMPONENTE (module stilovi) ====== */
+.container {
+  padding: 20px;
+}
+
+.centered {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.imageContainer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.eventsSection {
+  margin-top: 20px;
+}
+
+.entryButtons {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.editButton {
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.editButton:hover {
+  background-color: #40a9ff;
+}
+
+.deleteButton {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.deleteButton:hover {
+  background-color: #ff7875;
+}
+
+.addEntryButtonContainer {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.addEntryButton {
+  background-color: #2e7d32;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.addEntryButton:hover {
+  background-color: #1b5e20;
+}

@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.unibl.etf.huntech.base.BaseEntity;
 
 @Data
 @Entity
 @Table(name = "podkomentar")
-public class PodkomentarEntity {
+public class PodkomentarEntity implements BaseEntity<Integer> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdPodkomentara", nullable = false)

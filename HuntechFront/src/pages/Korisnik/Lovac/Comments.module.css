@@ -1,0 +1,80 @@
+.wrapper {
+  max-width: 800px;
+  margin: auto;
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2e3d2f;
+}
+
+.heading {
+  color: #2e7d32;
+  margin-bottom: 20px;
+}
+
+.commentList {
+  margin-bottom: 30px;
+}
+
+.comment {
+  border-bottom: 1px solid #4a5f43;
+  padding: 10px 0;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.divider {
+  margin: 30px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.form label {
+  font-weight: bold;
+  display: block;
+  margin-top: 12px;
+  color: #33691e;
+}
+
+.form input[type="text"],
+.form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form input[type="file"] {
+  margin-bottom: 16px;
+}
+
+.form button {
+  padding: 10px 20px;
+  background-color: #388e3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-color: #2e7d32;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 20px;
+  }
+
+  .form button {
+    width: 100%;
+  }
+}

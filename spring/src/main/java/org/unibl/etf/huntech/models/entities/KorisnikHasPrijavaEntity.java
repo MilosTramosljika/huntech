@@ -4,11 +4,15 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.unibl.etf.huntech.base.BaseEntity;
 
 @Data
 @Entity
-@Table(name = "korisnik_has_prijava")
-public class KorisnikHasPrijavaEntity {
+@Table(
+        name = "korisnik_has_prijava",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"IdKorisnika", "IdPrijave"})
+)
+public class KorisnikHasPrijavaEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdKHP", nullable = false)

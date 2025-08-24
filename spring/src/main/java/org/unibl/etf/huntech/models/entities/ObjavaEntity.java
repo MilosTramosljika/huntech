@@ -1,16 +1,24 @@
 package org.unibl.etf.huntech.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+//import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.unibl.etf.huntech.base.BaseEntity;
+import org.unibl.etf.huntech.models.enums.TipObjave;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
 @Entity
 @Table(name = "objava")
-public class ObjavaEntity {
+public class ObjavaEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdObjave", nullable = false)
@@ -24,9 +32,10 @@ public class ObjavaEntity {
     @JoinColumn(name = "IdKorisnika", nullable = false)
     private KorisnikEntity idKorisnika;
 
-    @Lob
+    //@Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "TipObjave", nullable = false)
-    private String tipObjave;
+    private TipObjave tipObjave;
 
     @Column(name = "DatumObjavljivanja", nullable = false)
     private LocalDate datumObjavljivanja;
@@ -38,9 +47,16 @@ public class ObjavaEntity {
     private Integer dislajk;
 
     @OneToMany(mappedBy = "idObjave")
+    @JsonIgnore
     private Set<KomentarEntity> komentars = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "idObjave")
+    @JsonIgnore
     private Set<SlikaZaObjavuEntity> slikaZaObjavus = new LinkedHashSet<>();
+
+    @Size(max = 1000)
+    @NotNull
+    @Column(name = "Sadrzaj", nullable = false, length = 1000)
+    private String sadrzaj;
 
 }

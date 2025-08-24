@@ -1,14 +1,23 @@
 package org.unibl.etf.huntech.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.unibl.etf.huntech.base.BaseEntity;
+import org.unibl.etf.huntech.models.enums.StatusZaClanstvo;
+import org.unibl.etf.huntech.models.enums.TipZahtjeva;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "korisnik_has_grupa")
-public class KorisnikHasGrupaEntity {
+@Table(
+        name = "korisnik_has_grupa",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"IdKorisnika", "IdGrupe"})
+)
+
+public class KorisnikHasGrupaEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdKHG", nullable = false)
@@ -22,15 +31,15 @@ public class KorisnikHasGrupaEntity {
     @JoinColumn(name = "IdGrupe", nullable = false)
     private GrupaEntity idGrupe;
 
-    @Lob
+    //@Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "StatusZaClanstvo", nullable = false)
-    private String statusZaClanstvo;
+    private StatusZaClanstvo statusZaClanstvo;
 
     @Column(name = "DatumUclanjivanja")
     private LocalDate datumUclanjivanja;
 
-    @Lob
-    @Column(name = "TipZahtjeva", nullable = false)
-    private String tipZahtjeva;
+    @Column(name = "PoslatPozivOdDirektora")
+    private Byte poslatPozivOdDirektora;
 
 }

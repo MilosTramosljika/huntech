@@ -1,0 +1,137 @@
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
+  background-color: #f4f8f4;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.08);
+  font-family: 'Segoe UI', sans-serif;
+  color: #dfe7e0;
+}
+
+.heading {
+  text-align: center;
+  color: #2e7d32;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 200px;
+}
+
+button {
+  background-color: #388e3c;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2e7d32;
+}
+
+.error {
+  color: #c62828;
+  background-color: #ffebee;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.card {
+  width: 260px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.weatherIcon {
+  margin: 8px 0;
+}
+
+/* satna prognoza */
+.hourly {
+  margin-top: 12px;
+  border-top: 1px solid #ccc;
+  padding-top: 8px;
+  text-align: left;
+}
+
+.hourCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(43, 112, 97, 0.7);
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+/* Boje kartica po vremenu */
+.sunnyCard {
+  background-color: #fff9c4;
+  background-image: url('../../../images/background_sunce.png');
+}
+
+.cloudyCard {
+  background-color: #eceff1;
+  background-image: url('../../../images/background_oblacno.png');
+}
+
+.rainyCard {
+  background-color: #bbdefb;
+  background-image: url('../../../images/background_kisa.png');
+}
+
+.snowyCard {
+  background-color: #e1f5fe;
+  background-image: url('../../../images/background_snijeg.png');
+}
+
+@media (max-width: 600px) {
+  .form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .hourCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

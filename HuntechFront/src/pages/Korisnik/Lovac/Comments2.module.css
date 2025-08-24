@@ -1,0 +1,93 @@
+.objava {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2e3d2f;
+}
+
+.objava h4 {
+  color: #33691e;
+  margin-bottom: 10px;
+}
+
+.akcije {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.akcije span {
+  font-size: 16px;
+}
+
+.dugmad button {
+  background-color: #c5e1a5;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dugmad button:hover {
+  background-color: #aed581;
+}
+
+.komentarBox {
+  margin-top: 15px;
+}
+
+.komentarBox textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.dugmadKomentar {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.dugmadKomentar input[type="submit"],
+.dugmadKomentar button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dugmadKomentar input[type="submit"] {
+  background-color: #388e3c;
+  color: white;
+}
+
+.dugmadKomentar button {
+  background-color: #e0e0e0;
+}
+
+.dugmadKomentar input[type="submit"]:hover {
+  background-color: #2e7d32;
+}
+
+.dugmadKomentar button:hover {
+  background-color: #bdbdbd;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .akcije {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dugmadKomentar {
+    flex-direction: column;
+  }
+}

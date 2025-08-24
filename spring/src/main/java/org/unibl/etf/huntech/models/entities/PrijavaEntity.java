@@ -1,8 +1,12 @@
 package org.unibl.etf.huntech.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.unibl.etf.huntech.base.BaseEntity;
+import org.unibl.etf.huntech.models.enums.TipPrijave;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -10,7 +14,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "prijava")
-public class PrijavaEntity {
+public class PrijavaEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdPrijave", nullable = false)
@@ -26,11 +30,14 @@ public class PrijavaEntity {
     @Column(name = "Obrazlozenje", nullable = false, length = 500)
     private String obrazlozenje;
 
-    @Lob
+    //@Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "TipPrijave")
-    private String tipPrijave;
+    private TipPrijave tipPrijave;
+
 
     @OneToMany(mappedBy = "idPrijave")
+    @JsonIgnore
     private Set<KorisnikHasPrijavaEntity> korisnikHasPrijavas = new LinkedHashSet<>();
 
 }
