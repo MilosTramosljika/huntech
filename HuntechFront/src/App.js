@@ -1,89 +1,35 @@
-// src/App.js
 import React from "react";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navigation from "./components/Navigation/Navigation";
+import AdminDashboard from "./pages/Korisnik/Admin/AdminDashboard";
+import UserProfile from "./pages/Korisnik/Lovac/UserProfile";
+import Map from "./pages/Korisnik/Lovac/Map";
+import MapDirektor from "./pages/Korisnik/Lovac/MapDirektor";
 
-// Importuj komponente za forme i profile
-import LoginForm from "./components/LoginForm";
-import RegistrationForm from "./components/RegistrationForm";
-// import Dashboard from "./components/Dashboard"; // <-- Ovaj red je trenutno uklonjen
-import ProfilePage from "./components/ProfilePage";
-import Navbar from "./components/Navbar";
-
-// Komponenta zaštićena autentifikacijom
-function PrivateRoute({ children }) {
-  const { currentUser, loading } = useAuth();
-
-  if (loading) {
-    return (
-      <div
-        style={{ textAlign: "center", marginTop: "100px", fontSize: "20px" }}
-      >
-        Učitavanje...
-      </div>
-    );
-  }
-
-  if (currentUser) {
-    return children;
-  }
-
-  return <Navigate to="/login" replace />;
+function HomePage() {
+  return <h1>Početna stranica</h1>;
+}
+function MapPage() {
+  return <h1>Mapa</h1>;
+}
+function DnevnikPage() {
+  return <h1>Lovčki dnevnik</h1>;
+}
+function ProfilPage() {
+  return <h1>Korisnički profil</h1>;
 }
 
-// Glavna App komponenta koja definiše rute
-function AppRoutes() {
-  const { currentUser } = useAuth();
-
-  return (
-    <>
-      <Navbar /> {/* Navigacioni bar vidljiv na svim stranicama */}
-      <Routes>
-        {/* Javne rute */}
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<RegistrationForm />} />
-
-        {/* Zaštićena ruta za profil */}
-        <Route
-          path="/profile"
-          element={
-            <PrivateRoute>
-              <ProfilePage />{" "}
-              {/* Koristimo ProfilePage kao glavnu zaštićenu stranicu */}
-            </PrivateRoute>
-          }
-        />
-
-        {/* Podrazumevana ruta: preusmeri na profil ako je korisnik prijavljen, inače na login */}
-        <Route
-          path="*"
-          element={
-            currentUser ? (
-              <Navigate to="/profile" replace />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-      </Routes>
-    </>
-  );
-}
-
-// Omotaj celu aplikaciju sa AuthProviderom i BrowserRouterom
-function App() {
+export default function App() {
   return (
     <Router>
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
+      <Navigation>
+        <Routes>
+          <Route path="/" element={<AdminDashboard />} />
+          <Route path="/mapa" element={<MapDirektor />} />
+          <Route path="/dnevnik" element={<Map />} />
+          <Route path="/profil" element={<UserProfile />} />
+        </Routes>
+      </Navigation>
     </Router>
   );
 }
-
-export default App;

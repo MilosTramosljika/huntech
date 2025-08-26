@@ -1,103 +1,161 @@
-.container {
-  max-width: 800px;
-  margin: auto;
-  padding: 30px;
-  background-color: #f4f8f4;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.08);
-  font-family: 'Segoe UI', sans-serif;
-  color: #2e3d2f;
+/* HuntingLog.module.css */
+
+/* ====== GLOBALNE STVARI (moraju ostati globalno!) ====== */
+:global(body) {
+  background-color: #1f2b16;
+  color: white;
+  font-family: 'Arial', sans-serif;
 }
 
-.heading {
+:global(h2) {
+  color: #a8d08d;
   text-align: center;
-  color: #2e7d32;
   margin-bottom: 20px;
 }
 
-.subheading {
-  color: #33691e;
-  margin-top: 30px;
+:global(.ant-collapse) {
+  background-color: transparent;
+}
+
+:global(.ant-collapse-item) {
+  background-color: #b0da9a;
   margin-bottom: 10px;
-}
-
-.newEntry,
-.searchForm {
-  background-color: #eef;
-  padding: 20px;
   border-radius: 8px;
-  margin-bottom: 20px;
+  overflow: hidden;
 }
 
-.searchForm {
-  background-color: #f3f3f3;
-}
-
-form label {
+:global(.ant-collapse-header) {
+  color: white;
   font-weight: bold;
-  display: block;
-  margin-top: 12px;
-  color: #2e7d32;
+  font-size: 1.1rem;
 }
 
-form input,
-form select,
-form textarea {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+:global(.ant-collapse-content-box) {
+  background-color: #4a6c35;
+  padding: 15px;
+  border-top: 1px solid #2c3e1f;
 }
 
-form button {
-  background-color: #388e3c;
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
+:global(.ant-collapse .ant-collapse-item-disabled .ant-collapse-header),
+:global(.ant-collapse .ant-collapse-item-disabled .ant-collapse-content) {
+  opacity: 0.7;
+}
+
+:global(p) {
+  margin: 5px 0;
+  color: #ffffff;
+}
+
+/* ====== TABELA (AntD mora globalno) ====== */
+:global(.ant-table) {
+  color: black !important;
+}
+
+:global(.ant-table-thead > tr > th) {
+  background-color: #2e7d32 !important;
+  color: white !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+:global(.ant-table-tbody > tr > td) {
+  color: black !important;
+}
+
+:global(.ant-table-tbody > tr:nth-child(odd) > td) {
+  background-color: #e8f5e9;
+}
+:global(.ant-table-tbody > tr:nth-child(even) > td) {
+  background-color: #c8e6c9;
+}
+
+:global(.ant-table-tbody > tr:hover > td) {
+  background-color: #a5d6a7 !important;
   cursor: pointer;
 }
 
-form button:hover {
-  background-color: #2e7d32;
-}
-
-.logList {
-  background-color: #fff;
-  border: 1px solid #ccc;
+/* ====== TVOJE KOMPONENTE (module stilovi) ====== */
+.container {
   padding: 20px;
-  border-radius: 8px;
 }
 
-.logItem {
-  margin-bottom: 16px;
-  border-bottom: 1px dashed #bbb;
-  padding-bottom: 12px;
+.centered {
+  text-align: center;
+  margin-top: 50px;
 }
 
-.logItem button {
-  margin-top: 8px;
-  background-color: #4caf50;
+.imageContainer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.eventsSection {
+  margin-top: 20px;
+}
+
+.entryButtons {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.editButton {
+  background-color: #1890ff;
   color: white;
   border: none;
-  padding: 6px 12px;
+  padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.logItem button:hover {
-  background-color: #388e3c;
+.editButton:hover {
+  background-color: #40a9ff;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .container {
-    padding: 20px;
-  }
+.deleteButton {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
 
-  form button {
-    width: 100%;
-  }
+.deleteButton:hover {
+  background-color: #ff7875;
+}
+
+.addEntryButtonContainer {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.addEntryButton {
+  background-color: #2e7d32;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.addEntryButton:hover {
+  background-color: #1b5e20;
 }

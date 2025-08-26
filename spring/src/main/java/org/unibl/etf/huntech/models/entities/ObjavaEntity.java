@@ -54,9 +54,9 @@ public class ObjavaEntity implements BaseEntity<Integer> {
     @JsonIgnore
     private Set<SlikaZaObjavuEntity> slikaZaObjavus = new LinkedHashSet<>();
 
-    @Size(max = 1000)
-    @NotNull
-    @Column(name = "Sadrzaj", nullable = false, length = 1000)
-    private String sadrzaj;
+//    @Size(max = 1000)
+//    @NotNull
+//    @Column(name = "Sadrzaj", nullable = false, length = 1000)
+//    private String sadrzaj;
 
 }

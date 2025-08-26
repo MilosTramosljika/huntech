@@ -24,7 +24,7 @@
 
 input {
   padding: 8px;
-  border: 1px solid #a81d1d;
+  border: 1px solid #ccc;
   border-radius: 6px;
 }
 
@@ -47,7 +47,7 @@ button:hover {
 }
 
 .error {
-  background-color: #06420e;
+  background-color: #ffebee;
   color: #c62828;
   padding: 10px;
   border-radius: 6px;
@@ -55,7 +55,7 @@ button:hover {
 }
 
 .rezultat {
-  background-color: #022b05;
+  background-color: #e8f5e9;
   padding: 20px;
   border-radius: 12px;
   text-align: center;

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.unibl.etf.huntech.models.entities.GrupaEntity;
+import org.unibl.etf.huntech.models.entities.ZonaLovaEntity;
 
 import java.math.BigDecimal;
 
@@ -14,4 +15,5 @@ public class PinNaMapi {
     private BigDecimal longitude;
     private String tipPina;
     private Integer idGrupe;
+    private Integer idZoneLova;
 }

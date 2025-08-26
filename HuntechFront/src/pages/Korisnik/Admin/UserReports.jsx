@@ -1,59 +1,108 @@
-import React from 'react';
-import styles from './UserReports.module.css';
+// ./pages/Korisnik/Admin/UserReports.jsx
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./UserReports.module.css";
 
-const prijave = [
+const INITIAL_REPORTS = [
   {
-    id: 'PR001',
-    prijavljen: 'marko_hunt',
-    prijavio: 'lazar99',
-    razlog: 'Neprimjeren govor u komentaru',
-    datum: '2025-07-10',
-    status: 'Na čekanju',
+    id: "PR001",
+    prijavljen: "marko_hunt",
+    prijavio: "lazar99",
+    razlog: "Neprimjeren govor u komentaru",
+    datum: "2025-07-10",
+    status: "Na čekanju",
   },
-  // Dodaj više prijava po potrebi
+  {
+    id: "PR002",
+    prijavljen: "jovan_lovac",
+    prijavio: "petar_hunt",
+    razlog: "Lažne informacije",
+    datum: "2025-07-15",
+    status: "Na čekanju",
+  },
 ];
 
-const UserReports = () => {
+export default function UserReports() {
+  const navigate = useNavigate();
+  const [prijave, setPrijave] = useState(INITIAL_REPORTS);
+
+  const handleDetails = (id) => {
+    navigate(`/prijava-detalji/${id}`);
+  };
+
+  const handleProcessed = (id) => {
+    setPrijave((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, status: "Obrađeno" } : p))
+    );
+  };
+
+  if (!prijave.length) {
+    return (
+      <div className={styles.container}>
+        <h2 className={styles.heading}>Prijave korisnika</h2>
+        <p className={styles.empty}>Nema prijava 🎉</p>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Prijave korisnika</h2>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>ID prijave</th>
-            <th>Prijavljen korisnik</th>
-            <th>Prijavio</th>
-            <th>Razlog</th>
-            <th>Datum</th>
-            <th>Status</th>
-            <th>Akcije</th>
-          </tr>
-        </thead>
-        <tbody>
-          {prijave.map((p) => (
-            <tr key={p.id}>
-              <td>{p.id}</td>
-              <td>{p.prijavljen}</td>
-              <td>{p.prijavio}</td>
-              <td>{p.razlog}</td>
-              <td>{p.datum}</td>
-              <td>{p.status}</td>
-              <td className={styles.actions}>
-                <form action="/prijava-detalji" method="get">
-                  <input type="hidden" name="idPrijave" value={p.id} />
-                  <button type="submit" className={styles.btnDetails}>🔍</button>
-                </form>
-                <form action="/oznaci-kao-obradjeno" method="post">
-                  <input type="hidden" name="idPrijave" value={p.id} />
-                  <button type="submit" className={styles.btnProcessed}>✅</button>
-                </form>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+      <div className={styles.list}>
+        {prijave.map((p) => (
+          <div key={p.id} className={styles.card}>
+            <div className={styles.row}>
+              <span className={styles.label}>ID:</span>
+              <span>{p.id}</span>
+            </div>
+            <div className={styles.row}>
+              <span className={styles.label}>Prijavljen:</span>
+              <span>{p.prijavljen}</span>
+            </div>
+            <div className={styles.row}>
+              <span className={styles.label}>Prijavio:</span>
+              <span>{p.prijavio}</span>
+            </div>
+            <div className={styles.row}>
+              <span className={styles.label}>Razlog:</span>
+              <span>{p.razlog}</span>
+            </div>
+            <div className={styles.row}>
+              <span className={styles.label}>Datum:</span>
+              <span>{new Date(p.datum).toLocaleDateString()}</span>
+            </div>
+            <div className={styles.row}>
+              <span className={styles.label}>Status:</span>
+              <span
+                className={`${styles.badge} ${
+                  p.status === "Na čekanju" ? styles.pending : styles.done
+                }`}
+              >
+                {p.status}
+              </span>
+            </div>
+
+            <div className={styles.actions}>
+              <button
+                type="button"
+                className={styles.btnDetails}
+                onClick={() => handleDetails(p.id)}
+              >
+                🔍 Detalji
+              </button>
+              <button
+                type="button"
+                className={styles.btnProcessed}
+                onClick={() => handleProcessed(p.id)}
+                disabled={p.status === "Obrađeno"}
+              >
+                ✅ Obradi
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
-
-export default UserReports;
+}

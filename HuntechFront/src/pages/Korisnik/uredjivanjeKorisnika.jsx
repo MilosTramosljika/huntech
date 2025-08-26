@@ -1,229 +1,112 @@
 import React, { useState, useEffect } from "react";
-import * as korisnikService from "../../services/korisnik.service.js";
+import styles from "../../components/Navigation/Navigation.module.css";
+import { Link } from "react-router-dom";
+import {
+  Menu,
+  Bell,
+  MessageCircle,
+  Home,
+  Map,
+  Notebook,
+  User,
+  Settings,
+  BarChart,
+  Target,
+  Search
+} from "lucide-react";
 
-const UrediProfil = () => {
-  const [user, setUser] = useState(null);
+export default function Navigation({ children }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [bottomBlur, setBottomBlur] = useState(false);
 
-  useEffect(() => {
-    fetch("http://localhost:8080/korisniks/singleKorisnik/3")
-      .then((res) => {
-        if (!res.ok) throw new Error("Greška pri učitavanju korisnika");
-        return res.json();
-      })
-      .then((data) => setUser(data))
-      .catch((err) => console.error(err));
-  }, []);
+  // Brojevi nepročitanih notifikacija i poruka
+  const [notifications] = useState(12);
+  const [messages] = useState(6);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const allowedFields = [
-      "ime",
-      "prezime",
-      "username",
-      "mail",
-      "lozinka",
-      "slika",
-    ]; // samo ono što backend očekuje
-    const updatedUser = {};
-
-    formData.forEach((value, key) => {
-      if (allowedFields.includes(key)) {
-        updatedUser[key] = value;
-      }
-    });
-
-    console.log("Šaljem update:", updatedUser);
-
-    korisnikService
-      .updateUser(user.id, updatedUser)
-      .then(() => alert("Podaci su uspješno ažurirani!"))
-      .catch((err) => {
-        console.error("Greška pri ažuriranju:", err);
-        alert("Došlo je do greške pri ažuriranju.");
-      });
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
   };
 
-  if (!user) {
-    return <div>Učitavanje korisnika...</div>;
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      setBottomBlur(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <>
-      <h2>Uredi profil</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <label htmlFor="username">Username:</label>
-        <br />
-        <input
-          type="text"
-          id="username"
-          name="username"
-          defaultValue={user.username}
-          required
-        />
-        <br />
-        <br />
+    <div className={styles.navigationWrapper}>
+      {/* Top Navbar */}
+      <div
+        className={styles.topNavbar}
+        style={{
+          transform: sidebarOpen ? "translateX(220px)" : "translateX(0)"
+        }}
+      >
+        <button className={styles.burgerButton} onClick={toggleSidebar}>
+          <Menu />
+        </button>
 
-        <label htmlFor="mail">Mail:</label>
-        <br />
-        <input
-          type="email"
-          id="mail"
-          name="mail"
-          defaultValue={user.mail}
-          required
-        />
-        <br />
-        <br />
+        <div className={styles.searchWrapper}>
+          <Search className={styles.searchIcon} />
+          <input
+            type="text"
+            placeholder="Search..."
+            className={styles.searchBar}
+          />
+        </div>
 
-        <label htmlFor="lozinka">Lozinka (opciono):</label>
-        <br />
-        <input
-          type="password"
-          id="lozinka"
-          name="lozinka"
-          defaultValue={user.lozinka}
-        />
-        <br />
-        <br />
+        <div className={styles.iconButtons}>
+          <button className={styles.iconButton}>
+            <Bell />
+            {notifications > 0 && (
+              <span className={styles.badge}>{notifications}</span>
+            )}
+          </button>
+          <button className={styles.iconButton}>
+            <MessageCircle />
+            {messages > 0 && (
+              <span className={styles.badge}>{messages}</span>
+            )}
+          </button>
+        </div>
+      </div>
 
-        <label htmlFor="ime">Ime:</label>
-        <br />
-        <input type="text" id="ime" name="ime" defaultValue={user.ime} />
-        <br />
-        <br />
+      {/* Sidebar */}
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.open : ""}`}>
+        <ul>
+          <li><Settings /> Postavke</li>
+          <li><BarChart /> Statistika</li>
+          <li><Target /> Podešavanja lova</li>
+          {/* ➕ Ovdje dodaj dodatne stavke prema tipu korisnika */}
+        </ul>
+      </div>
 
-        <label htmlFor="prezime">Prezime:</label>
-        <br />
-        <input
-          type="text"
-          id="prezime"
-          name="prezime"
-          defaultValue={user.prezime}
-        />
-        <br />
-        <br />
+      {/* Sadržaj stranice */}
+      <div className={styles.pageContent}>{children}</div>
 
-        <label htmlFor="datumRodjenja">Datum rođenja:</label>
-        <br />
-        <input
-          type="date"
-          id="datumRodjenja"
-          name="datumRodjenja"
-          defaultValue="1999-08-15"
-        />
-        <br />
-        <br />
-
-        <label htmlFor="pol">Pol:</label>
-        <br />
-        <select id="pol" name="pol" defaultValue="Muški">
-          <option>Muški</option>
-          <option>Ženski</option>
-          <option>Drugo</option>
-        </select>
-        <br />
-        <br />
-
-        <label htmlFor="telefon">Telefon:</label>
-        <br />
-        <input
-          type="tel"
-          id="telefon"
-          name="telefon"
-          defaultValue="+387 65 123 456"
-        />
-        <br />
-        <br />
-
-        <label htmlFor="status">Status korisnika:</label>
-        <br />
-        <select id="status" name="status" defaultValue="Aktivan lovac">
-          <option>Aktivan lovac</option>
-          <option>Početnik</option>
-          <option>Veteran</option>
-          <option>Neaktivan</option>
-        </select>
-        <br />
-        <br />
-
-        <label htmlFor="bio">Kratka biografija:</label>
-        <br />
-        <textarea
-          id="bio"
-          name="bio"
-          rows={4}
-          cols={40}
-          defaultValue="Strastveni lovac sa 10 godina iskustva..."
-        />
-        <br />
-        <br />
-
-        <label htmlFor="slika">Trenutna putanja slike:</label>
-        <br />
-        <input type="text" id="slika" name="slika" defaultValue={user.slika} />
-        <br />
-        <br />
-
-        <label htmlFor="udruzenja">
-          Lovacka udruženja (razdvojena zarezom):
-        </label>
-        <br />
-        <input
-          type="text"
-          id="udruzenja"
-          name="udruzenja"
-          defaultValue={`LD 'Zelengora', LD 'Romanija'`}
-        />
-        <br />
-        <br />
-
-        <label htmlFor="lovackiPsi">
-          Lovački psi (ime – rasa, razdvojeno zarezom):
-        </label>
-        <br />
-        <textarea
-          id="lovackiPsi"
-          name="lovackiPsi"
-          rows={2}
-          cols={40}
-          defaultValue="Ajk – ptičar, Bela – gonič"
-        />
-        <br />
-        <br />
-
-        <label htmlFor="arsenal">Arsenal oružja (razdvojeno zarezom):</label>
-        <br />
-        <input
-          type="text"
-          id="arsenal"
-          name="arsenal"
-          defaultValue="Karabin .308, Puska 30-06"
-        />
-        <br />
-        <br />
-
-        <label htmlFor="trofeji">
-          Trofeji (format: Životinja – datum – oružje; po jedan po liniji):
-        </label>
-        <br />
-        <textarea
-          id="trofeji"
-          name="trofeji"
-          rows={4}
-          cols={60}
-          defaultValue={`Srndać – 2024-05-03 – Karabin .308
-Vuk – 2023-11-18 – Puska 30-06
-`}
-        />
-        <br />
-        <br />
-
-        <input type="submit" value="Sačuvaj izmjene" />
-      </form>
-    </>
+      {/* Bottom Navbar */}
+      <div
+        className={`${styles.bottomNavbar} ${bottomBlur ? styles.blurred : ""}`}
+      >
+        <Link to="/" className={styles.navItem}>
+          <Home />
+          <span>Početna</span>
+        </Link>
+        <Link to="/mapa" className={styles.navItem}>
+          <Map />
+          <span>Mapa</span>
+        </Link>
+        <Link to="/dnevnik" className={styles.navItem}>
+          <Notebook />
+          <span>Dnevnik</span>
+        </Link>
+        <Link to="/profil" className={styles.navItem}>
+          <User />
+          <span>Profil</span>
+        </Link>
+      </div>
+    </div>
   );
-};
-
-export default UrediProfil;
+}

@@ -1,109 +1,154 @@
-import React, { useState } from 'react';
-import styles from './HuntingLog.module.css';
+// LovackiDnevnik.jsx
+import React, { useEffect, useState } from "react";
+import { Collapse, Spin, Table } from "antd";
+import { Link } from "react-router-dom";
+import {
+  getObjaveByIdKorisnika,
+  deleteObjavu,
+} from "../../../services/objavaNaLovackiDnevnik.service.js";
+import { getDogadjajiByObjava } from "../../../services/dogadjaj.service.js";
+import styles from "./HuntingLog.module.css";
 
-const HuntingLog = () => {
-  const [search, setSearch] = useState({
-    datum: '',
-    lokacija: '',
-    divljac: '',
-  });
+const LovackiDnevnik = () => {
+  const [dnevnik, setDnevnik] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [dogadjaji, setDogadjaji] = useState({});
+  const [loadingDogadjaji, setLoadingDogadjaji] = useState({});
 
-  const [zapisi, setZapisi] = useState([
-    {
-      id: '001',
-      datum: '2025-07-18',
-      lokacija: 'Jaružani kod stare česme',
-      divljac: 'Srndać',
-      oruzje: 'Karabin .308',
-      napomena: 'Primećen u pokretu, odstrijel u šipražju',
-    },
-    {
-      id: '002',
-      datum: '2025-07-12',
-      lokacija: 'Prilaz Lovna staza',
-      divljac: 'Lisica',
-      oruzje: 'Puska 30-06',
-      napomena: 'Jedna odrasla jedinka',
-    },
-  ]);
+  useEffect(() => {
+    getObjaveByIdKorisnika(3)
+      .then((res) => {
+        setDnevnik(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Greška pri učitavanju dnevnika:", err);
+        setLoading(false);
+      });
+  }, []);
 
-  const handleSearchChange = (e) => {
-    const { name, value } = e.target;
-    setSearch((prev) => ({ ...prev, [name]: value }));
+  const handleDelete = (id) => {
+    if (window.confirm("Da li ste sigurni da želite obrisati ovaj zapis?")) {
+      deleteObjavu(id)
+        .then(() => {
+          setDnevnik(dnevnik.filter((dan) => dan.id !== id));
+        })
+        .catch((err) => {
+          console.error("Greška pri brisanju zapisa:", err);
+        });
+    }
   };
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    console.log('Pretraga:', search);
-    // TODO: filtriraj iz baze
+  const handleExpand = (keys) => {
+    if (!keys || keys.length === 0) return;
+    const key = String(keys[keys.length - 1]);
+
+    if (dogadjaji[key]) return;
+
+    setLoadingDogadjaji((prev) => ({ ...prev, [key]: true }));
+    getDogadjajiByObjava(key)
+      .then((res) => {
+        setDogadjaji((prev) => ({ ...prev, [key]: res.data }));
+        setLoadingDogadjaji((prev) => ({ ...prev, [key]: false }));
+      })
+      .catch((err) => {
+        console.error("Greška pri učitavanju događaja:", err);
+        setLoadingDogadjaji((prev) => ({ ...prev, [key]: false }));
+      });
   };
+
+  const columns = [
+    { title: "Lokacija", dataIndex: "lokacija", key: "lokacija" },
+    { title: "Vrsta divljači", dataIndex: "vrstaDivljaci", key: "vrstaDivljaci" },
+    { title: "Korišteno oružje", dataIndex: "koristenoOruzje", key: "koristenoOruzje" },
+  ];
+
+  if (loading)
+    return (
+      <div className={styles.centered}>
+        <Spin size="large" />
+        <p>Učitavanje dnevnika...</p>
+      </div>
+    );
+
+  if (!dnevnik.length)
+    return (
+      <div className={styles.centered}>
+        <p>Nema zapisanih dana u dnevniku.</p>
+        <Link to="/dodavanjeObjaveNaLD">
+          <button className={styles.addEntryButton}>Dodaj novi zapis</button>
+        </Link>
+      </div>
+    );
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Lovački dnevnik</h2>
+      <h2>Lovački dnevnik</h2>
 
-      {/* Dodaj novi zapis */}
-      <div className={styles.newEntry}>
-        <form action="/novi-zapis" method="post" encType="multipart/form-data">
-          <label>Datum:</label>
-          <input type="date" name="datum" required />
+      <Collapse
+        onChange={handleExpand}
+        items={dnevnik.map((dan) => ({
+          key: String(dan.id),
+          label: new Date(dan.datum).toLocaleDateString(),
+          children: (
+            <div>
+              <p>
+                <strong>Opis ulova:</strong> {dan.sadrzaj}
+              </p>
 
-          <label>Lokacija:</label>
-          <input type="text" name="lokacija" placeholder="Mjestanjska šuma - kod hranilice" required />
+              {dan.slikaZaObjavuNaLds?.length > 0 ? (
+                <div className={styles.imageContainer}>
+                  {dan.slikaZaObjavuNaLds.map((slika, i) => (
+                    <img
+                      key={i}
+                      src={`http://localhost:8080/${slika.replace(/\\/g, "/")}`}
+                      alt={`Ulov ${i + 1}`}
+                      className={styles.image}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <p>Nema slika za ovaj ulov</p>
+              )}
 
-          <label>Vrsta divljači:</label>
-          <input type="text" name="divljac" placeholder="Srndać, lisica, zec..." required />
+              <div className={styles.eventsSection}>
+                {loadingDogadjaji[String(dan.id)] ? (
+                  <Spin size="small" />
+                ) : dogadjaji[String(dan.id)] ? (
+                  <Table
+                    columns={columns}
+                    dataSource={dogadjaji[String(dan.id)] || []}
+                    rowKey="id"
+                    pagination={false}
+                  />
+                ) : (
+                  <p>Kliknite na panel da učitate događaje.</p>
+                )}
+              </div>
 
-          <label>Korišteno oružje:</label>
-          <input type="text" name="oruzje" placeholder="Karabin .308, sačmarica 12mm..." required />
+              <div className={styles.entryButtons}>
+                <Link to={`/uredjivanjeObjaveNaLD/${dan.id}`}>
+                  <button className={styles.editButton}>Uredi zapis</button>
+                </Link>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => handleDelete(dan.id)}
+                >
+                  Obriši zapis
+                </button>
+              </div>
+            </div>
+          ),
+        }))}
+      />
 
-          <label>Opis / beleška:</label>
-          <textarea name="zabiljeska" rows="4" placeholder="U 5:45 primjećena divljač..." />
-
-          <label>Prilog (slika, sken, GPS...):</label>
-          <input type="file" name="prilog" accept=".jpg,.jpeg,.png,.pdf,.docx" />
-
-          <button type="submit">Dodaj zapis</button>
-        </form>
-      </div>
-
-      {/* Pretraga */}
-      <h3 className={styles.subheading}>Pretraži zapise</h3>
-      <form className={styles.searchForm} onSubmit={handleSearchSubmit}>
-        <label>Datum:</label>
-        <input type="date" name="datum" value={search.datum} onChange={handleSearchChange} />
-
-        <label>Lokacija:</label>
-        <input type="text" name="lokacija" placeholder="npr. Jaružani, kod česme" value={search.lokacija} onChange={handleSearchChange} />
-
-        <label>Vrsta divljači:</label>
-        <select name="divljac" value={search.divljac} onChange={handleSearchChange}>
-          <option value="">-- Odaberi --</option>
-          <option value="srndac">Srndać</option>
-          <option value="lisica">Lisica</option>
-          <option value="zec">Zec</option>
-          <option value="divlja_sv">Divlja svinja</option>
-          <option value="ostalo">Ostalo</option>
-        </select>
-
-        <button type="submit">Prikaži rezultate</button>
-      </form>
-
-      {/* Prikaz zapisa */}
-      <div className={styles.logList}>
-        <h3>Zapisi iz prethodnih dana</h3>
-        {zapisi.map((z) => (
-          <div key={z.id} className={styles.logItem}>
-            <strong>📅 {z.datum}</strong> — <em>{z.lokacija}</em><br />
-            Divljač: {z.divljac}<br />
-            Oružje: {z.oruzje}<br />
-            Napomena: {z.napomena}<br />
-            <button onClick={() => window.location = `/uredi-zapis/${z.id}`}>✏️ Uredi zapis</button>
-          </div>
-        ))}
+      <div className={styles.addEntryButtonContainer}>
+        <Link to="/dodavanjeObjaveNaLD">
+          <button className={styles.addEntryButton}>Dodaj novi zapis</button>
+        </Link>
       </div>
     </div>
   );
 };
 
-export default HuntingLog;S
+export default LovackiDnevnik;

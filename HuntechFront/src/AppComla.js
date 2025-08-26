@@ -1,94 +1,55 @@
-// import React from "react";
-// import "./App.css";
-// import Korisnik from "./pages/Korisnik/korisnik";
-// import UrediProfil from "./pages/UredjivanjeKorisnika/uredjivanjeKorisnika";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-// const App = () => (
-//   <BrowserRouter>
-//     <Routes>
-//       <Route path="/" element={<Korisnik />} />
-//       <Route path="/singleKorisnik" element={<Korisnik />} />
-//       <Route path="/uredjivanjeKorisnika" element={<UrediProfil />} />
-//     </Routes>
-//   </BrowserRouter>
-// );
-
-// export default App;
-
-// import React from "react";
-// import "./App.css";
-// import Korisnik from "./pages/Korisnik/korisnik";
-// import UrediProfil from "./pages/UredjivanjeKorisnika/uredjivanjeKorisnika";
-
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Navigation from "./pages/Navigation/navigation.jsx";
-
-// function App() {
-//   return (
-//     <Router>
-//       <Navigation /> {/* ⬅️ dodaj Navigation komponentu */}
-//       <Routes>
-//         <Route path="/" element={<Korisnik />} />
-//         <Route path="/singleKorisnik" element={<Korisnik />} />
-//         <Route path="/uredjivanjeKorisnika" element={<UrediProfil />} />
-//       </Routes>
-//     </Router>
-//   );
-// }
-
-// export default App;
-
 import React from "react";
-import "./App.css";
-import Korisnik from "./pages/Korisnik/korisnik";
-import UrediProfil from "./pages/Korisnik/uredjivanjeKorisnika";
-import LovackiDnevnik from "./pages/Korisnik/lovackiDnevnik.jsx";
-//import UredjivanjeLovackogDnevnika from "./pages/Korisnik/uredjivanjeLovackogDnevnika.jsx"; // Importuj EditLogEntry komponentu
-import VremenskaPrognoza from "./pages/Korisnik/Lovac/FiveDayForecast.jsx"; // Importuj WeatherForecast komponentu
-import ObjavaNaLD from "./pages/Korisnik/objavaNaLD.jsx"; // Importuj AddPostToLD komponentu
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navigation from "./components/Navigation/Navigation.jsx";
+import AdminDashboard from "./pages/Korisnik/Admin/AdminDashboard.jsx";
+import HomePage from "./pages/Korisnik/Lovac/HomePage.jsx";
+import UserProfile from "./pages/Korisnik/Lovac/UserProfile.jsx";
+// import Map from "./pages/Korisnik/Lovac/Map.jsx";
+import MapDirektor from "./pages/Korisnik/Lovac/MapDirektor.jsx";
+import HuntingLog from "./pages/Korisnik/Lovac/HuntingLog.jsx";
+import GroupSection from "./pages/Korisnik/Lovac/GroupSection.jsx";
+import LocationActivity from "./pages/Korisnik/Lovac/LocationActivity.jsx";
+import StepTracker from "./pages/Korisnik/Lovac/StepTracker.jsx";
+import FiveDayForecast from "./pages/Korisnik/Lovac/FiveDayForecast.jsx";
+import InfoSection from "./pages/Korisnik/Lovac/InfoSection.jsx";
+import RegistrationRequests from "./pages/Korisnik/Admin/RegistrationRequests.jsx";
+import UserReports from "./pages/Korisnik/Admin/UserReports.jsx";
+import RoleRequests from "./pages/Korisnik/Admin/RoleRequests.jsx";
+import PasswordChange from "./pages/Korisnik/Admin/PasswordChange.jsx";
+import Compass from "./pages/Korisnik/Lovac/Compass.jsx";
+import LogEntry from "./pages/Korisnik/Lovac/LogEntry.jsx";
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
-import Navigation from "./components/Navigation/navigation.jsx";
-
-// Layout koji dodaje Navigation osim na odredjenim stranicama
-const Layout = ({ children }) => {
-  const location = useLocation();
-
-  // Stranice gdje NE želimo navigation (npr. login/registracija)
-  const hiddenNavRoutes = ["/login", "/register"];
-
-  const hideNav = hiddenNavRoutes.includes(location.pathname);
-
-  return (
-    <>
-      {!hideNav && <Navigation />}
-      <main>{children}</main>
-    </>
-  );
-};
-
-function App() {
+export default function AppComla() {
   return (
     <Router>
-      <Layout>
+      <Navigation>
         <Routes>
-          <Route path="/" element={<Korisnik />} />
-          <Route path="/singleKorisnik" element={<Korisnik />} />
-          <Route path="/uredjivanjeKorisnika" element={<UrediProfil />} />
-          <Route path="/lovackiDnevnik" element={<LovackiDnevnik />} />
-          <Route path="/vremenskaPrognoza" element={<VremenskaPrognoza />} />
-          <Route path="/dodavanjeObjaveNaLD" element={<ObjavaNaLD />} />
-          <Route path="/uredjivanjeObjaveNaLD/:id" element={<ObjavaNaLD />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/mapa" element={<MapDirektor />} />
+          <Route path="/dnevnik" element={<HuntingLog />} />
+          <Route path="/dodavanjeObjaveNaLD" element={<LogEntry />} />
+          <Route path="/uredjivanjeObjaveNaLD/:id" element={<LogEntry />} />
+          <Route path="/profil" element={<UserProfile />} />
+          <Route path="/statistika" element={<UserProfile />} />
+          <Route path="/lovackeGrupe" element={<GroupSection />} />
+          <Route path="/podesavanjaLova" element={<UserProfile />} />
+          <Route path="/aktivnostDivljaci" element={<LocationActivity />} />
+          <Route path="/pedometar" element={<StepTracker />} />
+          <Route path="/kompas" element={<Compass />} />
+          <Route path="/vremenskaPrognoza" element={<FiveDayForecast />} />
+          <Route path="/infoSekcija" element={<InfoSection />} />
+          <Route path="/podesavanja" element={<UserProfile />} />
+          <Route path="/notifikacije" element={<UserProfile />} />
+          <Route path="/adminDashboard" element={<AdminDashboard />} />
+          <Route
+            path="/zahtjeviZaRegistraciju"
+            element={<RegistrationRequests />}
+          />
+          <Route path="/prijave" element={<UserReports />} />
+          <Route path="/zahtjeviZaUlogu" element={<RoleRequests />} />
+          <Route path="/promjenaLozinke" element={<PasswordChange />} />
         </Routes>
-      </Layout>
+      </Navigation>
     </Router>
   );
 }
-
-export default App;

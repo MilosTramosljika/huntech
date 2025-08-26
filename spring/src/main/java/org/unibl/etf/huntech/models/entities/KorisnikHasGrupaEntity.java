@@ -39,7 +39,4 @@ public class KorisnikHasGrupaEntity implements BaseEntity<Integer> {
     @Column(name = "DatumUclanjivanja")
     private LocalDate datumUclanjivanja;
 
-    @Column(name = "PoslatPozivOdDirektora")
-    private Byte poslatPozivOdDirektora;
-
 }

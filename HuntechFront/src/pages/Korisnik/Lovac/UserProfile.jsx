@@ -1,82 +1,95 @@
-import React from 'react';
-import styles from './UserProfile.module.css';
-
-const user = {
-  tip: 'Standardni korisnik',
-  datumRegistracije: '2025-02-28',
-  korisnickoIme: 'lazar99',
-  email: 'lazar99@email.com',
-  ime: 'Lazar',
-  prezime: 'Petrović',
-  datumRodjenja: '1999-08-15',
-  pol: 'Muški',
-  telefon: '+387 65 123 456',
-  bio: 'Strastveni lovac sa preko 10 godina iskustva. Član više udruženja, voli planinske terene i precizno pucanje.',
-  udruzenja: ['LD "Zelengora"', 'LD "Romanija"'],
-  psi: [
-    'Ajk – Nemački kratkodlaki ptičar',
-    'Bela – Posavski gonič',
-    'Flek – Engleski seter',
-  ],
-  trofeji: [
-    { zivotinja: 'Srndać', datum: '2024-05-03', oruzje: 'Karabin .308 Win' },
-    { zivotinja: 'Vuk', datum: '2023-11-18', oruzje: 'Puska 30-06' },
-  ],
-  oruzje: [
-    'Karabin .308 Winchester',
-    'Puska 30-06 Springfield',
-    'Poluautomatska sačmarica 12mm',
-  ],
-};
+import React, { useEffect, useState } from "react";
+import "./UserProfile.module.css";
+import { getUserById } from "../../../services/korisnik.service.js";
+import { Link } from "react-router-dom";
 
 const UserProfile = () => {
+  const id = 3; // Hardkodirano za testiranje
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    getUserById(id)
+      .then((res) => setUser(res.data))
+      .catch((err) => console.error("Greška pri učitavanju korisnika:", err));
+  }, [id]);
+
+  if (!user) return <p>Korisnik nije pronađen ili se učitava...</p>;
+
   return (
-    <div className={styles.container}>
-      <h2 className={styles.heading}>Pregled korisničkog naloga</h2>
+    <div className="user-profile">
+      <h2>Pregled korisničkog naloga</h2>
 
-      <div className={styles.basic}>
-        <img src="profilna.jpg" alt="Profilna slika korisnika" className={styles.avatar} />
-
-        <form action="/uredi-profil" method="get">
-          <button type="submit" className={styles.editBtn}>Uredi profil</button>
-        </form>
-
-        <div className={styles.details}>
-          <p><strong>Tip korisnika:</strong> {user.tip}</p>
-          <p><strong>Datum registracije:</strong> {user.datumRegistracije}</p>
-          <p><strong>Korisničko ime:</strong> {user.korisnickoIme}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Ime:</strong> {user.ime}</p>
-          <p><strong>Prezime:</strong> {user.prezime}</p>
-          <p><strong>Datum rođenja:</strong> {user.datumRodjenja}</p>
-          <p><strong>Pol:</strong> {user.pol}</p>
-          <p><strong>Telefon:</strong> {user.telefon}</p>
-        </div>
-
-        <div className={styles.bio}>
-          <strong>Osnovne informacije (Bio):</strong>
-          <p>{user.bio}</p>
-        </div>
+      <div>
+        <img
+          src={"http://localhost:8080/korisniks/uploads/korisnik_3.jpg"}
+          alt="Profilna"
+          width={150}
+          height={150}
+        />
+        <br />
+        <br />
+        <Link
+          to="/uredjivanjeKorisnika"
+          style={{ marginBottom: "20px", display: "inline-block" }}
+        >
+          <button>Uredi profil</button>
+        </Link>
+        <label>
+          <br />
+          Tip korisnika:
+        </label>{" "}
+        <span>{user.tipKorisnika}</span>
+        <br />
+        <label>Datum registracije:</label> <span>{user.datumRegistracije}</span>
+        <br />
+        <label>Korisničko ime:</label> <span>{user.username}</span>
+        <br />
+        <label>Email:</label> <span>{user.mail}</span>
+        <br />
+        <label>Ime:</label> <span>{user.ime}</span>
+        <br />
+        <label>Prezime:</label> <span>{user.prezime}</span>
+        <br />
+        <label>Datum rođenja:</label> <span>{user.datumRodjenja}</span>
+        <br />
+        <label>Pol:</label> <span>{user.pol}</span>
+        <br />
+        <label>Telefon:</label> <span>{user.telefon}</span>
+        <br />
+        <br />
+        <label>Osnovne informacije (Bio):</label>
+        <br />
+        <p>{user.bio}</p>
       </div>
 
-      <hr className={styles.divider} />
+      <hr />
 
-      <h3 className={styles.subheading}>Lovacka udruženja</h3>
-      <ul className={styles.list}>
-        {user.udruzenja.map((u, i) => <li key={i}>{u}</li>)}
+      <h3>Lovačka udruženja</h3>
+      <ul>
+        {user.lovackaUdruzenja?.length > 0 ? (
+          user.lovackaUdruzenja.map((udruzenje, index) => (
+            <li key={index}>{udruzenje}</li>
+          ))
+        ) : (
+          <li>Nema podataka</li>
+        )}
       </ul>
 
-      <hr className={styles.divider} />
+      <hr />
 
-      <h3 className={styles.subheading}>Lovački psi</h3>
-      <ul className={styles.list}>
-        {user.psi.map((pas, i) => <li key={i}>{pas}</li>)}
+      <h3>Lovački psi</h3>
+      <ul>
+        {user.lovackiPsi?.length > 0 ? (
+          user.lovackiPsi.map((pas, index) => <li key={index}>{pas}</li>)
+        ) : (
+          <li>Nema podataka</li>
+        )}
       </ul>
 
-      <hr className={styles.divider} />
+      <hr />
 
-      <h3 className={styles.subheading}>Spisak trofeja</h3>
-      <table className={styles.table}>
+      <h3>Spisak trofeja</h3>
+      <table border="1" cellPadding="6" cellSpacing="0">
         <thead>
           <tr>
             <th>Životinja</th>
@@ -85,21 +98,31 @@ const UserProfile = () => {
           </tr>
         </thead>
         <tbody>
-          {user.trofeji.map((t, i) => (
-            <tr key={i}>
-              <td>{t.zivotinja}</td>
-              <td>{t.datum}</td>
-              <td>{t.oruzje}</td>
+          {user.trofeji?.length > 0 ? (
+            user.trofeji.map((trofej, index) => (
+              <tr key={index}>
+                <td>{trofej.zivotinja}</td>
+                <td>{trofej.datum}</td>
+                <td>{trofej.oruzje}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3">Nema podataka</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
 
-      <hr className={styles.divider} />
+      <hr />
 
-      <h3 className={styles.subheading}>Arsenal oružja</h3>
-      <ul className={styles.list}>
-        {user.oruzje.map((o, i) => <li key={i}>{o}</li>)}
+      <h3>Arsenal oružja</h3>
+      <ul>
+        {user.oruzja?.length > 0 ? (
+          user.oruzja.map((oruzje, index) => <li key={index}>{oruzje}</li>)
+        ) : (
+          <li>Nema podataka</li>
+        )}
       </ul>
     </div>
   );

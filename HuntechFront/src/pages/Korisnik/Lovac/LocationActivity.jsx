@@ -1,11 +1,11 @@
-import React from 'react';
-import styles from './LocationActivity.module.css';
+import React from "react";
+import styles from "./LocationActivity.module.css";
 
 const slike = [
   {
-    src: '/kamere/jaruzani/IMG_2025-07-18-06-43.jpg',
-    vreme: '18.07.2025 u 06:43',
-    opis: '🦌 Srndać (pretpostavka)',
+    src: "/kamere/jaruzani/IMG_2025-07-18-04-43.jpg",
+    vreme: "18.07.2025 u 04:43",
+    opis: "🦌 Srndać (pretpostavka)",
   },
   // Dodaj više slika dinamički
 ];
@@ -13,7 +13,9 @@ const slike = [
 const LocationActivity = () => {
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>📷 Aktivnost na lokaciji: "Jaružani - Česma"</h2>
+      <h2 className={styles.heading}>
+        📷 Aktivnost na lokaciji: "Jaružani - Česma"
+      </h2>
 
       <div className={styles.gallery}>
         {slike.map((slika, i) => (

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import styles from './StatusRequestForm.module.css';
+import React, { useState } from "react";
+import styles from "./StatusRequestForm.module.css";
 
 const StatusRequestForm = () => {
   const [formData, setFormData] = useState({
-    noviStatus: 'Lovac',
-    obrazlozenje: '',
+    noviStatus: "Lovac",
+    obrazlozenje: "",
     dokumentacija: null,
-    akcija: '',
+    akcija: "",
   });
 
   const handleChange = (e) => {
@@ -19,16 +19,24 @@ const StatusRequestForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Zahtjev poslan:', formData);
+    console.log("Zahtjev poslan:", formData);
     // TODO: slanje ka backendu
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} encType="multipart/form-data">
+    <form
+      className={styles.form}
+      onSubmit={handleSubmit}
+      encType="multipart/form-data"
+    >
       <h2 className={styles.heading}>Zahtjev za promjenu statusa</h2>
 
       <label>Novi status:</label>
-      <select name="noviStatus" value={formData.noviStatus} onChange={handleChange}>
+      <select
+        name="noviStatus"
+        value={formData.noviStatus}
+        onChange={handleChange}
+      >
         <option>Lovac</option>
         <option>Direktor mjesne zajednice</option>
         <option>Direktor lovačkog udruženja</option>
@@ -53,10 +61,18 @@ const StatusRequestForm = () => {
       />
 
       <div className={styles.actions}>
-        <button type="submit" onClick={() => setFormData((prev) => ({ ...prev, akcija: 'Pošalji zahtjev' }))}>
+        <button
+          type="submit"
+          onClick={() =>
+            setFormData((prev) => ({ ...prev, akcija: "Pošalji zahtjev" }))
+          }
+        >
           📤 Pošalji zahtjev
         </button>
-        <button type="button" onClick={() => window.location.href = '/profil'}>
+        <button
+          type="button"
+          onClick={() => (window.location.href = "/profil")}
+        >
           ❌ Otkaži
         </button>
       </div>

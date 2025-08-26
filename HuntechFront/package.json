@@ -2,18 +2,28 @@
   "name": "novi_projekat",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/default-layout": "^3.12.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.6.4",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "antd": "^5.27.0",
+    "antd": "^5.27.1",
     "axios": "^1.11.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
     "firebase": "^12.1.0",
+    "leaflet": "^1.9.4",
+    "leaflet-geosearch": "^4.2.0",
     "lucide-react": "^0.539.0",
+    "node-fetch": "^3.3.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-icons": "^5.5.0",
+    "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.8.0",
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
@@ -24,8 +34,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --fix \"**/*.{js,jsx}\"",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "server": "nodemon server.js"
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -51,6 +63,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.3.0",
+    "nodemon": "^3.1.10",
     "prettier": "^3.6.2"
   }
 }

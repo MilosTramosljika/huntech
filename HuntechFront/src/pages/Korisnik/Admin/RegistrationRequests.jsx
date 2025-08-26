@@ -1,67 +1,105 @@
-import React from 'react';
-import styles from './RegistrationRequests.module.css';
+import React from "react";
+import styles from "./RegistrationRequests.module.css";
 
 const zahtjevi = [
   {
-    id: 'REG017',
-    ime: 'Milena',
-    prezime: 'Stojanović',
-    korisnickoIme: 'milena_hunt',
-    email: 'milena@example.com',
-    datum: '2025-07-12',
+    id: "REG017",
+    ime: "Milena",
+    prezime: "Stojanović",
+    korisnickoIme: "milena_hunt",
+    email: "milena@example.com",
+    datum: "2025-07-12",
+    fajlUrl: "https://YOUR-SUPABASE-BUCKET.s3.supabase.co/reg017.pdf", // fajl korisnika
+  },
+  {
+    id: "REG018",
+    ime: "Petar",
+    prezime: "Jovanović",
+    korisnickoIme: "petar_hunt",
+    email: "petar@example.com",
+    datum: "2025-07-13",
+    fajlUrl: "https://YOUR-SUPABASE-BUCKET.s3.supabase.co/reg018.pdf",
   },
   // Dodaj više zahtjeva po potrebi
 ];
 
 const RegistrationRequests = () => {
+  const handleApprove = (id) => {
+    alert(`Odobren zahtjev ${id}`);
+    // ovde ide backend ili Supabase poziv
+  };
+
+  const handleReject = (id) => {
+    alert(`Odbijen zahtjev ${id}`);
+    // ovde ide backend ili Supabase poziv
+  };
+
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Zahtjevi za registraciju</h2>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>ID zahtjeva</th>
-            <th>Ime</th>
-            <th>Prezime</th>
-            <th>Korisničko ime</th>
-            <th>Email</th>
-            <th>Datum podnošenja</th>
-            <th>Akcije</th>
-          </tr>
-        </thead>
-        <tbody>
+      {zahtjevi.length > 0 ? (
+        <div className={styles.list}>
           {zahtjevi.map((z) => (
-            <tr key={z.id}>
-              <td>{z.id}</td>
-              <td>{z.ime}</td>
-              <td>{z.prezime}</td>
-              <td>{z.korisnickoIme}</td>
-              <td>{z.email}</td>
-              <td>{z.datum}</td>
-              <td className={styles.actions}>
-                <form action="/odobri-registraciju" method="post">
-                  <input type="hidden" name="idZahtjeva" value={z.id} />
-                  <button type="submit" className={styles.btnApprove}>
-                    ✅
-                  </button>
-                </form>
-                <form action="/odbij-registraciju" method="post">
-                  <input type="hidden" name="idZahtjeva" value={z.id} />
-                  <button type="submit" className={styles.btnReject}>
-                    ❌
-                  </button>
-                </form>
-                <form action="/detalji-registracije" method="get">
-                  <input type="hidden" name="idZahtjeva" value={z.id} />
-                  <button type="submit" className={styles.btnDetails}>
-                    🔍
-                  </button>
-                </form>
-              </td>
-            </tr>
+            <div key={z.id} className={styles.card}>
+              <div className={styles.row}>
+                <span className={styles.label}>ID zahtjeva:</span>
+                <span className={styles.value}>{z.id}</span>
+              </div>
+              <div className={styles.row}>
+                <span className={styles.label}>Ime:</span>
+                <span className={styles.value}>{z.ime}</span>
+              </div>
+              <div className={styles.row}>
+                <span className={styles.label}>Prezime:</span>
+                <span className={styles.value}>{z.prezime}</span>
+              </div>
+              <div className={styles.row}>
+                <span className={styles.label}>Korisničko ime:</span>
+                <span className={styles.value}>{z.korisnickoIme}</span>
+              </div>
+              <div className={styles.row}>
+                <span className={styles.label}>Email:</span>
+                <span className={styles.value}>{z.email}</span>
+              </div>
+              <div className={styles.row}>
+                <span className={styles.label}>Datum:</span>
+                <span className={styles.value}>{z.datum}</span>
+              </div>
+              {z.fajlUrl && (
+                <div className={styles.row}>
+                  <span className={styles.label}>Priloženi fajl:</span>
+                  <span className={styles.value}>
+                    <a
+                      href={z.fajlUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Otvori fajl
+                    </a>
+                  </span>
+                </div>
+              )}
+
+              <div className={styles.actions}>
+                <button
+                  className={styles.btnApprove}
+                  onClick={() => handleApprove(z.id)}
+                >
+                  ✅ Odobri
+                </button>
+                <button
+                  className={styles.btnReject}
+                  onClick={() => handleReject(z.id)}
+                >
+                  ❌ Odbij
+                </button>
+              </div>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+      ) : (
+        <p className={styles.empty}>Nema zahtjeva za prikaz</p>
+      )}
     </div>
   );
 };

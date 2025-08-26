@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Data
 public class KorisnikRequest {
-
+    private Integer id;
     private String ime;
     private String prezime;
     private String username;
