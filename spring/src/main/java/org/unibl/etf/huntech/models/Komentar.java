@@ -17,5 +17,5 @@ public class Komentar {
     private Integer idObjave;
     private String sadrzaj;
     private Integer idKorisnika;
-
+    //private Set<PodkomentarEntity> podkomentars = new LinkedHashSet<>();
 }

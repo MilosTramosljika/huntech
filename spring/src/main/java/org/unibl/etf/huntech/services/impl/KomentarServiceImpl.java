@@ -30,8 +30,8 @@ public class KomentarServiceImpl extends CrudJpaService<KomentarEntity, Integer>
 
     public KomentarServiceImpl(KomentarEntityRepository repository, ModelMapper modelMapper, ObjavaEntityRepository objavaRepository, KorisnikEntityRepository korisnikRepository, KomentarEntityRepository repository1) {
         super(repository, modelMapper, KomentarEntity.class);
-            this.repository = repository;
-            this.modelMapper = modelMapper;
+        this.repository = repository;
+        this.modelMapper = modelMapper;
     }
 
     @Override

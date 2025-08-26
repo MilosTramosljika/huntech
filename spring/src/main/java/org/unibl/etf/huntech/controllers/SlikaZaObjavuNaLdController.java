@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.unibl.etf.huntech.base.CrudController;
+import org.unibl.etf.huntech.models.Objava;
 import org.unibl.etf.huntech.models.SlikaZaObjavuNaLd;
 import org.unibl.etf.huntech.models.requests.SlikaZaObjavuNaLdRequest;
+import org.unibl.etf.huntech.services.ObjavaNaLovackiDnevnikService;
+import org.unibl.etf.huntech.services.ObjavaService;
 import org.unibl.etf.huntech.services.SlikaZaObjavuNaLdService;
 
 import java.util.List;
@@ -20,21 +23,22 @@ import java.util.List;
 public class SlikaZaObjavuNaLdController extends CrudController<Integer, SlikaZaObjavuNaLdRequest, SlikaZaObjavuNaLd> {
 
     private final SlikaZaObjavuNaLdService service;
+    private final ObjavaNaLovackiDnevnikService objavaService;
 
-    public SlikaZaObjavuNaLdController(SlikaZaObjavuNaLdService service) {
+    public SlikaZaObjavuNaLdController(SlikaZaObjavuNaLdService service, ObjavaNaLovackiDnevnikService objavaService) {
         super(service, SlikaZaObjavuNaLd.class);
         this.service = service;
+        this.objavaService = objavaService;
     }
 
     @GetMapping("/objava/{objavaId}")
     public ResponseEntity<List<SlikaZaObjavuNaLd>> getSlikeZaObjavuNaLdByIdObjave(@PathVariable Integer objavaId) {
-        List<SlikaZaObjavuNaLd> slike = service.getSlikeZaObjavuNaLdByObjavaId(objavaId);
-
-        if (slike.isEmpty()) {
-            return ResponseEntity.notFound().build(); // 404
+        if (!objavaService.existsById(objavaId)) {
+            return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(slike); // 200 + lista
+        List<SlikaZaObjavuNaLd> slike = service.getSlikeZaObjavuNaLdByObjavaId(objavaId);
+        return ResponseEntity.ok(slike);
     }
 
 }

@@ -11,8 +11,10 @@ import org.unibl.etf.huntech.base.BaseEntity;
 import org.unibl.etf.huntech.models.enums.TipObjave;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.time.LocalDateTime;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
@@ -38,7 +40,7 @@ public class ObjavaEntity implements BaseEntity<Integer> {
     private TipObjave tipObjave;
 
     @Column(name = "DatumObjavljivanja", nullable = false)
-    private LocalDate datumObjavljivanja;
+    private LocalDateTime datumObjavljivanja;
 
     @Column(name = "Lajk", nullable = false)
     private Integer lajk;
@@ -46,11 +48,11 @@ public class ObjavaEntity implements BaseEntity<Integer> {
     @Column(name = "Dislajk", nullable = false)
     private Integer dislajk;
 
-    @OneToMany(mappedBy = "idObjave")
+    @OneToMany(mappedBy = "idObjave", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Set<KomentarEntity> komentars = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "idObjave")
+    @OneToMany(mappedBy = "idObjave", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Set<SlikaZaObjavuEntity> slikaZaObjavus = new LinkedHashSet<>();
 
@@ -58,5 +60,10 @@ public class ObjavaEntity implements BaseEntity<Integer> {
     @NotNull
     @Column(name = "Sadrzaj", nullable = false, length = 1000)
     private String sadrzaj;
+
+    @Size(max = 200)
+    @NotNull
+    @Column(name = "NazivObjave", nullable = false, length = 200)
+    private String nazivObjave;
 
 }

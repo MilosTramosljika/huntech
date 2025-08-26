@@ -16,7 +16,7 @@ public class Konverzacija {
     private Integer id;
     private String nazivKonverzacije;
     private Instant datumKreiranja;
-    private Set<KorisnikHasKonverzacijaEntity> korisnikHasKonverzacijas = new LinkedHashSet<>();
-    private Set<PorukaEntity> porukas = new LinkedHashSet<>();
+//    private Set<KorisnikHasKonverzacijaEntity> korisnikHasKonverzacijas = new LinkedHashSet<>();
+//    private Set<PorukaEntity> porukas = new LinkedHashSet<>();
 
 }

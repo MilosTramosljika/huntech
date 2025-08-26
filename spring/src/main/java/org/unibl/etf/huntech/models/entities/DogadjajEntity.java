@@ -12,6 +12,7 @@ import org.unibl.etf.huntech.base.BaseEntity;
 @Table(name = "dogadjaj")
 public class DogadjajEntity implements BaseEntity<Integer>{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdDogadjaja", nullable = false)
     private Integer id;
 

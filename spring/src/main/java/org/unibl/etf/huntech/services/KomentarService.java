@@ -2,8 +2,6 @@ package org.unibl.etf.huntech.services;
 
 import org.unibl.etf.huntech.base.CrudService;
 import org.unibl.etf.huntech.models.Komentar;
-import org.unibl.etf.huntech.models.PinNaMapi;
-import org.unibl.etf.huntech.models.SlikaZaObjavu;
 
 import java.util.List;
 

@@ -13,8 +13,8 @@ import java.util.Set;
 public class ZahtjevZaPromjenuStatusa {
 
     private Integer id;
-    private KorisnikEntity korisnikIdkorisnika;
+    private Integer korisnikIdkorisnika;
     private String obrazlozenje;
     private LocalDate datumPodnosenja;
-    private Set<KHasZzpEntity> kHasZzps = new LinkedHashSet<>();
+    //private Set<KHasZzpEntity> kHasZzps = new LinkedHashSet<>();
 }

@@ -9,7 +9,7 @@ import org.unibl.etf.huntech.models.entities.PrijavaEntity;
 public class KorisnikHasPrijava {
 
     private Integer id;
-    private KorisnikEntity idKorisnika;
-    private PrijavaEntity idPrijave;
+    private Integer idKorisnika;
+    private Integer idPrijave;
 
 }

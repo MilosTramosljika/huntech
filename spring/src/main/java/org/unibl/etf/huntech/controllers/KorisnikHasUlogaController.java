@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.unibl.etf.huntech.base.CrudController;
+import org.unibl.etf.huntech.models.KorisnikHasGrupa;
 import org.unibl.etf.huntech.models.KorisnikHasUloga;
 import org.unibl.etf.huntech.models.requests.KorisnikHasUlogaRequest;
 import org.unibl.etf.huntech.services.KorisnikHasUlogaService;
+import org.unibl.etf.huntech.services.KorisnikService;
 
 import java.util.List;
 
@@ -20,22 +22,21 @@ public class KorisnikHasUlogaController extends CrudController<Integer,
         KorisnikHasUlogaRequest, KorisnikHasUloga> {
 
     private final KorisnikHasUlogaService korisnikHasUlogaService;
+    private final KorisnikService korisnikService;
 
-    public KorisnikHasUlogaController(KorisnikHasUlogaService korisnikHasUlogaService){
+    public KorisnikHasUlogaController(KorisnikHasUlogaService korisnikHasUlogaService, KorisnikService korisnikService){
         super(korisnikHasUlogaService, KorisnikHasUloga.class);
         this.korisnikHasUlogaService = korisnikHasUlogaService;
+        this.korisnikService = korisnikService;
     }
 
     @GetMapping("/idKorisnika/{idKorisnika}")
     public ResponseEntity<List<KorisnikHasUloga>> getKorisnikHasUlogaByIdKorisnika(@PathVariable Integer idKorisnika){
-        List<KorisnikHasUloga> khus = korisnikHasUlogaService.getKorisnikHasUlogaByIdKorisnika(idKorisnika);
-
-        if (khus.isEmpty()) {
-            return ResponseEntity.notFound().build(); // 404
+        if (!korisnikService.existsById(idKorisnika)) {
+            return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(khus); // 200 + lista
+        List<KorisnikHasUloga> objave = korisnikHasUlogaService.getKorisnikHasUlogaByIdKorisnika(idKorisnika);
+        return ResponseEntity.ok(objave);
     }
-
-
 }

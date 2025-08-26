@@ -5,6 +5,7 @@ import org.unibl.etf.huntech.models.entities.GrupaEntity;
 import org.unibl.etf.huntech.models.entities.KorisnikEntity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class ObjavaRequest {
@@ -12,8 +13,9 @@ public class ObjavaRequest {
     private Integer idGrupe;
     private Integer idKorisnika;
     private String tipObjave;
-    private LocalDate datumObjavljivanja;
+    private LocalDateTime datumObjavljivanja;
     private Integer lajk;
     private Integer dislajk;
     private String sadrzaj;
+    private String nazivObjave;
 }

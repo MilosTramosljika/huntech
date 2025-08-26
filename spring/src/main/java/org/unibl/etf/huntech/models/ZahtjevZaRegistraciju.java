@@ -13,6 +13,5 @@ public class ZahtjevZaRegistraciju {
 
     private Integer id;
     private String urlPdfDokumenta;
-    private Set<KHasZarEntity> kHasZars = new LinkedHashSet<>();
-
+    //private Set<KHasZarEntity> kHasZars = new LinkedHashSet<>();
 }
