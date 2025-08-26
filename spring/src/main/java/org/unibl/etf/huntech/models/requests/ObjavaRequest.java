@@ -17,5 +17,4 @@ public class ObjavaRequest {
     private Integer lajk;
     private Integer dislajk;
     private String sadrzaj;
-    private String nazivObjave;
 }

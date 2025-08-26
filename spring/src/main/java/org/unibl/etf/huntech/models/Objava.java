@@ -25,7 +25,6 @@ public class Objava {
     private Integer lajk;
     private Integer dislajk;
     private String sadrzaj;
-    private String nazivObjave;
 //    private Set<KomentarEntity> komentars = new LinkedHashSet<>();
 //    private Set<SlikaZaObjavuEntity> slikaZaObjavus = new LinkedHashSet<>();
 
