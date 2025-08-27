@@ -11,4 +11,5 @@ public class PinNaMapiRequest {
     private BigDecimal longitude;
     private String tipPina;
     private Integer idGrupe;
+    private Integer idZoneLova;
 }

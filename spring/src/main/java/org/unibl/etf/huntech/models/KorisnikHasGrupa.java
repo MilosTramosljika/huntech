@@ -15,5 +15,4 @@ public class KorisnikHasGrupa {
     private Integer idGrupe;
     private String statusZaClanstvo;
     private LocalDate datumUclanjivanja;
-    private Byte poslatPozivOdDirektora;
 }

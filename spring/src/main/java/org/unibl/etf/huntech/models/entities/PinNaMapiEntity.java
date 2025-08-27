@@ -40,4 +40,8 @@ public class PinNaMapiEntity implements BaseEntity<Integer> {
     @JoinColumn(name = "IdGrupe", nullable = false)
     private GrupaEntity idGrupe;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "IdZoneLova", nullable = true)
+    private ZonaLovaEntity idZoneLova;
+
 }

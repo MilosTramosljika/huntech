@@ -2,6 +2,8 @@ package org.unibl.etf.huntech.models;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.unibl.etf.huntech.models.entities.GrupaEntity;
 import org.unibl.etf.huntech.models.entities.KomentarEntity;
@@ -25,6 +27,7 @@ public class Objava {
     private Integer lajk;
     private Integer dislajk;
     private String sadrzaj;
+    private String nazivObjave;
 //    private Set<KomentarEntity> komentars = new LinkedHashSet<>();
 //    private Set<SlikaZaObjavuEntity> slikaZaObjavus = new LinkedHashSet<>();
 

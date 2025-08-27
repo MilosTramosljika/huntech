@@ -1,7 +1,8 @@
 package org.unibl.etf.huntech.models.enums;
 
 public enum StatusZaClanstvo {
-    poslat,
+    poslatPozivOdKorisnika,
+    poslatPozivOdDirektora,
     prihvacen,
     odbijen
 }

@@ -60,4 +60,15 @@ public class ObjavaEntity implements BaseEntity<Integer> {
     @Column(name = "Sadrzaj", nullable = false, length = 1000)
     private String sadrzaj;
 
+    @Size(max = 200)
+    @NotNull
+    @Column(name = "NazivObjave", nullable = false, length = 200)
+    private String nazivObjave;
+
+
+//    @Size(max = 1000)
+//    @NotNull
+//    @Column(name = "Sadrzaj", nullable = false, length = 1000)
+//    private String sadrzaj;
+
 }
