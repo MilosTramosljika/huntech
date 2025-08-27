@@ -1,0 +1,182 @@
+/* Glavni wrapper sa zelenom pozadinom */
+.wrapper {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #f0f7f0; /* svijetlo za opšti tekst */
+  background: linear-gradient(135deg, #1b2e1c, #2e7d32);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  min-height: 100vh;
+}
+
+/* Paneli imaju tamno-zelenu boju teksta */
+.panel {
+  border: 1px solid #66bb6a;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  background-color: rgba(240, 247, 240, 0.95);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #1b2e1c; /* ✅ tamno-zelena za čitljivost */
+}
+
+.panel h3 {
+  color: #1b5e20;
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+
+/* Naslov */
+.heading {
+  color: #c8e6c9;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.panel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+
+/* Forme i input polja */
+.panel form input,
+.panel form textarea,
+.panel form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  border: 1px solid #a5d6a7;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: #f9fff9;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.panel form input:focus,
+.panel form textarea:focus,
+.panel form select:focus {
+  border: 1px solid #388e3c;
+  outline: none;
+  box-shadow: 0 0 6px rgba(56, 142, 60, 0.6);
+}
+
+/* Dugmad */
+.panel form button,
+.panel button {
+  background: linear-gradient(135deg, #43a047, #2e7d32);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.panel form button:hover,
+.panel button:hover {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.panel form button:active,
+.panel button:active {
+  transform: scale(0.97);
+}
+
+/* Liste */
+.list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.list li {
+  margin-bottom: 12px;
+  background: #e8f5e9;
+  padding: 12px;
+  border-radius: 12px;
+  transition: background 0.2s;
+}
+
+.list li:hover {
+  background: #dcedc8;
+}
+
+.list button {
+  margin-right: 10px;
+  margin-top: 6px;
+}
+
+/* Navigacija */
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  display: flex;
+  justify-content: space-around;
+  padding: 14px 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.25);
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #c8e6c9;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.navItem.active,
+.navItem:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+/* Za manje ekrane (telefon) */
+/* Responsive za telefone */
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 20px;
+  }
+
+  /* Dugmići unutar formi (Nova objava / Specijalni događaj) */
+  .panel form button {
+    width: 100%;       /* zauzima cijeli red */
+    padding: 12px 20px; /* ostaje isto */
+    font-size: 14px;
+  }
+
+  /* Dugmići Uredi/Obriši u listi */
+  .actionButtons button {
+    font-size: 12px;        /* manji font */
+    padding: 6px 8px;       /* zadrži visinu, smanji horizontalni padding */
+    width: auto;            /* automatska širina prema sadržaju */
+  }
+
+  .successMessage {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #c3e6cb;
+  }
+  
+}
+

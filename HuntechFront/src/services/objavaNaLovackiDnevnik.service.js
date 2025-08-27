@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/objavas-ld"; // tvoj backend endpoint
+import { BASE_URL } from "../config.js";
+
+const API_URL = `${BASE_URL}/objavas-ld`; // promeni ako je drugačije
 
 export const getAllObjave = () => {
   return axios.get(API_URL);

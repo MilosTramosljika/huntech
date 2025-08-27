@@ -2,28 +2,28 @@ import axios from "axios";
 
 import { BASE_URL } from "../config.js";
 
-const API_URL = `${BASE_URL}/pins-na-mapi`; // promeni ako je drugačije
+const API_URL = `${BASE_URL}/zonas-lova`; // promeni ako je drugačije
 
-export const getAllPins = () => {
+export const getAllZonas = () => {
   return axios.get(API_URL);
 };
 
-export const getPinById = (id) => {
+export const getZonaById = (id) => {
   return axios.get(`${API_URL}/${id}`);
 };
 
-export const createPin = (userData) => {
+export const createZona = (userData) => {
   return axios.post(API_URL, userData);
 };
 
-export const updatePin = (id, userData) => {
+export const updateZona = (id, userData) => {
   return axios.put(`${API_URL}/${id}`, userData);
 };
 
-export const deletePin = (id) => {
+export const deleteZona = (id) => {
   return axios.delete(`${API_URL}/${id}`);
 };
 
-export const getPinsByIdGrupe = (groupId) => {
+export const getZonasByIdGrupe = (groupId) => {
   return axios.get(`${API_URL}/grupa/${groupId}`);
 };

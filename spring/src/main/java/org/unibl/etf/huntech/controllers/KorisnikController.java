@@ -89,7 +89,7 @@ public class KorisnikController extends CrudController<Integer, KorisnikRequest,
     }
 
     @GetMapping("/email/{email}")
-    public SingleKorisnik findKorisnikByMmail(@PathVariable String email) throws NotFoundException {
+    public SingleKorisnik findKorisnikByMail(@PathVariable String email) throws NotFoundException {
         return service.findKorisnikByMail(email);
     }
 

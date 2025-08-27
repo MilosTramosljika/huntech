@@ -10,6 +10,7 @@ import org.unibl.etf.huntech.models.entities.SlikaZaObjavuEntity;
 import org.unibl.etf.huntech.models.enums.TipObjave;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -20,10 +21,11 @@ public class Objava {
     private Integer idGrupe;
     private Integer idKorisnika;
     private TipObjave tipObjave;
-    private LocalDate datumObjavljivanja;
+    private LocalDateTime datumObjavljivanja;
     private Integer lajk;
     private Integer dislajk;
     private String sadrzaj;
+    private String nazivObjave;
 //    private Set<KomentarEntity> komentars = new LinkedHashSet<>();
 //    private Set<SlikaZaObjavuEntity> slikaZaObjavus = new LinkedHashSet<>();
 

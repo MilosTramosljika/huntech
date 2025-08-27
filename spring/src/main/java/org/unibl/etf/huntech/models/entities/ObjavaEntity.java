@@ -11,6 +11,7 @@ import org.unibl.etf.huntech.base.BaseEntity;
 import org.unibl.etf.huntech.models.enums.TipObjave;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -38,7 +39,7 @@ public class ObjavaEntity implements BaseEntity<Integer> {
     private TipObjave tipObjave;
 
     @Column(name = "DatumObjavljivanja", nullable = false)
-    private LocalDate datumObjavljivanja;
+    private LocalDateTime datumObjavljivanja;
 
     @Column(name = "Lajk", nullable = false)
     private Integer lajk;
@@ -53,6 +54,15 @@ public class ObjavaEntity implements BaseEntity<Integer> {
     @OneToMany(mappedBy = "idObjave")
     @JsonIgnore
     private Set<SlikaZaObjavuEntity> slikaZaObjavus = new LinkedHashSet<>();
+
+    @Size(max = 200)
+    @Column(name = "NazivObjave", length = 200)
+    private String nazivObjave;
+
+    @Size(max = 1000)
+    @NotNull
+    @Column(name = "Sadrzaj", nullable = false, length = 1000)
+    private String sadrzaj;
 
 //    @Size(max = 1000)
 //    @NotNull

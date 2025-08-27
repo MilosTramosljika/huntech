@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/korisniks"; // tvoj backend endpoint
+import { BASE_URL } from "../config.js";
+
+const API_URL = `${BASE_URL}/korisniks`; // promeni ako je drugačije
 
 export const getAllUsers = () => {
   return axios.get(API_URL);
@@ -20,4 +22,8 @@ export const updateUser = (id, userData) => {
 
 export const deleteUser = (id) => {
   return axios.delete(`${API_URL}/${id}`);
+};
+
+export const getUserByEmail = (email) => {
+  return axios.get(`${API_URL}/email/${email}`);
 };

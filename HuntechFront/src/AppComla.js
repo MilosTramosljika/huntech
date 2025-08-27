@@ -18,13 +18,16 @@ import RoleRequests from "./pages/Korisnik/Admin/RoleRequests.jsx";
 import PasswordChange from "./pages/Korisnik/Admin/PasswordChange.jsx";
 import Compass from "./pages/Korisnik/Lovac/Compass.jsx";
 import LogEntry from "./pages/Korisnik/Lovac/LogEntry.jsx";
+import GroupSelector from "./pages/Korisnik/DirektorLovackogUdruzenja/GroupSelector.jsx";
+import GroupManagement from "./pages/Korisnik/DirektorLovackogUdruzenja/GroupManagement.jsx";
+import ZahtjeviPage from "./pages/Korisnik/DirektorLovackogUdruzenja/ZahtjeviPage.jsx";
 
 export default function AppComla() {
   return (
     <Router>
       <Navigation>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<GroupSelector />} />
           <Route path="/mapa" element={<MapDirektor />} />
           <Route path="/dnevnik" element={<HuntingLog />} />
           <Route path="/dodavanjeObjaveNaLD" element={<LogEntry />} />
@@ -48,6 +51,12 @@ export default function AppComla() {
           <Route path="/prijave" element={<UserReports />} />
           <Route path="/zahtjeviZaUlogu" element={<RoleRequests />} />
           <Route path="/promjenaLozinke" element={<PasswordChange />} />
+          <Route path="/GroupSelector" element={<GroupSelector />} />
+          <Route path="/GroupManagement/:id" element={<GroupManagement />} />
+          <Route
+            path="/GroupManagement/:id/zahtjevi"
+            element={<ZahtjeviPage />}
+          />
         </Routes>
       </Navigation>
     </Router>

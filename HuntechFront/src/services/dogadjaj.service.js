@@ -1,7 +1,8 @@
 // dogadjaj.service.js
 import axios from "axios";
+import { BASE_URL } from "../config.js";
 
-const API_URL = "http://localhost:8080/dogadjajs"; // promeni ako je drugačije
+const API_URL = `${BASE_URL}/dogadjajs`; // promeni ako je drugačije
 
 /**
  * Dohvata sve događaje vezane za određenu objavu

@@ -5,5 +5,6 @@ public enum TipPina {
     pas,
     lovac,
     trofej,
-    tackaOdInteresa
+    tackaOdInteresa,
+    zonaLova
 }
