@@ -207,7 +207,7 @@ export default function Navigation({ children }) {
           <Notebook />
           <span>Dnevnik</span>
         </Link>
-        <Link to="/profil" className={styles.navItem}>
+        <Link to="/profilePage" className={styles.navItem}>
           <User />
           <span>Profil</span>
         </Link>

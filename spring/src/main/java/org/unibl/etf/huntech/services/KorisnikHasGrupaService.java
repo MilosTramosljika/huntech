@@ -2,7 +2,6 @@ package org.unibl.etf.huntech.services;
 
 import org.unibl.etf.huntech.base.CrudService;
 import org.unibl.etf.huntech.models.KorisnikHasGrupa;
-import org.unibl.etf.huntech.models.KorisnikHasUloga;
 
 import java.util.List;
 

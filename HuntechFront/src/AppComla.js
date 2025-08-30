@@ -21,13 +21,18 @@ import LogEntry from "./pages/Korisnik/Lovac/LogEntry.jsx";
 import GroupSelector from "./pages/Korisnik/DirektorLovackogUdruzenja/GroupSelector.jsx";
 import GroupManagement from "./pages/Korisnik/DirektorLovackogUdruzenja/GroupManagement.jsx";
 import ZahtjeviPage from "./pages/Korisnik/DirektorLovackogUdruzenja/ZahtjeviPage.jsx";
+import LoginForm from "./components/LoginForm.jsx";
+import PendingPage from "./pages/PendingPage.jsx";
+import RejectedPage from "./pages/RejectedPage.jsx";
+import RegistrationForm from "./components/RegistrationForm.jsx";
+import ProfilePage from "./components/ProfilePage.jsx";
 
 export default function AppComla() {
   return (
     <Router>
       <Navigation>
         <Routes>
-          <Route path="/" element={<GroupSelector />} />
+          <Route path="/pocetnaStranica" element={<HomePage />} />
           <Route path="/mapa" element={<MapDirektor />} />
           <Route path="/dnevnik" element={<HuntingLog />} />
           <Route path="/dodavanjeObjaveNaLD" element={<LogEntry />} />
@@ -57,6 +62,13 @@ export default function AppComla() {
             path="/GroupManagement/:id/zahtjevi"
             element={<ZahtjeviPage />}
           />
+
+          <Route path="/" element={<LoginForm />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/pending" element={<PendingPage />} />
+          <Route path="/rejected" element={<RejectedPage />} />
+          <Route path="/register" element={<RegistrationForm />} />
+          <Route path="/profilePage" element={<ProfilePage />} />
         </Routes>
       </Navigation>
     </Router>

@@ -2,6 +2,8 @@ import axios from "axios";
 
 import { BASE_URL } from "../config.js";
 
+//export const BASE_URL = "/api/zonas-lova";
+
 const API_URL = `${BASE_URL}/pins-na-mapi`; // promeni ako je drugačije
 
 export const getAllPins = () => {

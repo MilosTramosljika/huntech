@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.unibl.etf.huntech.base.CrudController;
 import org.unibl.etf.huntech.models.KorisnikHasPrijava;
-import org.unibl.etf.huntech.models.KorisnikHasUloga;
 import org.unibl.etf.huntech.models.requests.KorisnikHasPrijavaRequest;
 import org.unibl.etf.huntech.services.KorisnikHasPrijavaService;
 

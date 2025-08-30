@@ -3,6 +3,7 @@ package org.unibl.etf.huntech.models;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.unibl.etf.huntech.models.entities.*;
+import org.unibl.etf.huntech.models.enums.Uloga;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -17,6 +18,7 @@ public class Korisnik {
     private String mail;
     private String lozinka;
     private String slika;
+    private Uloga uloga;
     /*
     private Set<KHasZarEntity> kHasZars = new LinkedHashSet<>();
     private Set<KHasZzpEntity> kHasZzps = new LinkedHashSet<>();

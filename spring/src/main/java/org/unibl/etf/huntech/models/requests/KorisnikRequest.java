@@ -2,6 +2,7 @@ package org.unibl.etf.huntech.models.requests;
 
 import lombok.Data;
 import org.unibl.etf.huntech.models.entities.*;
+import org.unibl.etf.huntech.models.enums.Uloga;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -15,6 +16,7 @@ public class KorisnikRequest {
     private String mail;
     private String lozinka;
     private String slika;
+    private Uloga uloga;
 //    private Set<KHasZarEntity> kHasZars = new LinkedHashSet<>();
 //    private Set<KHasZzpEntity> kHasZzps = new LinkedHashSet<>();
 //    private Set<KomentarEntity> komentars = new LinkedHashSet<>();

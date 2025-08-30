@@ -7,11 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.unibl.etf.huntech.base.CrudController;
 import org.unibl.etf.huntech.models.KorisnikHasGrupa;
-import org.unibl.etf.huntech.models.KorisnikHasUloga;
-import org.unibl.etf.huntech.models.Objava;
 import org.unibl.etf.huntech.models.requests.KorisnikHasGrupaRequest;
 import org.unibl.etf.huntech.services.KorisnikHasGrupaService;
-import org.unibl.etf.huntech.services.KorisnikHasUlogaService;
 import org.unibl.etf.huntech.services.KorisnikService;
 
 import java.util.List;

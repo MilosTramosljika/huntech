@@ -1,8 +1,9 @@
 package org.unibl.etf.huntech.models.enums;
 
-public enum NazivUloge {
+public enum Uloga {
     LOVAC,
     DLU,
     DMZ,
-    ADMIN
+    ADMIN,
+    NEVERIFIKOVANI
 }

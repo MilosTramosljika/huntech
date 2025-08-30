@@ -8,7 +8,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.unibl.etf.huntech.base.BaseEntity;
+import org.unibl.etf.huntech.models.enums.Uloga;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -72,11 +74,6 @@ public class KorisnikEntity implements BaseEntity<Integer> {
 
     @OneToMany(mappedBy = "idKorisnika")
     @JsonIgnore
-    private Set<KorisnikHasUlogaEntity> korisnikHasUlogas = new LinkedHashSet<>();
-
-
-    @OneToMany(mappedBy = "idKorisnika")
-    @JsonIgnore
     private Set<ObavjestenjaEntity> obavjestenjas = new LinkedHashSet<>();
 
 
@@ -107,5 +104,9 @@ public class KorisnikEntity implements BaseEntity<Integer> {
     @Size(max = 500)
     @Column(name = "Slika", nullable = false, length = 500)
     private String slika;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Uloga")
+    private Uloga uloga = Uloga.NEVERIFIKOVANI;
 
 }

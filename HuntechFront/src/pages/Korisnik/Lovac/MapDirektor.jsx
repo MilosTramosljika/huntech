@@ -13,8 +13,10 @@ import "leaflet/dist/leaflet.css";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 import styles from "./Map.module.css";
 
-import dogImg from "../../../images/pins_for_map/dog.jpg";
-
+import dogImg from "../../../images/pins_for_map/Dog_map_pin.png";
+import genericImg from "../../../images/pins_for_map/Generic_map_pin.png";
+import animalImg from "../../../images/pins_for_map/Animal_map_pin.png";
+import trophyImg from "../../../images/pins_for_map/Trophy_map_pin.png";
 // servisi
 import {
   getPinsByIdGrupe,
@@ -29,18 +31,27 @@ import {
 
 // Ikone
 const hunterIcon = new L.Icon({
-  iconUrl: "https://cdn-icons-png.flaticon.com/512/1077/1077012.png",
-  iconSize: [30, 30],
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/149/149071.png", // privremena ikonica
+  iconSize: [32, 32],
+  // iconAnchor: [16, 32],
+  // popupAnchor: [0, -32],
 });
 const dogIcon = new L.Icon({
   iconUrl: dogImg,
-  iconSize: [25, 25],
+  iconSize: [50, 50],
 });
 const pinIcon = new L.Icon({
-  iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-  iconSize: [25, 25],
+  iconUrl: genericImg,
+  iconSize: [50, 50],
 });
-
+const animalIcon = new L.Icon({
+  iconUrl: animalImg,
+  iconSize: [50, 50],
+});
+const trophyIcon = new L.Icon({
+  iconUrl: trophyImg,
+  iconSize: [50, 50],
+});
 // Pin dodavanje
 function PinAdder({ addPinMode, setPins }) {
   const map = useMap();
@@ -116,7 +127,12 @@ function PinAdder({ addPinMode, setPins }) {
 }
 
 // Poligon crtanje
-function PolygonDrawer({ polygonMode, positions, setPositions, setPolygonMode }) {
+function PolygonDrawer({
+  polygonMode,
+  positions,
+  setPositions,
+  setPolygonMode,
+}) {
   useMapEvents({
     click(e) {
       if (!polygonMode) return;
@@ -174,7 +190,12 @@ function SearchBox() {
 
   return (
     <div className={`${styles.customSearch} ${active ? styles.active : ""}`}>
-      <button className={styles.searchButton} onClick={() => setActive(!active)}>🔍</button>
+      <button
+        className={styles.searchButton}
+        onClick={() => setActive(!active)}
+      >
+        🔍
+      </button>
       <input
         className={styles.searchInput}
         type="text"
@@ -182,7 +203,9 @@ function SearchBox() {
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Pretraži lokaciju..."
       />
-      <button className={styles.searchGoButton} onClick={handleSearch}>🚀</button>
+      <button className={styles.searchGoButton} onClick={handleSearch}>
+        🚀
+      </button>
     </div>
   );
 }
@@ -250,10 +273,38 @@ export default function MapDirektor() {
       setSaving(false);
     }
   };
+  const [myLocation, setMyLocation] = useState(null);
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      alert("Vaš uređaj ne podržava GPS.");
+      return;
+    }
+
+    const watchId = navigator.geolocation.watchPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        setMyLocation([latitude, longitude]);
+      },
+      (err) => {
+        console.error("GPS greška:", err);
+      },
+      {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 5000,
+      },
+    );
+
+    return () => navigator.geolocation.clearWatch(watchId);
+  }, []);
 
   return (
     <div className={styles.mapWrapper}>
-      <MapContainer center={[44.772182, 17.191]} zoom={15} className={styles.map}>
+      <MapContainer
+        center={[44.772182, 17.191]}
+        zoom={15}
+        className={styles.map}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.esri.com/">Esri</a>'
           url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
@@ -267,33 +318,50 @@ export default function MapDirektor() {
           setPolygonMode={setPolygonMode}
         />
 
-        {pins.filter((p) => p.tipPina !== "zonaLova").map((p, idx) => {
-          let iconToUse = p.tipPina === "lovac" ? hunterIcon : p.tipPina === "pas" ? dogIcon : pinIcon;
-          return (
-            <Marker key={p.id || idx} position={[p.latitude, p.longitude]} icon={iconToUse}>
-              <Popup>
-                {p.tipPina}
-                <br />
-                {!addPinMode && !polygonMode && (
-                  <button
-                    onClick={async () => {
-                      if (!window.confirm("Obrisati ovaj pin?")) return;
-                      try {
-                        await deletePin(p.id);
-                        setPins(prev => prev.filter(pin => pin.id !== p.id));
-                      } catch (err) {
-                        alert("Greška pri brisanju pina.");
-                        console.error(err);
-                      }
-                    }}
-                  >
-                    Obriši pin
-                  </button>
-                )}
-              </Popup>
-            </Marker>
-          );
-        })}
+        {pins
+          .filter((p) => p.tipPina !== "zonaLova")
+          .map((p, idx) => {
+            let iconToUse =
+              p.tipPina === "lovac"
+                ? hunterIcon
+                : p.tipPina === "pas"
+                  ? dogIcon
+                  : p.tipPina === "zivotinja"
+                    ? animalIcon
+                    : p.tipPina === "trofej"
+                      ? trophyIcon
+                      : pinIcon;
+            return (
+              <Marker
+                key={p.id || idx}
+                position={[p.latitude, p.longitude]}
+                icon={iconToUse}
+              >
+                <Popup>
+                  {p.tipPina}
+                  <br />
+                  {!addPinMode && !polygonMode && (
+                    <button
+                      onClick={async () => {
+                        if (!window.confirm("Obrisati ovaj pin?")) return;
+                        try {
+                          await deletePin(p.id);
+                          setPins((prev) =>
+                            prev.filter((pin) => pin.id !== p.id),
+                          );
+                        } catch (err) {
+                          alert("Greška pri brisanju pina.");
+                          console.error(err);
+                        }
+                      }}
+                    >
+                      Obriši pin
+                    </button>
+                  )}
+                </Popup>
+              </Marker>
+            );
+          })}
 
         {zones.map((zone) => (
           <Polygon
@@ -315,7 +383,7 @@ export default function MapDirektor() {
                     { label: "Pas", value: "pas" },
                     { label: "Lovac", value: "lovac" },
                     { label: "Trofej", value: "trofej" },
-                    { label: "Tačka od interesa", value: "tackaOdInteresa" }
+                    { label: "Tačka od interesa", value: "tackaOdInteresa" },
                   ];
 
                   types.forEach(({ label, value }) => {
@@ -351,7 +419,10 @@ export default function MapDirektor() {
                   cancelBtn.onclick = () => e.target._map.closePopup();
                   div.appendChild(cancelBtn);
 
-                  L.popup().setLatLng(latlng).setContent(div).openOn(e.target._map);
+                  L.popup()
+                    .setLatLng(latlng)
+                    .setContent(div)
+                    .openOn(e.target._map);
                 }
               },
             }}
@@ -366,7 +437,9 @@ export default function MapDirektor() {
                     try {
                       await deleteZona(zone.id);
                       setZones((prev) => prev.filter((z) => z.id !== zone.id));
-                      setPins((prev) => prev.filter((p) => p.idZoneLova !== zone.id));
+                      setPins((prev) =>
+                        prev.filter((p) => p.idZoneLova !== zone.id),
+                      );
                     } catch (err) {
                       alert("Greška pri brisanju zone.");
                       console.error(err);
@@ -379,7 +452,31 @@ export default function MapDirektor() {
             </Popup>
           </Polygon>
         ))}
-
+        {myLocation && (
+          <Marker
+            position={myLocation}
+            icon={L.divIcon({
+              html: `<div style="
+          background:#2c3e50;
+          color:white;
+          font-weight:bold;
+          font-size:14px;
+          border-radius:50%;
+          width:35px;
+          height:35px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          border:2px solid #fff;
+          box-shadow:0 0 4px rgba(0,0,0,0.5);
+        ">LC</div>`,
+              iconSize: [35, 35],
+              className: "",
+            })}
+          >
+            <Popup>Moja lokacija</Popup>
+          </Marker>
+        )}
       </MapContainer>
 
       <div className={styles.directorControls}>
@@ -389,8 +486,17 @@ export default function MapDirektor() {
           </button>
         )}
         {!addPinMode && (
-          <button onClick={() => polygonMode ? completePolygon() : setPolygonMode(true)} disabled={saving}>
-            {saving ? "Čuvam..." : polygonMode ? "Završi crtanje poligona" : "Dodaj zonu lova"}
+          <button
+            onClick={() =>
+              polygonMode ? completePolygon() : setPolygonMode(true)
+            }
+            disabled={saving}
+          >
+            {saving
+              ? "Čuvam..."
+              : polygonMode
+                ? "Završi crtanje poligona"
+                : "Dodaj zonu lova"}
           </button>
         )}
       </div>

@@ -8,7 +8,7 @@ import org.unibl.etf.huntech.models.entities.GrupaEntity;
 public class AktivnostDivljaci {
 
     private Integer id;
-    private GrupaEntity idGrupe;
+    private Integer idGrupe;
     private String tip;
     private String putanja;
 }
